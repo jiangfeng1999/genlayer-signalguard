@@ -32,7 +32,9 @@ docs/submission.md             Portal submission notes and review checklist
 docs/research-analysis.md      Research notes on the source-grounded verdict pattern
 docs/tooling-notes.md          Tooling and local verification notes
 docs/network-dashboard-submission.md  Dashboard contribution notes
+docs/benchmarks.md             Dashboard and status-script benchmark notes
 examples/sample_claims.json    Example claims and sources
+examples/portal_dashboard_checks.json Public Portal dashboard check cases
 ```
 
 ## Contract workflow

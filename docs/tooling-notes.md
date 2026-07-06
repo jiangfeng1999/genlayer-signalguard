@@ -67,3 +67,7 @@ The helper has also been tested with a GenLayer documentation URL and produces a
 The dashboard uses only browser-native `fetch` and does not require a frontend build step.
 
 The status scripts have been run locally against the public Portal API and GitHub API.
+
+## Benchmark notes
+
+`docs/benchmarks.md` records the public API checks used for the dashboard and status scripts. The structured cases live in `examples/portal_dashboard_checks.json`.

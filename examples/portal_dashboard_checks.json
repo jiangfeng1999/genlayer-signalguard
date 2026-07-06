@@ -1,0 +1,36 @@
+[
+  {
+    "name": "builder profile lookup",
+    "endpoint": "https://portal-admin.genlayer.foundation/api/v1/users/by-address/0x554406e72a76a7b90f1d2857187669af42f65b59/",
+    "expected_fields": [
+      "name",
+      "address",
+      "builder.total_points",
+      "builder.total_contributions"
+    ],
+    "reason": "Confirms the dashboard can read public Builder profile data for a wallet without authentication."
+  },
+  {
+    "name": "builder leaderboard top 10",
+    "endpoint": "https://portal-admin.genlayer.foundation/api/v1/leaderboard/?type=builder&page_size=10",
+    "expected_fields": [
+      "rank",
+      "total_points",
+      "user_details.name",
+      "user_details.address"
+    ],
+    "reason": "Confirms the dashboard can calculate the public gap to the top Builder."
+  },
+  {
+    "name": "contribution type ranking",
+    "endpoint": "https://portal-admin.genlayer.foundation/api/v1/contribution-types/?page_size=1000",
+    "expected_fields": [
+      "results[].name",
+      "results[].category",
+      "results[].max_points",
+      "results[].current_multiplier",
+      "results[].is_submittable"
+    ],
+    "reason": "Confirms the dashboard can surface high-value submittable contribution categories."
+  }
+]

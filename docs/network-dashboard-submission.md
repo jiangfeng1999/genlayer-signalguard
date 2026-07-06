@@ -25,6 +25,8 @@ Supporting public files:
 ```text
 scripts/check-genlayer-status.ps1
 scripts/save-genlayer-status.ps1
+docs/benchmarks.md
+examples/portal_dashboard_checks.json
 ```
 
 The file must be available from GitHub or another public URL before submitting it to the Portal.
