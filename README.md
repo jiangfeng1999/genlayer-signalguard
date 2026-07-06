@@ -33,8 +33,10 @@ docs/research-analysis.md      Research notes on the source-grounded verdict pat
 docs/tooling-notes.md          Tooling and local verification notes
 docs/network-dashboard-submission.md  Dashboard contribution notes
 docs/benchmarks.md             Dashboard and status-script benchmark notes
+docs/adversarial-testing.md    Source-grounding adversarial test notes
 examples/sample_claims.json    Example claims and sources
 examples/portal_dashboard_checks.json Public Portal dashboard check cases
+examples/adversarial_claims.json Source-grounding adversarial claim cases
 ```
 
 ## Contract workflow

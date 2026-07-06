@@ -1,0 +1,44 @@
+[
+  {
+    "id": "supported-doc-feature",
+    "claim": "GenLayer Intelligent Contracts can use web data as part of their execution flow.",
+    "source_url": "https://docs.genlayer.com/understand-genlayer-protocol/what-is-genlayer",
+    "expected_verdict": "supported",
+    "risk_focus": "Feature claim with direct documentation support"
+  },
+  {
+    "id": "contradicted-overclaim",
+    "claim": "SignalGuard replaces a full independent security audit.",
+    "source_url": "https://github.com/jiangfeng1999/genlayer-signalguard",
+    "expected_verdict": "contradicted",
+    "risk_focus": "Overclaim that should be rejected when the source describes a narrow demo"
+  },
+  {
+    "id": "inconclusive-unrelated-source",
+    "claim": "GenLayer has already announced the final mainnet incentive distribution formula.",
+    "source_url": "https://docs.genlayer.com/",
+    "expected_verdict": "inconclusive",
+    "risk_focus": "Unrelated or insufficient source material"
+  },
+  {
+    "id": "inconclusive-time-sensitive",
+    "claim": "The current #1 Builder on the Portal will stay #1 for the rest of the testnet.",
+    "source_url": "https://portal.genlayer.foundation/builders",
+    "expected_verdict": "inconclusive",
+    "risk_focus": "Future-looking claim that cannot be proven from a current leaderboard"
+  },
+  {
+    "id": "contradicted-absolute-language",
+    "claim": "Every GenLayer Portal contribution category gives exactly the same number of points.",
+    "source_url": "https://portal.genlayer.foundation/",
+    "expected_verdict": "contradicted",
+    "risk_focus": "Absolute claim likely contradicted by category point ranges"
+  },
+  {
+    "id": "inconclusive-vague-claim",
+    "claim": "GenLayer is the best AI blockchain project.",
+    "source_url": "https://www.genlayer.com/",
+    "expected_verdict": "inconclusive",
+    "risk_focus": "Subjective claim without a measurable source-grounded criterion"
+  }
+]

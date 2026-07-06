@@ -71,3 +71,7 @@ The status scripts have been run locally against the public Portal API and GitHu
 ## Benchmark notes
 
 `docs/benchmarks.md` records the public API checks used for the dashboard and status scripts. The structured cases live in `examples/portal_dashboard_checks.json`.
+
+## Adversarial checks
+
+`docs/adversarial-testing.md` documents manual source-grounding edge cases for the contract. The structured cases live in `examples/adversarial_claims.json`.
