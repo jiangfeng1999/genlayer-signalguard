@@ -28,6 +28,18 @@ Reviewers can copy the method and arguments into Studio after deploying `contrac
 
 `web/index.html` provides the same payload preparation flow without a build system. It is deliberately static so the project remains easy to inspect.
 
+## Portal dashboard
+
+`web/portal-dashboard.html` is a static status dashboard that reads the public Portal API for a wallet address. It shows builder points, rank, gap to the #1 builder, the top builder leaderboard, and high-value contribution categories.
+
+Open it through a local or public HTTP server so browser `fetch` can call the Portal API:
+
+```bash
+python -m http.server 8765
+```
+
+Then visit `http://127.0.0.1:8765/web/portal-dashboard.html`.
+
 ## Verification performed
 
 The Python files compile locally with:
@@ -38,3 +50,4 @@ python -m py_compile app\signalguard_cli.py contracts\signal_guard.py
 
 The helper has also been tested with a GenLayer documentation URL and produces a valid payload structure.
 
+The dashboard uses only browser-native `fetch` and does not require a frontend build step.
