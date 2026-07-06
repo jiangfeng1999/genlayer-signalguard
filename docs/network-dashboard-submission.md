@@ -20,6 +20,13 @@ Use a public URL for:
 web/portal-dashboard.html
 ```
 
+Supporting public files:
+
+```text
+scripts/check-genlayer-status.ps1
+scripts/save-genlayer-status.ps1
+```
+
 The file must be available from GitHub or another public URL before submitting it to the Portal.
 
 ## Why it qualifies

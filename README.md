@@ -26,6 +26,8 @@ contracts/signal_guard.py      GenLayer Intelligent Contract
 app/signalguard_cli.py         Minimal CLI payload builder for contract calls
 web/index.html                 Static demo UI for preparing calls
 web/portal-dashboard.html      Static Portal points and leaderboard dashboard
+scripts/check-genlayer-status.ps1  Read-only Portal and GitHub status checker
+scripts/save-genlayer-status.ps1   Local ignored status snapshot helper
 docs/submission.md             Portal submission notes and review checklist
 docs/research-analysis.md      Research notes on the source-grounded verdict pattern
 docs/tooling-notes.md          Tooling and local verification notes
@@ -54,6 +56,20 @@ python -m http.server 8765
 ```
 
 Then open `http://127.0.0.1:8765/web/portal-dashboard.html`.
+
+## Status scripts
+
+Run a read-only public status check:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts\check-genlayer-status.ps1
+```
+
+Save timestamped local snapshots under `.genlayer-status/`:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts\save-genlayer-status.ps1
+```
 
 ## Example claim
 

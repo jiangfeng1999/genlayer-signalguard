@@ -40,6 +40,20 @@ python -m http.server 8765
 
 Then visit `http://127.0.0.1:8765/web/portal-dashboard.html`.
 
+## Read-only status scripts
+
+`scripts/check-genlayer-status.ps1` reads public Portal and GitHub API endpoints and returns a JSON status report. It does not connect a wallet, submit forms, or require credentials.
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts\check-genlayer-status.ps1
+```
+
+`scripts/save-genlayer-status.ps1` saves timestamped JSON snapshots under `.genlayer-status/`, which is ignored by git, and reports the point delta versus the previous snapshot.
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts\save-genlayer-status.ps1
+```
+
 ## Verification performed
 
 The Python files compile locally with:
@@ -51,3 +65,5 @@ python -m py_compile app\signalguard_cli.py contracts\signal_guard.py
 The helper has also been tested with a GenLayer documentation URL and produces a valid payload structure.
 
 The dashboard uses only browser-native `fetch` and does not require a frontend build step.
+
+The status scripts have been run locally against the public Portal API and GitHub API.
