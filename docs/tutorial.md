@@ -18,13 +18,12 @@ This is useful because many ecosystem claims are not simple numeric facts. They 
 
 ## Contract shape
 
-SignalGuard keeps four state fields:
+SignalGuard keeps three state fields:
 
 ```python
 claim: str
 source_url: str
 verdict_report: str
-review_count: u256
 ```
 
 The state is intentionally small. Reviewers can deploy the contract quickly, call one write method, and read the latest stored verdict.
@@ -41,7 +40,7 @@ page_text = response.body.decode("utf-8")
 The contract passes a bounded excerpt into the validator prompt:
 
 ```python
-page_text[:6000]
+page_text[:4000]
 ```
 
 This keeps the prompt compact while still giving validators evidence to inspect.
@@ -52,7 +51,7 @@ The contract uses `prompt_non_comparative` because the task is not choosing the 
 
 ```python
 report = gl.eq_principle.prompt_non_comparative(
-    source_input,
+    lambda: prompt_input,
     task=(
         "Determine whether the claim is supported, contradicted, or inconclusive "
         "based only on the source content. Return compact JSON with keys "
@@ -112,4 +111,3 @@ Useful next steps:
 - Compare two or three independent sources.
 - Add a deployed frontend that reads the latest verdict.
 - Add test cases for supported, contradicted, and inconclusive claims.
-
