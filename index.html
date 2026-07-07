@@ -1,0 +1,359 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GenLayer SignalGuard Evidence Hub</title>
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: Inter, Arial, sans-serif;
+      color: #172033;
+      background: #f6f8fb;
+      --line: #dfe5ef;
+      --muted: #5f6b7a;
+      --accent: #f58220;
+      --blue: #2563eb;
+      --green: #0f8a5f;
+      --red: #b42318;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 24px;
+      background: #f6f8fb;
+    }
+
+    main {
+      max-width: 1160px;
+      margin: 0 auto;
+      display: grid;
+      gap: 18px;
+    }
+
+    header,
+    section {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: white;
+      padding: 20px;
+    }
+
+    h1,
+    h2,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+      font-size: 34px;
+      line-height: 1.12;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      margin-bottom: 12px;
+      font-size: 21px;
+      letter-spacing: 0;
+    }
+
+    p,
+    li {
+      color: #303b4d;
+      line-height: 1.6;
+    }
+
+    a {
+      color: var(--blue);
+      font-weight: 800;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+    }
+
+    .subtitle {
+      margin-bottom: 0;
+      color: var(--muted);
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid #cbd5e1;
+      border-radius: 999px;
+      padding: 5px 9px;
+      color: #334155;
+      background: #f8fafc;
+      font-size: 12px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fff;
+      padding: 16px;
+      min-height: 170px;
+      display: grid;
+      gap: 10px;
+      align-content: start;
+    }
+
+    .card strong {
+      display: block;
+      font-size: 17px;
+      line-height: 1.25;
+    }
+
+    .card p {
+      margin-bottom: 0;
+      font-size: 14px;
+    }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .metric {
+      border: 1px solid var(--line);
+      border-top: 4px solid var(--accent);
+      border-radius: 8px;
+      background: white;
+      padding: 16px;
+      min-height: 110px;
+    }
+
+    .metric.blue {
+      border-top-color: var(--blue);
+    }
+
+    .metric.green {
+      border-top-color: var(--green);
+    }
+
+    .metric.red {
+      border-top-color: var(--red);
+    }
+
+    .metric span {
+      display: block;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .metric strong {
+      display: block;
+      margin-top: 10px;
+      font-size: 27px;
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    th,
+    td {
+      border-bottom: 1px solid #edf1f6;
+      padding: 11px 12px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      color: #475569;
+      background: #f8fafc;
+      font-size: 12px;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .number {
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+
+    code {
+      font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+    }
+
+    @media (max-width: 920px) {
+      body {
+        padding: 16px;
+      }
+
+      .grid,
+      .metric-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>GenLayer SignalGuard Evidence Hub</h1>
+      <p class="subtitle">Public review package for SignalGuard: contract evidence, dashboard, research, tutorial, adversarial tests, and benchmarks.</p>
+      <div class="tag-row">
+        <span class="tag">Updated 2026-07-07</span>
+        <span class="tag">GitHub Pages</span>
+        <span class="tag">Public Data Only</span>
+      </div>
+    </header>
+
+    <section>
+      <h2>Current Public Snapshot</h2>
+      <div class="metric-grid">
+        <div class="metric">
+          <span>Builder Points</span>
+          <strong>50</strong>
+          <p>Public Portal API snapshot.</p>
+        </div>
+        <div class="metric blue">
+          <span>Public Contributions</span>
+          <strong>1</strong>
+          <p>Accepted public Builder contribution count.</p>
+        </div>
+        <div class="metric red">
+          <span>Gap To #1</span>
+          <strong>9,346</strong>
+          <p>#1 observed as YoneCode at 9,395 BP.</p>
+        </div>
+        <div class="metric green">
+          <span>Evidence Checks</span>
+          <strong>6/6</strong>
+          <p>Latest local evidence verifier passed.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Published Evidence</h2>
+      <div class="grid">
+        <article class="card">
+          <strong>SignalGuard Project</strong>
+          <p>Core repository with contract, CLI helper, demo UI, and documentation.</p>
+          <a href="https://github.com/jiangfeng1999/genlayer-signalguard">Open GitHub repository</a>
+        </article>
+        <article class="card">
+          <strong>Network Dashboard</strong>
+          <p>Public points dashboard with a bundled snapshot and optional live refresh.</p>
+          <a href="web/portal-dashboard.html">Open dashboard</a>
+        </article>
+        <article class="card">
+          <strong>Research &amp; Analysis</strong>
+          <p>Methodology and risk analysis for source-grounded GenLayer verdicts.</p>
+          <a href="web/research-analysis.html">Open research report</a>
+        </article>
+        <article class="card">
+          <strong>Educational Content</strong>
+          <p>Builder tutorial for implementing a source-grounded claim review contract.</p>
+          <a href="web/tutorial.html">Open tutorial</a>
+        </article>
+        <article class="card">
+          <strong>Adversarial Testing</strong>
+          <p>Six test cases for supported, contradicted, and inconclusive verdict behavior.</p>
+          <a href="web/adversarial-testing.html">Open adversarial tests</a>
+        </article>
+        <article class="card">
+          <strong>Benchmarks</strong>
+          <p>Reproducible checks for Portal public data, calculations, and package verification.</p>
+          <a href="web/benchmarks.html">Open benchmarks</a>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Submission Candidates</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>Evidence</th>
+            <th class="number">Observed Public Cap</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Projects</td>
+            <td>GitHub repository and implementation package</td>
+            <td class="number">4,000 BP</td>
+            <td>Submitted; pending review</td>
+          </tr>
+          <tr>
+            <td>Network Dashboard</td>
+            <td><a href="web/portal-dashboard.html">Public dashboard</a></td>
+            <td class="number">1,500 BP</td>
+            <td>Ready, requires Portal submission</td>
+          </tr>
+          <tr>
+            <td>Research &amp; Analysis</td>
+            <td><a href="web/research-analysis.html">Research report</a></td>
+            <td class="number">2,000 BP</td>
+            <td>Ready if account can submit validator-side category</td>
+          </tr>
+          <tr>
+            <td>Educational Content</td>
+            <td><a href="web/tutorial.html">Tutorial</a></td>
+            <td class="number">400 BP</td>
+            <td>Ready if account can submit validator-side category</td>
+          </tr>
+          <tr>
+            <td>Adversarial Testing</td>
+            <td><a href="web/adversarial-testing.html">Adversarial test suite</a></td>
+            <td class="number">600 BP</td>
+            <td>Ready if account can submit validator-side category</td>
+          </tr>
+          <tr>
+            <td>Benchmarks</td>
+            <td><a href="web/benchmarks.html">Benchmark report</a></td>
+            <td class="number">500 BP</td>
+            <td>Ready if account can submit validator-side category</td>
+          </tr>
+          <tr>
+            <td>Intelligent Contracts</td>
+            <td>Studio deployment and explorer evidence</td>
+            <td class="number">300 BP</td>
+            <td>Ready, requires Portal reCAPTCHA/final confirmation</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Verifier</h2>
+      <p>Reviewers can clone the repository and run the evidence verifier:</p>
+      <p><code>powershell -ExecutionPolicy Bypass -File scripts\verify-evidence-package.ps1</code></p>
+    </section>
+  </main>
+</body>
+</html>

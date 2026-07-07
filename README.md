@@ -25,6 +25,7 @@ Normal smart contracts cannot inspect natural-language evidence or compare sourc
 contracts/signal_guard.py      GenLayer Intelligent Contract
 contracts/signal_guard_history.py Next-milestone history prototype
 app/signalguard_cli.py         Minimal CLI payload builder for contract calls
+index.html                     GitHub Pages evidence hub
 web/index.html                 Static demo UI for preparing calls
 web/tutorial.html              Public builder tutorial
 web/portal-dashboard.html      Static Portal points and leaderboard dashboard

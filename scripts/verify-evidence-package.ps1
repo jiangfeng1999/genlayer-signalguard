@@ -35,6 +35,7 @@ try {
             "contracts\signal_guard.py",
             "contracts\signal_guard_history.py",
             "app\signalguard_cli.py",
+            "index.html",
             "web\index.html",
             "web\tutorial.html",
             "web\portal-dashboard.html",
@@ -86,12 +87,16 @@ try {
     }
 
     $results += Invoke-Check "static pages contain expected hooks" {
+        $hub = Get-Content -LiteralPath (Join-Path $repoRoot "index.html") -Raw
         $demo = Get-Content -LiteralPath (Join-Path $repoRoot "web\index.html") -Raw
         $tutorial = Get-Content -LiteralPath (Join-Path $repoRoot "web\tutorial.html") -Raw
         $dashboard = Get-Content -LiteralPath (Join-Path $repoRoot "web\portal-dashboard.html") -Raw
         $research = Get-Content -LiteralPath (Join-Path $repoRoot "web\research-analysis.html") -Raw
         $adversarial = Get-Content -LiteralPath (Join-Path $repoRoot "web\adversarial-testing.html") -Raw
         $benchmarks = Get-Content -LiteralPath (Join-Path $repoRoot "web\benchmarks.html") -Raw
+        if ($hub -notmatch "GenLayer SignalGuard Evidence Hub" -or $hub -notmatch "Submission Candidates") {
+            throw "index.html does not contain the expected evidence hub markers."
+        }
         if ($demo -notmatch "review_claim") {
             throw "web/index.html does not contain review_claim."
         }
