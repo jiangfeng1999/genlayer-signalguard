@@ -43,6 +43,7 @@ Then open:
 ```text
 http://127.0.0.1:8765/web/index.html
 http://127.0.0.1:8765/web/portal-dashboard.html
+https://jiangfeng1999.github.io/genlayer-signalguard/web/portal-dashboard.html
 ```
 
 ## Review boundaries

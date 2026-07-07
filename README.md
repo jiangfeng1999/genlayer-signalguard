@@ -64,7 +64,13 @@ The MVP intentionally keeps state small so reviewers can deploy and test it quic
 
 Open `web/index.html` locally and generate a `review_claim` payload for Studio. The UI is deliberately static so the contribution can be reviewed without installing a frontend toolchain.
 
-Serve the repository over HTTP and open `web/portal-dashboard.html` to inspect public Portal points, the builder leaderboard gap, and high-value contribution categories from the public Portal API:
+Open the published dashboard to inspect public Portal points, the builder leaderboard gap, and high-value contribution categories from the public Portal API:
+
+```text
+https://jiangfeng1999.github.io/genlayer-signalguard/web/portal-dashboard.html
+```
+
+For local inspection, serve the repository over HTTP:
 
 ```bash
 python -m http.server 8765

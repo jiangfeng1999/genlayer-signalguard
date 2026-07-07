@@ -14,10 +14,10 @@ This static dashboard reads the public GenLayer Portal API and turns it into a r
 
 ## Evidence
 
-Use a public URL for:
+Published dashboard:
 
 ```text
-web/portal-dashboard.html
+https://jiangfeng1999.github.io/genlayer-signalguard/web/portal-dashboard.html
 ```
 
 Supporting public files:
@@ -31,7 +31,7 @@ examples/portal_dashboard_checks.json
 examples/dashboard_calculation_fixture.json
 ```
 
-The file must be available from GitHub or another public URL before submitting it to the Portal.
+The dashboard is also available in the repository at `web/portal-dashboard.html`.
 
 ## Why it qualifies
 
@@ -40,7 +40,15 @@ The file must be available from GitHub or another public URL before submitting i
 - It surfaces high-value contribution categories and their current point caps.
 - It is static, inspectable, and does not require a wallet connection, account login, or API key.
 
-## Local verification
+## Verification
+
+Open the published dashboard:
+
+```text
+https://jiangfeng1999.github.io/genlayer-signalguard/web/portal-dashboard.html
+```
+
+Optional local verification:
 
 Serve the repository over HTTP:
 
@@ -48,7 +56,7 @@ Serve the repository over HTTP:
 python -m http.server 8765
 ```
 
-Open:
+Then open:
 
 ```text
 http://127.0.0.1:8765/web/portal-dashboard.html
@@ -72,5 +80,4 @@ GenLayer Portal Public Points Dashboard is a static, public-data dashboard for b
 
 - Do not claim that the dashboard grants points automatically.
 - Do not claim private submission status unless the Portal exposes it publicly.
-- Do not submit this until it is published at a public URL.
 - Do not resubmit it under multiple categories with the same evidence.

@@ -38,7 +38,13 @@ Open it through a local or public HTTP server so browser `fetch` can call the Po
 python -m http.server 8765
 ```
 
-Then visit `http://127.0.0.1:8765/web/portal-dashboard.html`.
+The published dashboard is available at:
+
+```text
+https://jiangfeng1999.github.io/genlayer-signalguard/web/portal-dashboard.html
+```
+
+For local inspection, visit `http://127.0.0.1:8765/web/portal-dashboard.html`.
 
 ## Read-only status scripts
 
