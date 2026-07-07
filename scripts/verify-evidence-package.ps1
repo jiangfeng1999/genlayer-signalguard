@@ -36,9 +36,11 @@ try {
             "contracts\signal_guard_history.py",
             "app\signalguard_cli.py",
             "web\index.html",
+            "web\tutorial.html",
             "web\portal-dashboard.html",
             "web\research-analysis.html",
             "docs\evaluation-report.md",
+            "docs\educational-content-submission.md",
             "docs\milestone-1-evidence.md",
             "docs\research-analysis-submission.md",
             "docs\history-milestone-design.md",
@@ -81,10 +83,14 @@ try {
 
     $results += Invoke-Check "static pages contain expected hooks" {
         $demo = Get-Content -LiteralPath (Join-Path $repoRoot "web\index.html") -Raw
+        $tutorial = Get-Content -LiteralPath (Join-Path $repoRoot "web\tutorial.html") -Raw
         $dashboard = Get-Content -LiteralPath (Join-Path $repoRoot "web\portal-dashboard.html") -Raw
         $research = Get-Content -LiteralPath (Join-Path $repoRoot "web\research-analysis.html") -Raw
         if ($demo -notmatch "review_claim") {
             throw "web/index.html does not contain review_claim."
+        }
+        if ($tutorial -notmatch "Source-Grounded Claim Review Contract" -or $tutorial -notmatch "Educational Content") {
+            throw "web/tutorial.html does not contain the expected tutorial markers."
         }
         if ($dashboard -notmatch "portal-admin\.genlayer\.foundation") {
             throw "web/portal-dashboard.html does not call the public Portal API."

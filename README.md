@@ -26,6 +26,7 @@ contracts/signal_guard.py      GenLayer Intelligent Contract
 contracts/signal_guard_history.py Next-milestone history prototype
 app/signalguard_cli.py         Minimal CLI payload builder for contract calls
 web/index.html                 Static demo UI for preparing calls
+web/tutorial.html              Public builder tutorial
 web/portal-dashboard.html      Static Portal points and leaderboard dashboard
 web/research-analysis.html     Published research analysis report
 scripts/check-genlayer-status.ps1  Read-only Portal and GitHub status checker
@@ -34,6 +35,7 @@ scripts/test-portal-dashboard-calculations.ps1 Offline dashboard calculation tes
 scripts/test-signalguard-cli.ps1   CLI payload helper test
 scripts/verify-evidence-package.ps1 One-command evidence package verifier
 docs/submission.md             Portal submission notes and review checklist
+docs/educational-content-submission.md Tutorial contribution notes
 docs/research-analysis.md      Research notes on the source-grounded verdict pattern
 docs/tooling-notes.md          Tooling and local verification notes
 docs/network-dashboard-submission.md  Dashboard contribution notes

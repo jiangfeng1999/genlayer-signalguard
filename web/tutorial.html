@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Build a Source-Grounded Claim Review Contract</title>
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: Inter, Arial, sans-serif;
+      color: #172033;
+      background: #f6f8fb;
+      --line: #dfe5ef;
+      --muted: #5f6b7a;
+      --accent: #f58220;
+      --blue: #2563eb;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 24px;
+      background: #f6f8fb;
+    }
+
+    main {
+      max-width: 980px;
+      margin: 0 auto;
+      display: grid;
+      gap: 18px;
+    }
+
+    header,
+    section {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: white;
+      padding: 20px;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+      font-size: 32px;
+      line-height: 1.15;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      margin-bottom: 12px;
+      font-size: 21px;
+      letter-spacing: 0;
+    }
+
+    p,
+    li {
+      color: #303b4d;
+      line-height: 1.6;
+    }
+
+    a {
+      color: var(--blue);
+      font-weight: 700;
+    }
+
+    pre {
+      overflow: auto;
+      margin: 12px 0 0;
+      padding: 14px;
+      border-radius: 6px;
+      background: #121826;
+      color: #e6edf7;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    code {
+      font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+    }
+
+    .subtitle {
+      margin-bottom: 0;
+      color: var(--muted);
+    }
+
+    .step {
+      border-left: 4px solid var(--accent);
+      padding-left: 14px;
+      margin-top: 18px;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid #cbd5e1;
+      border-radius: 999px;
+      padding: 5px 9px;
+      color: #334155;
+      background: #f8fafc;
+      font-size: 12px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 760px) {
+      body {
+        padding: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Build a Source-Grounded Claim Review Contract</h1>
+      <p class="subtitle">A practical GenLayer tutorial for fetching a cited source, asking validators for a constrained verdict, and preparing a Studio call payload.</p>
+      <div class="tag-row">
+        <span class="tag">Educational Content</span>
+        <span class="tag">GenLayer Intelligent Contracts</span>
+        <span class="tag">Updated 2026-07-07</span>
+      </div>
+    </header>
+
+    <section>
+      <h2>What You Will Build</h2>
+      <p>
+        The goal is a small Intelligent Contract that answers one review question:
+        does a cited public source support a submitted claim? The result is one of
+        <code>supported</code>, <code>contradicted</code>, or <code>inconclusive</code>.
+      </p>
+      <p>
+        This is useful for ecosystem announcements, research notes, and agent workflows where a claim needs to be checked against human-readable evidence rather than a numeric oracle value.
+      </p>
+    </section>
+
+    <section>
+      <h2>Prerequisites</h2>
+      <ul>
+        <li>A GenLayer Studio environment for deploying an Intelligent Contract.</li>
+        <li>A public source URL that reviewers can inspect.</li>
+        <li>A specific claim that can be judged from that source.</li>
+        <li>The SignalGuard repository for reference code and helper scripts.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Implementation Steps</h2>
+
+      <div class="step">
+        <h3>1. Keep contract state small</h3>
+        <p>The first version stores only the latest claim, source URL, and verdict report. This keeps deployment and review simple.</p>
+        <pre><code>claim: str
+source_url: str
+verdict_report: str</code></pre>
+      </div>
+
+      <div class="step">
+        <h3>2. Fetch the cited source inside the decision flow</h3>
+        <p>SignalGuard uses GenLayer web access so the validator task is grounded in the cited source instead of a free-form model answer.</p>
+        <pre><code>response = gl.nondet.web.get(source_url)
+page_text = response.body.decode("utf-8")</code></pre>
+      </div>
+
+      <div class="step">
+        <h3>3. Ask for a constrained verdict</h3>
+        <p>The task should force one compact verdict and forbid invented facts. A narrow prompt makes the output easier to review.</p>
+        <pre><code>report = gl.eq_principle.prompt_non_comparative(
+    lambda: prompt_input,
+    task="Determine whether the claim is supported, contradicted, or inconclusive based only on the source content.",
+    criteria="Return compact JSON with verdict, confidence, and rationale. Do not invent facts.",
+)</code></pre>
+      </div>
+
+      <div class="step">
+        <h3>4. Build a Studio call payload</h3>
+        <p>The CLI helper prepares the method and arguments so a reviewer can copy them into Studio.</p>
+        <pre><code>python app/signalguard_cli.py \
+  "GenLayer can use AI validators for subjective decisions" \
+  "https://docs.genlayer.com/understand-genlayer-protocol/what-is-genlayer"</code></pre>
+      </div>
+    </section>
+
+    <section>
+      <h2>Review Checklist</h2>
+      <ul>
+        <li>The source URL is public and stable enough for review.</li>
+        <li>The claim is specific enough to evaluate.</li>
+        <li>The prompt criteria forbid unsupported facts.</li>
+        <li>The output format is compact and predictable.</li>
+        <li>The accepted validator result is stored for app-side inspection.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Reference Files</h2>
+      <ul>
+        <li><a href="../contracts/signal_guard.py">contracts/signal_guard.py</a></li>
+        <li><a href="../app/signalguard_cli.py">app/signalguard_cli.py</a></li>
+        <li><a href="../web/index.html">web/index.html</a></li>
+        <li><a href="../examples/adversarial_claims.json">examples/adversarial_claims.json</a></li>
+        <li><a href="../docs/research-analysis.md">docs/research-analysis.md</a></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Extensions</h2>
+      <ul>
+        <li>Store verdicts by claim hash instead of keeping only the latest result.</li>
+        <li>Add source freshness metadata.</li>
+        <li>Compare multiple independent sources.</li>
+        <li>Deploy a frontend that reads the latest verdict.</li>
+        <li>Add more supported, contradicted, and inconclusive test cases.</li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>
