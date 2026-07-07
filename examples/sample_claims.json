@@ -1,0 +1,13 @@
+[
+  {
+    "claim": "GenLayer Intelligent Contracts can reason over natural language and connect to internet data.",
+    "source_url": "https://docs.genlayer.com/",
+    "expected": "supported"
+  },
+  {
+    "claim": "SignalGuard is intended to replace full security audits.",
+    "source_url": "https://github.com/jiangfeng1999/genlayer-signalguard",
+    "expected": "contradicted"
+  }
+]
+

@@ -29,6 +29,7 @@ python -m py_compile contracts\signal_guard_history.py
 powershell -ExecutionPolicy Bypass -File scripts\check-genlayer-status.ps1
 powershell -ExecutionPolicy Bypass -File scripts\test-portal-dashboard-calculations.ps1
 powershell -ExecutionPolicy Bypass -File scripts\test-signalguard-cli.ps1
+powershell -ExecutionPolicy Bypass -File scripts\verify-evidence-package.ps1
 ```
 
 Serve the static pages:

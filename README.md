@@ -31,6 +31,7 @@ scripts/check-genlayer-status.ps1  Read-only Portal and GitHub status checker
 scripts/save-genlayer-status.ps1   Local ignored status snapshot helper
 scripts/test-portal-dashboard-calculations.ps1 Offline dashboard calculation test
 scripts/test-signalguard-cli.ps1   CLI payload helper test
+scripts/verify-evidence-package.ps1 One-command evidence package verifier
 docs/submission.md             Portal submission notes and review checklist
 docs/research-analysis.md      Research notes on the source-grounded verdict pattern
 docs/tooling-notes.md          Tooling and local verification notes
@@ -95,6 +96,12 @@ Run the CLI payload helper test:
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File scripts\test-signalguard-cli.ps1
+```
+
+Run the full evidence package verifier:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts\verify-evidence-package.ps1
 ```
 
 ## Example claim

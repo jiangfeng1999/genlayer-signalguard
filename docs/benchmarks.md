@@ -21,6 +21,7 @@ The checks cover:
 - public contribution type ranking
 - offline dashboard gap and contribution-type point calculations
 - offline CLI payload helper validation
+- one-command evidence package verification
 
 The offline calculation fixture is:
 
@@ -48,6 +49,12 @@ Run the CLI payload helper test:
 powershell -ExecutionPolicy Bypass -File scripts\test-signalguard-cli.ps1
 ```
 
+Run all local evidence checks:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts\verify-evidence-package.ps1
+```
+
 Latest observed result on 2026-07-07:
 
 ```text
@@ -65,6 +72,7 @@ GitHub contract needs sync: true
 - `top_submittable_contribution_types` includes point caps computed from `max_points * current_multiplier`.
 - `scripts/test-portal-dashboard-calculations.ps1` passes against `examples/dashboard_calculation_fixture.json`.
 - `scripts/test-signalguard-cli.ps1` verifies that `app/signalguard_cli.py` emits a `review_claim` payload.
+- `scripts/verify-evidence-package.ps1` returns a `pass` summary for the public artifact set.
 - The dashboard HTML is served over HTTP and contains the dashboard script, wallet input, and leaderboard table.
 
 ## Known limitations
