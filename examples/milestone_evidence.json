@@ -1,0 +1,45 @@
+{
+  "milestone": "SignalGuard Milestone 1",
+  "status": "prepared",
+  "submit_after_project_acceptance": true,
+  "artifacts": [
+    {
+      "path": "contracts/signal_guard.py",
+      "purpose": "GenLayer Intelligent Contract for source-grounded claim review"
+    },
+    {
+      "path": "web/portal-dashboard.html",
+      "purpose": "Static public Portal dashboard"
+    },
+    {
+      "path": "scripts/check-genlayer-status.ps1",
+      "purpose": "Read-only public status checker"
+    },
+    {
+      "path": "scripts/test-portal-dashboard-calculations.ps1",
+      "purpose": "Offline dashboard calculation test"
+    },
+    {
+      "path": "docs/adversarial-testing.md",
+      "purpose": "Manual source-grounding edge cases"
+    },
+    {
+      "path": "docs/benchmarks.md",
+      "purpose": "Dashboard and status-script benchmark notes"
+    },
+    {
+      "path": "docs/evaluation-report.md",
+      "purpose": "Project evaluation and risk review"
+    }
+  ],
+  "verification": [
+    "python -m py_compile app\\signalguard_cli.py contracts\\signal_guard.py",
+    "powershell -ExecutionPolicy Bypass -File scripts\\check-genlayer-status.ps1",
+    "powershell -ExecutionPolicy Bypass -File scripts\\test-portal-dashboard-calculations.ps1"
+  ],
+  "review_boundaries": [
+    "No wallet connection required for local review",
+    "No account login required for dashboard review",
+    "No repeated submission recommended"
+  ]
+}

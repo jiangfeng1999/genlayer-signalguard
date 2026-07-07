@@ -35,10 +35,13 @@ docs/tooling-notes.md          Tooling and local verification notes
 docs/network-dashboard-submission.md  Dashboard contribution notes
 docs/benchmarks.md             Dashboard and status-script benchmark notes
 docs/adversarial-testing.md    Source-grounding adversarial test notes
+docs/evaluation-report.md      Project evaluation and risk review
+docs/milestone-1-evidence.md   Prepared milestone evidence package
 examples/sample_claims.json    Example claims and sources
 examples/portal_dashboard_checks.json Public Portal dashboard check cases
 examples/adversarial_claims.json Source-grounding adversarial claim cases
 examples/dashboard_calculation_fixture.json Offline dashboard calculation fixture
+examples/milestone_evidence.json Prepared milestone artifact index
 ```
 
 ## Contract workflow
@@ -94,6 +97,8 @@ Expected verdict: supported
 ## Portal contribution category
 
 This is intended for the **Projects** category because GenLayer is central to the workflow and the project contains both contract logic and app-side call preparation.
+
+`docs/milestone-1-evidence.md` is prepared as a future milestone package, but it should be submitted only after the base Project is accepted.
 
 ## Reference docs
 

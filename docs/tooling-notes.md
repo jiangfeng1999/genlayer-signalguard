@@ -81,3 +81,9 @@ The status scripts have been run locally against the public Portal API and GitHu
 ## Adversarial checks
 
 `docs/adversarial-testing.md` documents manual source-grounding edge cases for the contract. The structured cases live in `examples/adversarial_claims.json`.
+
+## Evaluation and milestone package
+
+`docs/evaluation-report.md` records the current project evaluation, risks, and evidence gaps.
+
+`docs/milestone-1-evidence.md` groups the completed contract, dashboard, scripts, benchmarks, and adversarial cases into a future milestone package. The structured artifact index is `examples/milestone_evidence.json`.
