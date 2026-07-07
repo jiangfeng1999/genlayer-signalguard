@@ -42,12 +42,14 @@ try {
             "web\research-analysis.html",
             "web\adversarial-testing.html",
             "web\benchmarks.html",
+            "web\tools-infrastructure.html",
             "docs\evaluation-report.md",
             "docs\educational-content-submission.md",
             "docs\milestone-1-evidence.md",
             "docs\research-analysis-submission.md",
             "docs\adversarial-testing-submission.md",
             "docs\benchmarks-submission.md",
+            "docs\tools-infrastructure-submission.md",
             "docs\history-milestone-design.md",
             "examples\milestone_evidence.json"
         )
@@ -94,6 +96,7 @@ try {
         $research = Get-Content -LiteralPath (Join-Path $repoRoot "web\research-analysis.html") -Raw
         $adversarial = Get-Content -LiteralPath (Join-Path $repoRoot "web\adversarial-testing.html") -Raw
         $benchmarks = Get-Content -LiteralPath (Join-Path $repoRoot "web\benchmarks.html") -Raw
+        $toolchain = Get-Content -LiteralPath (Join-Path $repoRoot "web\tools-infrastructure.html") -Raw
         if ($hub -notmatch "GenLayer SignalGuard Evidence Hub" -or $hub -notmatch "Submission Candidates") {
             throw "index.html does not contain the expected evidence hub markers."
         }
@@ -117,6 +120,9 @@ try {
         }
         if ($benchmarks -notmatch "SignalGuard Benchmarks" -or $benchmarks -notmatch "Evidence package verifier") {
             throw "web/benchmarks.html does not contain the expected benchmark markers."
+        }
+        if ($toolchain -notmatch "SignalGuard Builder Evidence and Status Toolchain" -or $toolchain -notmatch "Tools &amp; Infrastructure") {
+            throw "web/tools-infrastructure.html does not contain the expected toolchain markers."
         }
     }
 }

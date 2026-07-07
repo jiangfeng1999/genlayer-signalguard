@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SignalGuard Builder Toolchain</title>
+  <style>
+    :root { color-scheme: light; font-family: Inter, Arial, sans-serif; color: #172033; background: #f6f8fb; --line: #dfe5ef; --muted: #5f6b7a; --accent: #f58220; --blue: #2563eb; --green: #0f8a5f; }
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 24px; background: #f6f8fb; }
+    main { max-width: 1060px; margin: 0 auto; display: grid; gap: 18px; }
+    header, section { border: 1px solid var(--line); border-radius: 8px; background: white; padding: 20px; }
+    h1, h2, p { margin-top: 0; }
+    h1 { margin-bottom: 10px; font-size: 32px; line-height: 1.15; letter-spacing: 0; }
+    h2 { margin-bottom: 12px; font-size: 21px; letter-spacing: 0; }
+    p, li { color: #303b4d; line-height: 1.6; }
+    a { color: var(--blue); font-weight: 700; }
+    pre { overflow: auto; margin: 12px 0 0; padding: 14px; border-radius: 6px; background: #121826; color: #e6edf7; font-size: 13px; line-height: 1.5; }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { border-bottom: 1px solid #edf1f6; padding: 11px 12px; text-align: left; vertical-align: top; }
+    th { color: #475569; background: #f8fafc; font-size: 12px; letter-spacing: 0; text-transform: uppercase; }
+    tr:last-child td { border-bottom: 0; }
+    code { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; }
+    .subtitle { margin-bottom: 0; color: var(--muted); }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .tag { display: inline-flex; align-items: center; border: 1px solid #cbd5e1; border-radius: 999px; padding: 5px 9px; color: #334155; background: #f8fafc; font-size: 12px; font-weight: 800; white-space: nowrap; }
+    .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .tile { border: 1px solid var(--line); border-left: 4px solid var(--accent); border-radius: 8px; padding: 14px; background: #fff; }
+    .tile strong { display: block; margin-bottom: 6px; font-size: 16px; }
+    .pass { color: var(--green); font-weight: 800; }
+    @media (max-width: 760px) { body { padding: 16px; } .grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>SignalGuard Builder Evidence and Status Toolchain</h1>
+      <p class="subtitle">A public, reproducible toolkit for GenLayer builders to prepare Studio calls, inspect public Portal status, and verify a review package without private account access.</p>
+      <div class="tag-row">
+        <span class="tag">Tools &amp; Infrastructure</span>
+        <span class="tag">Public Data Only</span>
+        <span class="tag">Updated 2026-07-07</span>
+      </div>
+    </header>
+
+    <section>
+      <h2>Toolchain Components</h2>
+      <div class="grid">
+        <div class="tile">
+          <strong>Portal Status Checker</strong>
+          <p>Reads public Portal user, leaderboard, contribution type, and GitHub evidence status for a wallet.</p>
+          <a href="../scripts/check-genlayer-status.ps1">scripts/check-genlayer-status.ps1</a>
+        </div>
+        <div class="tile">
+          <strong>Snapshot Helper</strong>
+          <p>Saves timestamped local JSON status snapshots and reports point deltas without committing private runtime files.</p>
+          <a href="../scripts/save-genlayer-status.ps1">scripts/save-genlayer-status.ps1</a>
+        </div>
+        <div class="tile">
+          <strong>Evidence Verifier</strong>
+          <p>Runs required-file checks, Python compilation, JSON parsing, static page markers, and helper-script tests.</p>
+          <a href="../scripts/verify-evidence-package.ps1">scripts/verify-evidence-package.ps1</a>
+        </div>
+        <div class="tile">
+          <strong>Studio Payload Helper</strong>
+          <p>Generates a deterministic `review_claim` payload so reviewers can test SignalGuard in GenLayer Studio quickly.</p>
+          <a href="../app/signalguard_cli.py">app/signalguard_cli.py</a>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Reproducible Commands</h2>
+      <pre><code>powershell -ExecutionPolicy Bypass -File scripts\check-genlayer-status.ps1
+powershell -ExecutionPolicy Bypass -File scripts\save-genlayer-status.ps1
+powershell -ExecutionPolicy Bypass -File scripts\test-portal-dashboard-calculations.ps1
+powershell -ExecutionPolicy Bypass -File scripts\test-signalguard-cli.ps1
+powershell -ExecutionPolicy Bypass -File scripts\verify-evidence-package.ps1
+python app\signalguard_cli.py "GenLayer can use AI validators for subjective decisions" "https://docs.genlayer.com/understand-genlayer-protocol/what-is-genlayer"</code></pre>
+    </section>
+
+    <section>
+      <h2>Reviewer Value</h2>
+      <table>
+        <thead><tr><th>Need</th><th>Toolchain Answer</th></tr></thead>
+        <tbody>
+          <tr><td>Check current public standing</td><td>Reads Builder points, contribution count, rank gap, and high-value contribution types from public Portal endpoints.</td></tr>
+          <tr><td>Verify the project package</td><td>Runs a single verifier that covers required files, examples, static pages, and deterministic helper behavior.</td></tr>
+          <tr><td>Test the contract call path</td><td>Produces a `review_claim` payload that maps directly to the deployed SignalGuard contract interface.</td></tr>
+          <tr><td>Inspect evidence without a wallet</td><td>All published pages are static GitHub Pages files and public repository links.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Latest Verification</h2>
+      <table>
+        <thead><tr><th>Check</th><th>Observed Result</th></tr></thead>
+        <tbody>
+          <tr><td>Evidence package verifier</td><td class="pass">pass, 6 checks passed before this toolchain page was published</td></tr>
+          <tr><td>Builder points snapshot</td><td>50 BP</td></tr>
+          <tr><td>Gap to rank #1</td><td>9346 BP</td></tr>
+          <tr><td>GitHub Pages evidence links</td><td class="pass">Public static pages are designed to work without login</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Limits</h2>
+      <ul>
+        <li>The tools use public data and local files; they do not prove Portal acceptance.</li>
+        <li>Private submission state still requires a logged-in Portal session.</li>
+        <li>No wallet signing, reCAPTCHA, or hidden account data is required for review.</li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>
