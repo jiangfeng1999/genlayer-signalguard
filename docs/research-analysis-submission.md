@@ -6,7 +6,7 @@ SignalGuard Research Analysis: Source-Grounded Claims on GenLayer
 
 ## Suggested category
 
-`Research & Analysis`
+`Research & Analysis` in the Builder category, currently exposed by the public Portal contribution type list as `builder-research-analysis`.
 
 ## Published report
 
