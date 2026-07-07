@@ -9,6 +9,7 @@ This note groups the completed SignalGuard work into a reviewable milestone pack
 | Area | Evidence | Reviewer value |
 | --- | --- | --- |
 | Intelligent Contract | `contracts/signal_guard.py` | Implements source-grounded claim review with GenLayer web access and validator reasoning. |
+| History prototype | `contracts/signal_guard_history.py` and `docs/history-milestone-design.md` | Shows a conservative next step for retaining multiple verdicts without changing deployed evidence. |
 | Deployment evidence | `docs/submission.md` | Documents the no-argument deployment flow and review checklist. |
 | App helper | `app/signalguard_cli.py` and `web/index.html` | Lets reviewers prepare `review_claim` calls without a build step. |
 | CLI helper test | `scripts/test-signalguard-cli.ps1` | Verifies that the payload helper emits the expected `review_claim` structure. |
@@ -24,6 +25,7 @@ Run from the repository root:
 
 ```powershell
 python -m py_compile app\signalguard_cli.py contracts\signal_guard.py
+python -m py_compile contracts\signal_guard_history.py
 powershell -ExecutionPolicy Bypass -File scripts\check-genlayer-status.ps1
 powershell -ExecutionPolicy Bypass -File scripts\test-portal-dashboard-calculations.ps1
 powershell -ExecutionPolicy Bypass -File scripts\test-signalguard-cli.ps1

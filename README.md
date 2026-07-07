@@ -23,6 +23,7 @@ Normal smart contracts cannot inspect natural-language evidence or compare sourc
 
 ```text
 contracts/signal_guard.py      GenLayer Intelligent Contract
+contracts/signal_guard_history.py Next-milestone history prototype
 app/signalguard_cli.py         Minimal CLI payload builder for contract calls
 web/index.html                 Static demo UI for preparing calls
 web/portal-dashboard.html      Static Portal points and leaderboard dashboard
@@ -38,6 +39,7 @@ docs/benchmarks.md             Dashboard and status-script benchmark notes
 docs/adversarial-testing.md    Source-grounding adversarial test notes
 docs/evaluation-report.md      Project evaluation and risk review
 docs/milestone-1-evidence.md   Prepared milestone evidence package
+docs/history-milestone-design.md History prototype design notes
 examples/sample_claims.json    Example claims and sources
 examples/portal_dashboard_checks.json Public Portal dashboard check cases
 examples/adversarial_claims.json Source-grounding adversarial claim cases
@@ -54,6 +56,8 @@ examples/milestone_evidence.json Prepared milestone artifact index
 5. Accepted verdicts can be read with `latest_verdict()`.
 
 The MVP intentionally keeps state small so reviewers can deploy and test it quickly in Studio.
+
+`contracts/signal_guard_history.py` is a separate next-milestone prototype that preserves the same source-grounded verdict flow and adds a simple review count plus append-only log. It is not the currently deployed Studio contract.
 
 ## Demo UI
 

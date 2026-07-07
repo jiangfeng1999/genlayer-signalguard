@@ -11,6 +11,7 @@ SignalGuard is not a generic chatbot wrapper. The core behavior depends on GenLa
 | Criterion | Current result | Evidence |
 | --- | --- | --- |
 | GenLayer is central to the workflow | Pass | `contracts/signal_guard.py` uses web access and `prompt_non_comparative`. |
+| Next milestone is technically scoped | Pass | `contracts/signal_guard_history.py` adds review count and log state without changing deployed evidence. |
 | Reviewer can reproduce the call shape | Pass | `app/signalguard_cli.py` and `web/index.html` prepare `review_claim` inputs. |
 | CLI helper is locally testable | Pass | `scripts/test-signalguard-cli.ps1` verifies the generated payload shape. |
 | Reviewer can inspect expected verdict behavior | Pass | `examples/adversarial_claims.json` lists supported, contradicted, and inconclusive cases. |
@@ -47,6 +48,7 @@ The dashboard is intentionally static so it can be reviewed directly from GitHub
 | Source pages change over time | Adversarial cases include expected verdicts and should be rechecked before submission. |
 | Large source pages exceed prompt budget | The contract uses a compact source excerpt. Future work can add chunking. |
 | Single latest verdict limits history | A future milestone can store verdicts by claim hash. |
+| History prototype is not deployed yet | `docs/history-milestone-design.md` marks it as a separate next-milestone prototype requiring Studio testing. |
 | Dashboard depends on public API availability | Status scripts record API errors instead of fabricating values. |
 | GitHub evidence may lag local work | The sync branch and patch bundle preserve the exact public update package. |
 

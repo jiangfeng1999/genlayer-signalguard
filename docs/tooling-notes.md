@@ -95,3 +95,5 @@ The status scripts have been run locally against the public Portal API and GitHu
 `docs/evaluation-report.md` records the current project evaluation, risks, and evidence gaps.
 
 `docs/milestone-1-evidence.md` groups the completed contract, dashboard, scripts, benchmarks, and adversarial cases into a future milestone package. The structured artifact index is `examples/milestone_evidence.json`.
+
+`docs/history-milestone-design.md` documents the separate `contracts/signal_guard_history.py` prototype for a future history-retention milestone.
