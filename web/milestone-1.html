@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SignalGuard Milestone 1</title>
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: Inter, Arial, sans-serif;
+      color: #162033;
+      background: #f6f8fb;
+      --line: #dfe5ef;
+      --muted: #5f6b7a;
+      --accent: #f58220;
+      --blue: #2563eb;
+      --green: #0f8a5f;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 24px; background: #f6f8fb; }
+    main { max-width: 1120px; margin: 0 auto; display: grid; gap: 18px; }
+    header, section { border: 1px solid var(--line); border-radius: 8px; background: white; padding: 20px; }
+    h1, h2, p { margin-top: 0; }
+    h1 { margin-bottom: 10px; font-size: 34px; line-height: 1.12; letter-spacing: 0; }
+    h2 { margin-bottom: 12px; font-size: 21px; letter-spacing: 0; }
+    p, li { color: #303b4d; line-height: 1.6; }
+    a { color: var(--blue); font-weight: 800; text-underline-offset: 3px; }
+    code { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; }
+    .subtitle { margin-bottom: 0; color: var(--muted); }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .tag { display: inline-flex; border: 1px solid #cbd5e1; border-radius: 999px; padding: 5px 9px; color: #334155; background: #f8fafc; font-size: 12px; font-weight: 800; white-space: nowrap; }
+    .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .card { border: 1px solid var(--line); border-radius: 8px; padding: 16px; min-height: 130px; display: grid; gap: 8px; align-content: start; }
+    .card strong { font-size: 17px; line-height: 1.25; }
+    .card p { margin-bottom: 0; font-size: 14px; }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { border-bottom: 1px solid #edf1f6; padding: 11px 12px; text-align: left; vertical-align: top; }
+    th { color: #475569; background: #f8fafc; font-size: 12px; text-transform: uppercase; }
+    tr:last-child td { border-bottom: 0; }
+    @media (max-width: 920px) {
+      body { padding: 16px; }
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>SignalGuard Milestone 1</h1>
+      <p class="subtitle">A reviewable milestone package for the first completed SignalGuard build-out: contract, app helper, dashboard, tests, documentation, resource pack, and analysis.</p>
+      <div class="tag-row">
+        <span class="tag">Milestones</span>
+        <span class="tag">Observed cap 4,000 BP</span>
+        <span class="tag">Submit after Project acceptance</span>
+      </div>
+    </header>
+
+    <section>
+      <h2>Milestone Scope</h2>
+      <p>This milestone groups the completed work after the base SignalGuard project: a deployed source-grounded contract path, a browser and CLI payload helper, public Portal dashboard, adversarial cases, benchmark checks, resource pack, reviewer quickstart, and a conservative next-milestone history prototype.</p>
+      <p>It should be reviewed as a milestone only after the base Project submission is accepted, because the milestone builds on the same core SignalGuard project and adds reproducibility, testing, and reviewer-facing infrastructure.</p>
+    </section>
+
+    <section>
+      <h2>Completed Work</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Area</th>
+            <th>Evidence</th>
+            <th>Reviewer value</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Contract</td>
+            <td><code>contracts/signal_guard.py</code></td>
+            <td>Implements source-grounded claim review with GenLayer web access and validator reasoning.</td>
+          </tr>
+          <tr>
+            <td>History prototype</td>
+            <td><code>contracts/signal_guard_history.py</code></td>
+            <td>Shows a conservative next step for multiple verdict records.</td>
+          </tr>
+          <tr>
+            <td>Demo UI</td>
+            <td><a href="index.html">Static payload helper</a></td>
+            <td>Lets reviewers prepare <code>review_claim</code> calls without a frontend build.</td>
+          </tr>
+          <tr>
+            <td>Dashboard</td>
+            <td><a href="portal-dashboard.html">Public Portal dashboard</a></td>
+            <td>Shows public points, leaderboard gap, and contribution category caps.</td>
+          </tr>
+          <tr>
+            <td>Research</td>
+            <td><a href="research-analysis.html">Research analysis</a></td>
+            <td>Explains methodology, risks, and why source grounding matters.</td>
+          </tr>
+          <tr>
+            <td>Adversarial tests</td>
+            <td><a href="adversarial-testing.html">Test suite</a></td>
+            <td>Covers supported, contradicted, unrelated, time-sensitive, absolute, and subjective claims.</td>
+          </tr>
+          <tr>
+            <td>Benchmarks</td>
+            <td><a href="benchmarks.html">Benchmark report</a></td>
+            <td>Documents public-data checks and deterministic calculation tests.</td>
+          </tr>
+          <tr>
+            <td>Resources</td>
+            <td><a href="resource-pack.html">Resource pack</a></td>
+            <td>Packages reusable examples and fixtures for other builders.</td>
+          </tr>
+          <tr>
+            <td>Documentation</td>
+            <td><a href="reviewer-quickstart.html">Reviewer quickstart</a></td>
+            <td>Gives reviewers a concise reproduction path.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Review Links</h2>
+      <div class="grid">
+        <article class="card">
+          <strong>Milestone Evidence Note</strong>
+          <p>Markdown inventory with commands and review boundaries.</p>
+          <a href="https://github.com/jiangfeng1999/genlayer-signalguard/blob/main/docs/milestone-1-evidence.md">Open milestone evidence</a>
+        </article>
+        <article class="card">
+          <strong>History Design</strong>
+          <p>Design notes for the next source-grounded verdict history prototype.</p>
+          <a href="https://github.com/jiangfeng1999/genlayer-signalguard/blob/main/docs/history-milestone-design.md">Open design notes</a>
+        </article>
+        <article class="card">
+          <strong>Milestone Artifact Index</strong>
+          <p>Machine-readable list of milestone artifacts and verification commands.</p>
+          <a href="https://github.com/jiangfeng1999/genlayer-signalguard/blob/main/examples/milestone_evidence.json">Open JSON index</a>
+        </article>
+        <article class="card">
+          <strong>Evidence Verifier</strong>
+          <p>One-command local check for the public package.</p>
+          <a href="https://github.com/jiangfeng1999/genlayer-signalguard/blob/main/scripts/verify-evidence-package.ps1">Open verifier</a>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Verification Commands</h2>
+      <p><code>python -m py_compile app\signalguard_cli.py contracts\signal_guard.py contracts\signal_guard_history.py</code></p>
+      <p><code>powershell -ExecutionPolicy Bypass -File scripts\test-signalguard-cli.ps1</code></p>
+      <p><code>powershell -ExecutionPolicy Bypass -File scripts\test-portal-dashboard-calculations.ps1</code></p>
+      <p><code>powershell -ExecutionPolicy Bypass -File scripts\verify-evidence-package.ps1</code></p>
+    </section>
+  </main>
+</body>
+</html>

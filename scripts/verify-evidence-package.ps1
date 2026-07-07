@@ -37,6 +37,8 @@ try {
             "app\signalguard_cli.py",
             "index.html",
             "web\index.html",
+            "web\project-overview.html",
+            "web\milestone-1.html",
             "web\tutorial.html",
             "web\portal-dashboard.html",
             "web\research-analysis.html",
@@ -46,6 +48,8 @@ try {
             "web\resource-pack.html",
             "web\reviewer-quickstart.html",
             "docs\evaluation-report.md",
+            "docs\project-submission.md",
+            "docs\milestone-1-submission.md",
             "docs\educational-content-submission.md",
             "docs\milestone-1-evidence.md",
             "docs\research-analysis-submission.md",
@@ -95,6 +99,8 @@ try {
     $results += Invoke-Check "static pages contain expected hooks" {
         $hub = Get-Content -LiteralPath (Join-Path $repoRoot "index.html") -Raw
         $demo = Get-Content -LiteralPath (Join-Path $repoRoot "web\index.html") -Raw
+        $project = Get-Content -LiteralPath (Join-Path $repoRoot "web\project-overview.html") -Raw
+        $milestone = Get-Content -LiteralPath (Join-Path $repoRoot "web\milestone-1.html") -Raw
         $tutorial = Get-Content -LiteralPath (Join-Path $repoRoot "web\tutorial.html") -Raw
         $dashboard = Get-Content -LiteralPath (Join-Path $repoRoot "web\portal-dashboard.html") -Raw
         $research = Get-Content -LiteralPath (Join-Path $repoRoot "web\research-analysis.html") -Raw
@@ -103,11 +109,17 @@ try {
         $toolchain = Get-Content -LiteralPath (Join-Path $repoRoot "web\tools-infrastructure.html") -Raw
         $resourcePack = Get-Content -LiteralPath (Join-Path $repoRoot "web\resource-pack.html") -Raw
         $quickstart = Get-Content -LiteralPath (Join-Path $repoRoot "web\reviewer-quickstart.html") -Raw
-        if ($hub -notmatch "GenLayer SignalGuard Evidence Hub" -or $hub -notmatch "Submission Candidates") {
+        if ($hub -notmatch "GenLayer SignalGuard Evidence Hub" -or $hub -notmatch "Project Overview" -or $hub -notmatch "Milestone 1") {
             throw "index.html does not contain the expected evidence hub markers."
         }
         if ($demo -notmatch "review_claim") {
             throw "web/index.html does not contain review_claim."
+        }
+        if ($project -notmatch "SignalGuard Project Overview" -or $project -notmatch "Projects") {
+            throw "web/project-overview.html does not contain the expected project markers."
+        }
+        if ($milestone -notmatch "SignalGuard Milestone 1" -or $milestone -notmatch "Milestones") {
+            throw "web/milestone-1.html does not contain the expected milestone markers."
         }
         if ($tutorial -notmatch "Source-Grounded Claim Review Contract" -or $tutorial -notmatch "Educational Content") {
             throw "web/tutorial.html does not contain the expected tutorial markers."

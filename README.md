@@ -27,6 +27,8 @@ contracts/signal_guard_history.py Next-milestone history prototype
 app/signalguard_cli.py         Minimal CLI payload builder for contract calls
 index.html                     GitHub Pages evidence hub
 web/index.html                 Static demo UI for preparing calls
+web/project-overview.html      Project submission overview
+web/milestone-1.html           Milestone 1 submission overview
 web/tutorial.html              Public builder tutorial
 web/portal-dashboard.html      Static Portal points and leaderboard dashboard
 web/research-analysis.html     Published research analysis report
@@ -41,6 +43,8 @@ scripts/test-portal-dashboard-calculations.ps1 Offline dashboard calculation tes
 scripts/test-signalguard-cli.ps1   CLI payload helper test
 scripts/verify-evidence-package.ps1 One-command evidence package verifier
 docs/submission.md             Portal submission notes and review checklist
+docs/project-submission.md     Project contribution submission notes
+docs/milestone-1-submission.md Milestone contribution submission notes
 docs/educational-content-submission.md Tutorial contribution notes
 docs/research-analysis.md      Research notes on the source-grounded verdict pattern
 docs/tooling-notes.md          Tooling and local verification notes
@@ -137,7 +141,19 @@ Expected verdict: supported
 
 This is intended for the **Projects** category because GenLayer is central to the workflow and the project contains both contract logic and app-side call preparation.
 
+Open the public Project overview here:
+
+```text
+https://jiangfeng1999.github.io/genlayer-signalguard/web/project-overview.html
+```
+
 `docs/milestone-1-evidence.md` is prepared as a future milestone package, but it should be submitted only after the base Project is accepted.
+
+Open the public Milestone 1 overview here:
+
+```text
+https://jiangfeng1999.github.io/genlayer-signalguard/web/milestone-1.html
+```
 
 ## Reference docs
 
