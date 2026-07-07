@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SignalGuard Adversarial Testing</title>
+  <style>
+    :root { color-scheme: light; font-family: Inter, Arial, sans-serif; color: #172033; background: #f6f8fb; --line: #dfe5ef; --muted: #5f6b7a; --accent: #f58220; --blue: #2563eb; --green: #0f8a5f; --red: #b42318; }
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 24px; background: #f6f8fb; }
+    main { max-width: 1120px; margin: 0 auto; display: grid; gap: 18px; }
+    header, section { border: 1px solid var(--line); border-radius: 8px; background: white; padding: 20px; }
+    h1, h2, p { margin-top: 0; }
+    h1 { margin-bottom: 10px; font-size: 32px; line-height: 1.15; letter-spacing: 0; }
+    h2 { margin-bottom: 12px; font-size: 21px; letter-spacing: 0; }
+    p, li { color: #303b4d; line-height: 1.6; }
+    a { color: var(--blue); font-weight: 700; }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { border-bottom: 1px solid #edf1f6; padding: 11px 12px; text-align: left; vertical-align: top; }
+    th { color: #475569; background: #f8fafc; font-size: 12px; letter-spacing: 0; text-transform: uppercase; }
+    tr:last-child td { border-bottom: 0; }
+    .subtitle { margin-bottom: 0; color: var(--muted); }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .tag { display: inline-flex; align-items: center; border: 1px solid #cbd5e1; border-radius: 999px; padding: 5px 9px; color: #334155; background: #f8fafc; font-size: 12px; font-weight: 800; white-space: nowrap; }
+    .supported { color: var(--green); font-weight: 800; }
+    .contradicted { color: var(--red); font-weight: 800; }
+    .inconclusive { color: #8a5b0f; font-weight: 800; }
+    code { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; }
+    @media (max-width: 760px) { body { padding: 16px; } table { font-size: 13px; } }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>SignalGuard Adversarial Testing</h1>
+      <p class="subtitle">A compact test suite for checking whether source-grounded verdicts reject unsupported summaries, overclaims, and future-looking speculation.</p>
+      <div class="tag-row">
+        <span class="tag">Adversarial Testing</span>
+        <span class="tag">6 Cases</span>
+        <span class="tag">Updated 2026-07-07</span>
+      </div>
+    </header>
+
+    <section>
+      <h2>Purpose</h2>
+      <p>SignalGuard should only mark a claim as <code>supported</code> when the cited source directly backs it. Reviewers can deploy the contract, run each case, and compare the returned verdict with the expected verdict.</p>
+    </section>
+
+    <section>
+      <h2>Test Cases</h2>
+      <table>
+        <thead>
+          <tr><th>ID</th><th>Claim</th><th>Expected</th><th>Risk Focus</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><code>supported-doc-feature</code></td><td>GenLayer Intelligent Contracts can use web data as part of their execution flow.</td><td class="supported">supported</td><td>Feature claim with direct documentation support.</td></tr>
+          <tr><td><code>contradicted-overclaim</code></td><td>SignalGuard replaces a full independent security audit.</td><td class="contradicted">contradicted</td><td>Overclaim that should be rejected when the source describes a narrow demo.</td></tr>
+          <tr><td><code>inconclusive-unrelated-source</code></td><td>GenLayer has already announced the final mainnet incentive distribution formula.</td><td class="inconclusive">inconclusive</td><td>Unrelated or insufficient source material.</td></tr>
+          <tr><td><code>inconclusive-time-sensitive</code></td><td>The current #1 Builder on the Portal will stay #1 for the rest of the testnet.</td><td class="inconclusive">inconclusive</td><td>Future-looking claim that cannot be proven from a current leaderboard.</td></tr>
+          <tr><td><code>contradicted-absolute-language</code></td><td>Every GenLayer Portal contribution category gives exactly the same number of points.</td><td class="contradicted">contradicted</td><td>Absolute claim contradicted by category point ranges.</td></tr>
+          <tr><td><code>inconclusive-vague-claim</code></td><td>GenLayer is the best AI blockchain project.</td><td class="inconclusive">inconclusive</td><td>Subjective claim without a measurable source-grounded criterion.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>How To Run</h2>
+      <ol>
+        <li>Deploy <a href="../contracts/signal_guard.py">contracts/signal_guard.py</a> in GenLayer Studio.</li>
+        <li>Open <a href="../examples/adversarial_claims.json">examples/adversarial_claims.json</a>.</li>
+        <li>Call <code>review_claim(claim, source_url)</code> for each case.</li>
+        <li>Read <code>latest_verdict()</code>.</li>
+        <li>Compare the returned <code>verdict</code> with <code>expected_verdict</code>.</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>Pass Criteria</h2>
+      <ul>
+        <li>Supported claims cite evidence that directly backs the claim.</li>
+        <li>Contradicted claims identify source evidence that conflicts with the claim.</li>
+        <li>Inconclusive claims avoid invented facts and future predictions.</li>
+        <li>Rationales do not cite facts absent from the fetched source.</li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>

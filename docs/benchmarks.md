@@ -61,7 +61,8 @@ Latest observed result on 2026-07-07:
 Builder points: 50
 Gap to rank #1: 9346 BP
 Rank #1: YoneCode
-GitHub contract needs sync: true
+GitHub contract needs sync: false
+Evidence package verifier: pass, 6 checks passed
 ```
 
 ## Pass criteria

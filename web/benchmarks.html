@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SignalGuard Benchmarks</title>
+  <style>
+    :root { color-scheme: light; font-family: Inter, Arial, sans-serif; color: #172033; background: #f6f8fb; --line: #dfe5ef; --muted: #5f6b7a; --accent: #f58220; --blue: #2563eb; --green: #0f8a5f; }
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 24px; background: #f6f8fb; }
+    main { max-width: 1060px; margin: 0 auto; display: grid; gap: 18px; }
+    header, section { border: 1px solid var(--line); border-radius: 8px; background: white; padding: 20px; }
+    h1, h2, p { margin-top: 0; }
+    h1 { margin-bottom: 10px; font-size: 32px; line-height: 1.15; letter-spacing: 0; }
+    h2 { margin-bottom: 12px; font-size: 21px; letter-spacing: 0; }
+    p, li { color: #303b4d; line-height: 1.6; }
+    a { color: var(--blue); font-weight: 700; }
+    pre { overflow: auto; margin: 12px 0 0; padding: 14px; border-radius: 6px; background: #121826; color: #e6edf7; font-size: 13px; line-height: 1.5; }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { border-bottom: 1px solid #edf1f6; padding: 11px 12px; text-align: left; vertical-align: top; }
+    th { color: #475569; background: #f8fafc; font-size: 12px; letter-spacing: 0; text-transform: uppercase; }
+    tr:last-child td { border-bottom: 0; }
+    .subtitle { margin-bottom: 0; color: var(--muted); }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .tag { display: inline-flex; align-items: center; border: 1px solid #cbd5e1; border-radius: 999px; padding: 5px 9px; color: #334155; background: #f8fafc; font-size: 12px; font-weight: 800; white-space: nowrap; }
+    .pass { color: var(--green); font-weight: 800; }
+    code { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; }
+    @media (max-width: 760px) { body { padding: 16px; } }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>SignalGuard Benchmarks</h1>
+      <p class="subtitle">Reproducible checks for Portal public data access, dashboard calculations, CLI payload generation, and the full evidence package.</p>
+      <div class="tag-row">
+        <span class="tag">Benchmarks</span>
+        <span class="tag">Public Data Only</span>
+        <span class="tag">Updated 2026-07-07</span>
+      </div>
+    </header>
+
+    <section>
+      <h2>Scope</h2>
+      <p>These benchmarks check whether reviewers can reproduce the dashboard and SignalGuard helper outputs without private Portal access. They do not test wallet balances, signatures, private submissions, or accepted-point decisions.</p>
+    </section>
+
+    <section>
+      <h2>Benchmark Inputs</h2>
+      <table>
+        <thead><tr><th>Input</th><th>Purpose</th><th>Public File</th></tr></thead>
+        <tbody>
+          <tr><td>Portal dashboard checks</td><td>Defines public endpoints and expected response fields.</td><td><a href="../examples/portal_dashboard_checks.json">examples/portal_dashboard_checks.json</a></td></tr>
+          <tr><td>Dashboard calculation fixture</td><td>Verifies leaderboard gap and contribution-type ranking deterministically.</td><td><a href="../examples/dashboard_calculation_fixture.json">examples/dashboard_calculation_fixture.json</a></td></tr>
+          <tr><td>CLI payload helper</td><td>Checks that app-side tooling emits a <code>review_claim</code> payload.</td><td><a href="../scripts/test-signalguard-cli.ps1">scripts/test-signalguard-cli.ps1</a></td></tr>
+          <tr><td>Evidence package verifier</td><td>Runs the public artifact checks in one command.</td><td><a href="../scripts/verify-evidence-package.ps1">scripts/verify-evidence-package.ps1</a></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Commands</h2>
+      <pre><code>powershell -ExecutionPolicy Bypass -File scripts\check-genlayer-status.ps1
+powershell -ExecutionPolicy Bypass -File scripts\test-portal-dashboard-calculations.ps1
+powershell -ExecutionPolicy Bypass -File scripts\test-signalguard-cli.ps1
+powershell -ExecutionPolicy Bypass -File scripts\verify-evidence-package.ps1</code></pre>
+    </section>
+
+    <section>
+      <h2>Latest Observed Results</h2>
+      <table>
+        <thead><tr><th>Check</th><th>Observed Result</th></tr></thead>
+        <tbody>
+          <tr><td>Builder points</td><td>50 BP</td></tr>
+          <tr><td>Gap to rank #1</td><td>9346 BP</td></tr>
+          <tr><td>Rank #1</td><td>YoneCode</td></tr>
+          <tr><td>GitHub evidence sync</td><td class="pass">false for needs-sync; public main has the corrected contract evidence</td></tr>
+          <tr><td>Evidence package verifier</td><td class="pass">pass, 6 checks passed</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Known Limits</h2>
+      <ul>
+        <li>These benchmarks show reproducibility, not Portal acceptance.</li>
+        <li>Portal API rate limits or temporary errors can affect live checks.</li>
+        <li>The static dashboard includes a bundled snapshot so reviewers still see content if live refresh fails.</li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>

@@ -39,10 +39,14 @@ try {
             "web\tutorial.html",
             "web\portal-dashboard.html",
             "web\research-analysis.html",
+            "web\adversarial-testing.html",
+            "web\benchmarks.html",
             "docs\evaluation-report.md",
             "docs\educational-content-submission.md",
             "docs\milestone-1-evidence.md",
             "docs\research-analysis-submission.md",
+            "docs\adversarial-testing-submission.md",
+            "docs\benchmarks-submission.md",
             "docs\history-milestone-design.md",
             "examples\milestone_evidence.json"
         )
@@ -86,6 +90,8 @@ try {
         $tutorial = Get-Content -LiteralPath (Join-Path $repoRoot "web\tutorial.html") -Raw
         $dashboard = Get-Content -LiteralPath (Join-Path $repoRoot "web\portal-dashboard.html") -Raw
         $research = Get-Content -LiteralPath (Join-Path $repoRoot "web\research-analysis.html") -Raw
+        $adversarial = Get-Content -LiteralPath (Join-Path $repoRoot "web\adversarial-testing.html") -Raw
+        $benchmarks = Get-Content -LiteralPath (Join-Path $repoRoot "web\benchmarks.html") -Raw
         if ($demo -notmatch "review_claim") {
             throw "web/index.html does not contain review_claim."
         }
@@ -100,6 +106,12 @@ try {
         }
         if ($research -notmatch "SignalGuard Research Analysis" -or $research -notmatch "Research &amp; Analysis") {
             throw "web/research-analysis.html does not contain the expected research report markers."
+        }
+        if ($adversarial -notmatch "SignalGuard Adversarial Testing" -or $adversarial -notmatch "contradicted-overclaim") {
+            throw "web/adversarial-testing.html does not contain the expected adversarial test markers."
+        }
+        if ($benchmarks -notmatch "SignalGuard Benchmarks" -or $benchmarks -notmatch "Evidence package verifier") {
+            throw "web/benchmarks.html does not contain the expected benchmark markers."
         }
     }
 }
