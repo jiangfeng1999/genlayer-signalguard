@@ -6,7 +6,7 @@ Build a Source-Grounded Claim Review Contract on GenLayer
 
 ## Suggested category
 
-`Educational Content` in the Builder category, currently exposed by the public Portal contribution type list as `builder-educational-content`.
+`Educational Content`
 
 ## Published tutorial
 

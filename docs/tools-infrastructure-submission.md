@@ -40,6 +40,7 @@ SignalGuard Builder Evidence and Status Toolchain is a public, reproducible tool
 ## Guardrails
 
 - Submit once under the clearest fitting category.
+- The public contribution type list currently marks the Builder `tools-infrastructure` category as not directly submittable; use this page as support evidence unless Portal exposes the category to the logged-in account.
 - Do not claim this toolchain guarantees Portal acceptance or points.
 - Do not use private Portal session data, wallet signatures, or hidden APIs as evidence.
 - User must handle any wallet session, reCAPTCHA, and final Portal confirmation.
