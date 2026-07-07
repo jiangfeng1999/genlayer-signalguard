@@ -12,6 +12,8 @@ GenLayer Portal Public Points Dashboard
 
 This static dashboard reads the public GenLayer Portal API and turns it into a reviewer-friendly view of a wallet's Builder points, the current gap to the #1 Builder, the Builder leaderboard, and the highest-value public contribution categories.
 
+The published page renders a bundled public snapshot first, then attempts a live public Portal API refresh. This keeps the evidence reviewable even if a browser blocks the live cross-origin request.
+
 ## Evidence
 
 Published dashboard:
@@ -39,6 +41,7 @@ The dashboard is also available in the repository at `web/portal-dashboard.html`
 - It helps builders track rank, points, and the practical gap to the top leaderboard position.
 - It surfaces high-value contribution categories and their current point caps.
 - It is static, inspectable, and does not require a wallet connection, account login, or API key.
+- It remains readable from GitHub Pages because it includes a bundled public snapshot and a live refresh path.
 
 ## Verification
 
@@ -69,6 +72,7 @@ Expected behavior:
 - It displays Builder points, rank if present, gap to #1, and contribution count.
 - It displays the Builder leaderboard top 10.
 - It displays the highest-value submittable contribution categories.
+- If live refresh is unavailable, it displays the bundled public snapshot instead of an empty dashboard.
 
 ## Portal submission notes
 

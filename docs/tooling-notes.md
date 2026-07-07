@@ -32,6 +32,8 @@ Reviewers can copy the method and arguments into Studio after deploying `contrac
 
 `web/portal-dashboard.html` is a static status dashboard that reads the public Portal API for a wallet address. It shows builder points, rank, gap to the #1 builder, the top builder leaderboard, and high-value contribution categories.
 
+The dashboard includes a bundled public snapshot and then tries a live refresh. This makes the GitHub Pages version reviewable even if the Portal API does not allow browser cross-origin reads from the page.
+
 Open it through a local or public HTTP server so browser `fetch` can call the Portal API:
 
 ```bash

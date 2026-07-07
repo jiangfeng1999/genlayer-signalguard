@@ -324,6 +324,76 @@
 
   <script>
     const API = "https://portal-admin.genlayer.foundation/api/v1";
+    const FALLBACK_DATA = {
+      checkedAt: "2026-07-07T13:58:53+08:00",
+      wallet: "0x554406e72a76a7b90f1d2857187669af42f65b59",
+      user: {
+        name: "jiangfeng",
+        github_username: "jiangfeng1999",
+        builder: {
+          total_points: 50,
+          rank: null,
+          total_contributions: 1
+        }
+      },
+      leaderboard: [
+        {
+          rank: 1,
+          total_points: 9395,
+          user_details: {
+            name: "YoneCode",
+            address: "0x26882bea46545505db4e58f8cf21680193f336e6"
+          }
+        },
+        {
+          rank: 2,
+          total_points: 6835,
+          user_details: {
+            name: "Pavel Kolosov",
+            address: "0x01863b065d8d8ed5397b266df2d121384e0b7d40"
+          }
+        },
+        {
+          rank: 3,
+          total_points: 6345,
+          user_details: {
+            name: "Gen. Dave",
+            address: "0x5905c9dea6ae52aa0947d8f7f218263889edfc4e"
+          }
+        },
+        {
+          rank: 4,
+          total_points: 5325,
+          user_details: {
+            name: "Jrkenny",
+            address: "0x8934189422cdad434d72adb1691d5609f56223e4"
+          }
+        },
+        {
+          rank: 5,
+          total_points: 5295,
+          user_details: {
+            name: "Ying",
+            address: "0x999b4e9194530576290baf5bbc913e26bd25137d"
+          }
+        }
+      ],
+      types: {
+        results: [
+          { name: "Milestones", category: "builder", max_points: 200, current_multiplier: 20, is_submittable: true },
+          { name: "Projects", category: "builder", max_points: 200, current_multiplier: 20, is_submittable: true },
+          { name: "Research & Analysis", category: "validator", max_points: 20, current_multiplier: 100, is_submittable: true },
+          { name: "Explorer", category: "validator", max_points: 3, current_multiplier: 500, is_submittable: true },
+          { name: "Network Dashboard", category: "validator", max_points: 10, current_multiplier: 150, is_submittable: true },
+          { name: "3rd party integrations", category: "validator", max_points: 20, current_multiplier: 50, is_submittable: true },
+          { name: "Gas Fees Simulator Tests", category: "validator", max_points: 2, current_multiplier: 500, is_submittable: true },
+          { name: "Grayboxing", category: "validator", max_points: 20, current_multiplier: 50, is_submittable: true },
+          { name: "Tooling for running a Validator", category: "validator", max_points: 20, current_multiplier: 50, is_submittable: true },
+          { name: "Adversarial Testing", category: "validator", max_points: 20, current_multiplier: 30, is_submittable: true },
+          { name: "Benchmarks", category: "validator", max_points: 10, current_multiplier: 50, is_submittable: true }
+        ]
+      }
+    };
     const walletInput = document.querySelector("#wallet");
     const refreshButton = document.querySelector("#refresh");
     const statusLine = document.querySelector("#statusLine");
@@ -400,6 +470,31 @@
       }
     }
 
+    function renderData(user, leaderboard, types) {
+      const leaderRow = leaderboard.find((row) => row.rank === 1) || leaderboard[0];
+      const builder = user.builder || {};
+      const userPoints = Number(builder.total_points || 0);
+      const topPoints = Number(leaderRow?.total_points || 0);
+      const requiredGap = Math.max(0, topPoints + 1 - userPoints);
+
+      points.textContent = formatNumber(userPoints);
+      rank.textContent = builder.rank ? `#${formatNumber(builder.rank)}` : "-";
+      gap.textContent = formatNumber(requiredGap);
+      contributions.textContent = formatNumber(builder.total_contributions || 0);
+      accountName.textContent = `${user.name || "Unnamed"} / ${user.github_username || "no GitHub"}`;
+      leader.textContent = leaderRow ? `#1 ${leaderRow.user_details?.name || "-"} at ${formatNumber(topPoints)} BP` : "Top builder not loaded";
+
+      renderLeaderboard(leaderboard);
+      renderTypes(types.results || []);
+    }
+
+    function renderFallback(message) {
+      walletInput.value = FALLBACK_DATA.wallet;
+      renderData(FALLBACK_DATA.user, FALLBACK_DATA.leaderboard, FALLBACK_DATA.types);
+      lastUpdated.textContent = `Snapshot ${FALLBACK_DATA.checkedAt}`;
+      setStatus(message || "Showing bundled public snapshot. Click Refresh to attempt live Portal data.");
+    }
+
     async function refresh() {
       const wallet = walletInput.value.trim();
       if (!/^0x[a-fA-F0-9]{40}$/.test(wallet)) {
@@ -417,33 +512,19 @@
           fetchJson(`${API}/contribution-types/?page_size=1000`)
         ]);
 
-        const leaderRow = leaderboard.find((row) => row.rank === 1) || leaderboard[0];
-        const builder = user.builder || {};
-        const userPoints = Number(builder.total_points || 0);
-        const topPoints = Number(leaderRow?.total_points || 0);
-        const requiredGap = Math.max(0, topPoints + 1 - userPoints);
-
-        points.textContent = formatNumber(userPoints);
-        rank.textContent = builder.rank ? `#${formatNumber(builder.rank)}` : "-";
-        gap.textContent = formatNumber(requiredGap);
-        contributions.textContent = formatNumber(builder.total_contributions || 0);
-        accountName.textContent = `${user.name || "Unnamed"} / ${user.github_username || "no GitHub"}`;
-        leader.textContent = leaderRow ? `#1 ${leaderRow.user_details?.name || "-"} at ${formatNumber(topPoints)} BP` : "Top builder not loaded";
-
-        renderLeaderboard(leaderboard);
-        renderTypes(types.results || []);
-
+        renderData(user, leaderboard, types);
         const now = new Date();
         lastUpdated.textContent = now.toLocaleString();
-        setStatus("Public data loaded.");
+        setStatus("Live public data loaded.");
       } catch (error) {
-        setStatus(`Could not load Portal data: ${error.message}`, true);
+        renderFallback(`Live refresh unavailable (${error.message}); showing bundled public snapshot.`);
       } finally {
         refreshButton.disabled = false;
       }
     }
 
     refreshButton.addEventListener("click", refresh);
+    renderFallback();
     refresh();
   </script>
 </body>

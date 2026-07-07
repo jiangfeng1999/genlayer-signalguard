@@ -86,6 +86,9 @@ try {
         if ($dashboard -notmatch "portal-admin\.genlayer\.foundation") {
             throw "web/portal-dashboard.html does not call the public Portal API."
         }
+        if ($dashboard -notmatch "FALLBACK_DATA") {
+            throw "web/portal-dashboard.html does not include a bundled public fallback snapshot."
+        }
     }
 }
 finally {
