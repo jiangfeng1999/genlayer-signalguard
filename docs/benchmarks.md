@@ -19,6 +19,13 @@ The checks cover:
 - public Builder profile lookup by wallet address
 - public Builder leaderboard top 10
 - public contribution type ranking
+- offline dashboard gap and contribution-type point calculations
+
+The offline calculation fixture is:
+
+```text
+examples/dashboard_calculation_fixture.json
+```
 
 ## Latest local run
 
@@ -26,6 +33,12 @@ Run from the repository:
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File scripts\check-genlayer-status.ps1
+```
+
+Run the deterministic calculation test:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts\test-portal-dashboard-calculations.ps1
 ```
 
 Latest observed result on 2026-07-07:
@@ -43,6 +56,7 @@ GitHub contract needs sync: true
 - `user.builder_points` is present when the wallet is known to the Portal.
 - `builder_gap_to_rank_1` is numeric when the leaderboard API is available.
 - `top_submittable_contribution_types` includes point caps computed from `max_points * current_multiplier`.
+- `scripts/test-portal-dashboard-calculations.ps1` passes against `examples/dashboard_calculation_fixture.json`.
 - The dashboard HTML is served over HTTP and contains the dashboard script, wallet input, and leaderboard table.
 
 ## Known limitations

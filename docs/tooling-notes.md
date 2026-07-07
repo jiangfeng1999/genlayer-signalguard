@@ -54,6 +54,12 @@ powershell -ExecutionPolicy Bypass -File scripts\check-genlayer-status.ps1
 powershell -ExecutionPolicy Bypass -File scripts\save-genlayer-status.ps1
 ```
 
+`scripts/test-portal-dashboard-calculations.ps1` checks the dashboard's deterministic calculations with an offline fixture.
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts\test-portal-dashboard-calculations.ps1
+```
+
 ## Verification performed
 
 The Python files compile locally with:

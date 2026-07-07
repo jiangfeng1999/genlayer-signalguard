@@ -1,0 +1,58 @@
+{
+  "user": {
+    "builder_points": 50
+  },
+  "leaderboard": [
+    {
+      "rank": 1,
+      "total_points": 9395,
+      "user_details": {
+        "name": "YoneCode",
+        "address": "0x26882bea46545505db4e58f8cf21680193f336e6"
+      }
+    },
+    {
+      "rank": 2,
+      "total_points": 6835,
+      "user_details": {
+        "name": "Pavel Kolosov",
+        "address": "0x01863b065d8d8ed5397b266df2d121384e0b7d40"
+      }
+    }
+  ],
+  "contribution_types": [
+    {
+      "name": "Projects",
+      "category": "builder",
+      "max_points": 200,
+      "current_multiplier": 20,
+      "is_submittable": true
+    },
+    {
+      "name": "Network Dashboard",
+      "category": "validator",
+      "max_points": 10,
+      "current_multiplier": 150,
+      "is_submittable": true
+    },
+    {
+      "name": "Blog Post",
+      "category": "validator",
+      "max_points": 10,
+      "current_multiplier": 20,
+      "is_submittable": true
+    },
+    {
+      "name": "Builder",
+      "category": "builder",
+      "max_points": 100,
+      "current_multiplier": 1,
+      "is_submittable": false
+    }
+  ],
+  "expected": {
+    "gap_to_rank_1": 9346,
+    "top_contribution_type": "Projects",
+    "top_contribution_type_points": 4000
+  }
+}

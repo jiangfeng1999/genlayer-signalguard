@@ -28,6 +28,7 @@ web/index.html                 Static demo UI for preparing calls
 web/portal-dashboard.html      Static Portal points and leaderboard dashboard
 scripts/check-genlayer-status.ps1  Read-only Portal and GitHub status checker
 scripts/save-genlayer-status.ps1   Local ignored status snapshot helper
+scripts/test-portal-dashboard-calculations.ps1 Offline dashboard calculation test
 docs/submission.md             Portal submission notes and review checklist
 docs/research-analysis.md      Research notes on the source-grounded verdict pattern
 docs/tooling-notes.md          Tooling and local verification notes
@@ -37,12 +38,13 @@ docs/adversarial-testing.md    Source-grounding adversarial test notes
 examples/sample_claims.json    Example claims and sources
 examples/portal_dashboard_checks.json Public Portal dashboard check cases
 examples/adversarial_claims.json Source-grounding adversarial claim cases
+examples/dashboard_calculation_fixture.json Offline dashboard calculation fixture
 ```
 
 ## Contract workflow
 
 1. Deploy `contracts/signal_guard.py` in GenLayer Studio.
-2. Initialize with an optional first claim and source URL.
+2. Deploy with no constructor arguments.
 3. Call `review_claim(claim, source_url)`.
 4. The contract fetches the URL and uses `prompt_non_comparative` to validate a compact JSON verdict report.
 5. Accepted verdicts can be read with `latest_verdict()`.
@@ -73,6 +75,12 @@ Save timestamped local snapshots under `.genlayer-status/`:
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File scripts\save-genlayer-status.ps1
+```
+
+Run the offline dashboard calculation test:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts\test-portal-dashboard-calculations.ps1
 ```
 
 ## Example claim
