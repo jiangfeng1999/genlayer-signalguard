@@ -11,6 +11,7 @@ This note groups the completed SignalGuard work into a reviewable milestone pack
 | Intelligent Contract | `contracts/signal_guard.py` | Implements source-grounded claim review with GenLayer web access and validator reasoning. |
 | Deployment evidence | `docs/submission.md` | Documents the no-argument deployment flow and review checklist. |
 | App helper | `app/signalguard_cli.py` and `web/index.html` | Lets reviewers prepare `review_claim` calls without a build step. |
+| CLI helper test | `scripts/test-signalguard-cli.ps1` | Verifies that the payload helper emits the expected `review_claim` structure. |
 | Public Portal dashboard | `web/portal-dashboard.html` | Shows public Builder points, leaderboard gap, and high-value contribution categories. |
 | Read-only status tooling | `scripts/check-genlayer-status.ps1` and `scripts/save-genlayer-status.ps1` | Verifies public Portal and GitHub evidence without account access. |
 | Benchmarks | `docs/benchmarks.md` and `examples/portal_dashboard_checks.json` | Records public API checks and expected dashboard behavior. |
@@ -25,6 +26,7 @@ Run from the repository root:
 python -m py_compile app\signalguard_cli.py contracts\signal_guard.py
 powershell -ExecutionPolicy Bypass -File scripts\check-genlayer-status.ps1
 powershell -ExecutionPolicy Bypass -File scripts\test-portal-dashboard-calculations.ps1
+powershell -ExecutionPolicy Bypass -File scripts\test-signalguard-cli.ps1
 ```
 
 Serve the static pages:

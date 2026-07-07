@@ -60,6 +60,12 @@ powershell -ExecutionPolicy Bypass -File scripts\save-genlayer-status.ps1
 powershell -ExecutionPolicy Bypass -File scripts\test-portal-dashboard-calculations.ps1
 ```
 
+`scripts/test-signalguard-cli.ps1` checks that the CLI helper emits the expected `review_claim` payload.
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts\test-signalguard-cli.ps1
+```
+
 ## Verification performed
 
 The Python files compile locally with:
@@ -69,6 +75,8 @@ python -m py_compile app\signalguard_cli.py contracts\signal_guard.py
 ```
 
 The helper has also been tested with a GenLayer documentation URL and produces a valid payload structure.
+
+The CLI payload helper has a deterministic local test in `scripts/test-signalguard-cli.ps1`.
 
 The dashboard uses only browser-native `fetch` and does not require a frontend build step.
 

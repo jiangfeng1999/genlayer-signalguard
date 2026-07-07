@@ -20,6 +20,10 @@
       "purpose": "Offline dashboard calculation test"
     },
     {
+      "path": "scripts/test-signalguard-cli.ps1",
+      "purpose": "Offline CLI payload helper test"
+    },
+    {
       "path": "docs/adversarial-testing.md",
       "purpose": "Manual source-grounding edge cases"
     },
@@ -35,7 +39,8 @@
   "verification": [
     "python -m py_compile app\\signalguard_cli.py contracts\\signal_guard.py",
     "powershell -ExecutionPolicy Bypass -File scripts\\check-genlayer-status.ps1",
-    "powershell -ExecutionPolicy Bypass -File scripts\\test-portal-dashboard-calculations.ps1"
+    "powershell -ExecutionPolicy Bypass -File scripts\\test-portal-dashboard-calculations.ps1",
+    "powershell -ExecutionPolicy Bypass -File scripts\\test-signalguard-cli.ps1"
   ],
   "review_boundaries": [
     "No wallet connection required for local review",

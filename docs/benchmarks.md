@@ -20,6 +20,7 @@ The checks cover:
 - public Builder leaderboard top 10
 - public contribution type ranking
 - offline dashboard gap and contribution-type point calculations
+- offline CLI payload helper validation
 
 The offline calculation fixture is:
 
@@ -41,6 +42,12 @@ Run the deterministic calculation test:
 powershell -ExecutionPolicy Bypass -File scripts\test-portal-dashboard-calculations.ps1
 ```
 
+Run the CLI payload helper test:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts\test-signalguard-cli.ps1
+```
+
 Latest observed result on 2026-07-07:
 
 ```text
@@ -57,6 +64,7 @@ GitHub contract needs sync: true
 - `builder_gap_to_rank_1` is numeric when the leaderboard API is available.
 - `top_submittable_contribution_types` includes point caps computed from `max_points * current_multiplier`.
 - `scripts/test-portal-dashboard-calculations.ps1` passes against `examples/dashboard_calculation_fixture.json`.
+- `scripts/test-signalguard-cli.ps1` verifies that `app/signalguard_cli.py` emits a `review_claim` payload.
 - The dashboard HTML is served over HTTP and contains the dashboard script, wallet input, and leaderboard table.
 
 ## Known limitations

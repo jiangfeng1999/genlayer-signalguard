@@ -12,6 +12,7 @@ SignalGuard is not a generic chatbot wrapper. The core behavior depends on GenLa
 | --- | --- | --- |
 | GenLayer is central to the workflow | Pass | `contracts/signal_guard.py` uses web access and `prompt_non_comparative`. |
 | Reviewer can reproduce the call shape | Pass | `app/signalguard_cli.py` and `web/index.html` prepare `review_claim` inputs. |
+| CLI helper is locally testable | Pass | `scripts/test-signalguard-cli.ps1` verifies the generated payload shape. |
 | Reviewer can inspect expected verdict behavior | Pass | `examples/adversarial_claims.json` lists supported, contradicted, and inconclusive cases. |
 | Public status can be checked without login | Pass | `scripts/check-genlayer-status.ps1` reads public Portal and GitHub endpoints. |
 | Dashboard calculations are testable | Pass | `scripts/test-portal-dashboard-calculations.ps1` checks the offline fixture. |
