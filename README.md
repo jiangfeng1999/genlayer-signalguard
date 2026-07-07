@@ -34,6 +34,7 @@ web/adversarial-testing.html   Published adversarial testing report
 web/benchmarks.html            Published benchmark report
 web/tools-infrastructure.html  Published builder toolchain report
 web/resource-pack.html         Published reusable resource pack
+web/reviewer-quickstart.html   Published reviewer quickstart documentation
 scripts/check-genlayer-status.ps1  Read-only Portal and GitHub status checker
 scripts/save-genlayer-status.ps1   Local ignored status snapshot helper
 scripts/test-portal-dashboard-calculations.ps1 Offline dashboard calculation test
@@ -49,6 +50,7 @@ docs/adversarial-testing-submission.md Adversarial testing contribution notes
 docs/benchmarks-submission.md Benchmark contribution notes
 docs/tools-infrastructure-submission.md Tools and infrastructure contribution notes
 docs/resource-creation-submission.md Resource creation contribution notes
+docs/documentation-submission.md Documentation contribution notes
 docs/benchmarks.md             Dashboard and status-script benchmark notes
 docs/adversarial-testing.md    Source-grounding adversarial test notes
 docs/evaluation-report.md      Project evaluation and risk review

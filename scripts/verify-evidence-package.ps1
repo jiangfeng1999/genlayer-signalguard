@@ -44,6 +44,7 @@ try {
             "web\benchmarks.html",
             "web\tools-infrastructure.html",
             "web\resource-pack.html",
+            "web\reviewer-quickstart.html",
             "docs\evaluation-report.md",
             "docs\educational-content-submission.md",
             "docs\milestone-1-evidence.md",
@@ -52,6 +53,7 @@ try {
             "docs\benchmarks-submission.md",
             "docs\tools-infrastructure-submission.md",
             "docs\resource-creation-submission.md",
+            "docs\documentation-submission.md",
             "docs\history-milestone-design.md",
             "examples\milestone_evidence.json"
         )
@@ -100,6 +102,7 @@ try {
         $benchmarks = Get-Content -LiteralPath (Join-Path $repoRoot "web\benchmarks.html") -Raw
         $toolchain = Get-Content -LiteralPath (Join-Path $repoRoot "web\tools-infrastructure.html") -Raw
         $resourcePack = Get-Content -LiteralPath (Join-Path $repoRoot "web\resource-pack.html") -Raw
+        $quickstart = Get-Content -LiteralPath (Join-Path $repoRoot "web\reviewer-quickstart.html") -Raw
         if ($hub -notmatch "GenLayer SignalGuard Evidence Hub" -or $hub -notmatch "Submission Candidates") {
             throw "index.html does not contain the expected evidence hub markers."
         }
@@ -129,6 +132,9 @@ try {
         }
         if ($resourcePack -notmatch "SignalGuard Source-Grounded Review Resource Pack" -or $resourcePack -notmatch "Resource Creation") {
             throw "web/resource-pack.html does not contain the expected resource pack markers."
+        }
+        if ($quickstart -notmatch "SignalGuard Reviewer Quickstart Documentation" -or $quickstart -notmatch "review_claim") {
+            throw "web/reviewer-quickstart.html does not contain the expected quickstart markers."
         }
     }
 }

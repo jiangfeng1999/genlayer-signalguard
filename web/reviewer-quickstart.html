@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SignalGuard Reviewer Quickstart</title>
+  <style>
+    :root { color-scheme: light; font-family: Inter, Arial, sans-serif; color: #172033; background: #f6f8fb; --line: #dfe5ef; --muted: #5f6b7a; --accent: #f58220; --blue: #2563eb; --green: #0f8a5f; }
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 24px; background: #f6f8fb; }
+    main { max-width: 1060px; margin: 0 auto; display: grid; gap: 18px; }
+    header, section { border: 1px solid var(--line); border-radius: 8px; background: white; padding: 20px; }
+    h1, h2, p { margin-top: 0; }
+    h1 { margin-bottom: 10px; font-size: 32px; line-height: 1.15; letter-spacing: 0; }
+    h2 { margin-bottom: 12px; font-size: 21px; letter-spacing: 0; }
+    p, li { color: #303b4d; line-height: 1.6; }
+    a { color: var(--blue); font-weight: 700; }
+    pre { overflow: auto; margin: 12px 0 0; padding: 14px; border-radius: 6px; background: #121826; color: #e6edf7; font-size: 13px; line-height: 1.5; }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { border-bottom: 1px solid #edf1f6; padding: 11px 12px; text-align: left; vertical-align: top; }
+    th { color: #475569; background: #f8fafc; font-size: 12px; letter-spacing: 0; text-transform: uppercase; }
+    tr:last-child td { border-bottom: 0; }
+    code { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; }
+    .subtitle { margin-bottom: 0; color: var(--muted); }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .tag { display: inline-flex; align-items: center; border: 1px solid #cbd5e1; border-radius: 999px; padding: 5px 9px; color: #334155; background: #f8fafc; font-size: 12px; font-weight: 800; white-space: nowrap; }
+    .step { border-left: 4px solid var(--accent); padding-left: 12px; margin: 14px 0; }
+    @media (max-width: 760px) { body { padding: 16px; } }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>SignalGuard Reviewer Quickstart Documentation</h1>
+      <p class="subtitle">A concise operational guide for reproducing the SignalGuard GenLayer evidence package.</p>
+      <div class="tag-row">
+        <span class="tag">Documentation</span>
+        <span class="tag">Reviewer Guide</span>
+        <span class="tag">Updated 2026-07-07</span>
+      </div>
+    </header>
+
+    <section>
+      <h2>Purpose</h2>
+      <p>This page is for reviewers who want to inspect SignalGuard quickly without reading every repository file first. It points to the contract, the static demo, sample inputs, public dashboard, and one-command verifier.</p>
+    </section>
+
+    <section>
+      <h2>Fast Review Path</h2>
+      <div class="step">
+        <p><strong>1. Inspect the contract.</strong> Open <a href="../contracts/signal_guard.py">contracts/signal_guard.py</a> and confirm the public entry points: <code>review_claim</code> and <code>latest_verdict</code>.</p>
+      </div>
+      <div class="step">
+        <p><strong>2. Prepare a sample call.</strong> Open <a href="index.html">the static demo</a> or run the CLI helper to generate a <code>review_claim</code> payload.</p>
+      </div>
+      <div class="step">
+        <p><strong>3. Check source-grounding cases.</strong> Use <a href="../examples/sample_claims.json">sample_claims.json</a> and <a href="../examples/adversarial_claims.json">adversarial_claims.json</a> to review supported, contradicted, and inconclusive cases.</p>
+      </div>
+      <div class="step">
+        <p><strong>4. Verify public status tooling.</strong> Open the <a href="portal-dashboard.html">Portal dashboard</a> and compare it with the status script output.</p>
+      </div>
+      <div class="step">
+        <p><strong>5. Run the package verifier.</strong> Clone the repository and run the command below from the repository root.</p>
+      </div>
+      <pre><code>powershell -ExecutionPolicy Bypass -File scripts\verify-evidence-package.ps1</code></pre>
+    </section>
+
+    <section>
+      <h2>Evidence Map</h2>
+      <table>
+        <thead><tr><th>Review Question</th><th>Primary Evidence</th></tr></thead>
+        <tbody>
+          <tr><td>Does this use GenLayer contract features?</td><td><a href="../contracts/signal_guard.py">contracts/signal_guard.py</a></td></tr>
+          <tr><td>Can a reviewer prepare a call without a build step?</td><td><a href="index.html">web/index.html</a> and <a href="../app/signalguard_cli.py">app/signalguard_cli.py</a></td></tr>
+          <tr><td>Are examples and edge cases public?</td><td><a href="../examples/sample_claims.json">sample claims</a> and <a href="../examples/adversarial_claims.json">adversarial claims</a></td></tr>
+          <tr><td>Is public Portal status reproducible?</td><td><a href="portal-dashboard.html">dashboard</a>, <a href="../scripts/check-genlayer-status.ps1">status script</a>, and <a href="../examples/portal_dashboard_checks.json">checks fixture</a></td></tr>
+          <tr><td>Are the artifact categories separated?</td><td><a href="resource-pack.html">resource pack</a>, <a href="benchmarks.html">benchmarks</a>, <a href="research-analysis.html">research</a>, and <a href="tutorial.html">tutorial</a></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Boundaries</h2>
+      <ul>
+        <li>This guide documents how to reproduce the public evidence package; it is not a second Project submission.</li>
+        <li>It does not include private Portal submission status, wallet signatures, or reCAPTCHA state.</li>
+        <li>Final Portal scoring remains a GenLayer review decision.</li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>
