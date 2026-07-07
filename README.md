@@ -27,6 +27,7 @@ contracts/signal_guard_history.py Next-milestone history prototype
 app/signalguard_cli.py         Minimal CLI payload builder for contract calls
 web/index.html                 Static demo UI for preparing calls
 web/portal-dashboard.html      Static Portal points and leaderboard dashboard
+web/research-analysis.html     Published research analysis report
 scripts/check-genlayer-status.ps1  Read-only Portal and GitHub status checker
 scripts/save-genlayer-status.ps1   Local ignored status snapshot helper
 scripts/test-portal-dashboard-calculations.ps1 Offline dashboard calculation test
@@ -36,6 +37,7 @@ docs/submission.md             Portal submission notes and review checklist
 docs/research-analysis.md      Research notes on the source-grounded verdict pattern
 docs/tooling-notes.md          Tooling and local verification notes
 docs/network-dashboard-submission.md  Dashboard contribution notes
+docs/research-analysis-submission.md  Research contribution notes
 docs/benchmarks.md             Dashboard and status-script benchmark notes
 docs/adversarial-testing.md    Source-grounding adversarial test notes
 docs/evaluation-report.md      Project evaluation and risk review

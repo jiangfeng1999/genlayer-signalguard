@@ -1,5 +1,11 @@
 # Research Analysis: Source-Grounded Claims on GenLayer
 
+Published report:
+
+```text
+https://jiangfeng1999.github.io/genlayer-signalguard/web/research-analysis.html
+```
+
 SignalGuard explores a narrow but useful GenLayer pattern: turning a public claim and a cited source into a stored verdict that validators can independently reason about.
 
 ## Problem
@@ -32,6 +38,28 @@ The rationale is intentionally limited to evidence present in the fetched source
 - Large pages are truncated to keep the prompt compact.
 - It does not yet compare multiple independent sources.
 - It does not yet include a frontend deployment or explorer integration.
+
+## Current public observations
+
+The public Portal API snapshot on 2026-07-07 showed:
+
+- Builder points for `jiangfeng`: 50 BP.
+- Public Builder contribution count: 1.
+- Current public #1 Builder: `YoneCode` at 9395 BP.
+- Highest observed display caps: `Projects` and `Milestones` at 4000 BP each.
+- `Research & Analysis` displayed an observed public cap of 2000 BP.
+- `Network Dashboard` displayed an observed public cap of 1500 BP.
+
+These observations do not prove future scoring. They only describe the public contribution-type data available at the time of the report.
+
+## Research contribution fit
+
+This material is distinct from the Project submission because it analyzes:
+
+- why source-grounded claim review fits GenLayer,
+- what evidence is needed for reviewer confidence,
+- how supported, contradicted, and inconclusive cases should behave,
+- what the public Portal contribution-type data implies for prioritization.
 
 ## Next milestone candidates
 

@@ -37,8 +37,10 @@ try {
             "app\signalguard_cli.py",
             "web\index.html",
             "web\portal-dashboard.html",
+            "web\research-analysis.html",
             "docs\evaluation-report.md",
             "docs\milestone-1-evidence.md",
+            "docs\research-analysis-submission.md",
             "docs\history-milestone-design.md",
             "examples\milestone_evidence.json"
         )
@@ -80,6 +82,7 @@ try {
     $results += Invoke-Check "static pages contain expected hooks" {
         $demo = Get-Content -LiteralPath (Join-Path $repoRoot "web\index.html") -Raw
         $dashboard = Get-Content -LiteralPath (Join-Path $repoRoot "web\portal-dashboard.html") -Raw
+        $research = Get-Content -LiteralPath (Join-Path $repoRoot "web\research-analysis.html") -Raw
         if ($demo -notmatch "review_claim") {
             throw "web/index.html does not contain review_claim."
         }
@@ -88,6 +91,9 @@ try {
         }
         if ($dashboard -notmatch "FALLBACK_DATA") {
             throw "web/portal-dashboard.html does not include a bundled public fallback snapshot."
+        }
+        if ($research -notmatch "SignalGuard Research Analysis" -or $research -notmatch "Research &amp; Analysis") {
+            throw "web/research-analysis.html does not contain the expected research report markers."
         }
     }
 }
