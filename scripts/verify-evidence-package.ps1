@@ -43,6 +43,7 @@ try {
             "web\adversarial-testing.html",
             "web\benchmarks.html",
             "web\tools-infrastructure.html",
+            "web\resource-pack.html",
             "docs\evaluation-report.md",
             "docs\educational-content-submission.md",
             "docs\milestone-1-evidence.md",
@@ -50,6 +51,7 @@ try {
             "docs\adversarial-testing-submission.md",
             "docs\benchmarks-submission.md",
             "docs\tools-infrastructure-submission.md",
+            "docs\resource-creation-submission.md",
             "docs\history-milestone-design.md",
             "examples\milestone_evidence.json"
         )
@@ -97,6 +99,7 @@ try {
         $adversarial = Get-Content -LiteralPath (Join-Path $repoRoot "web\adversarial-testing.html") -Raw
         $benchmarks = Get-Content -LiteralPath (Join-Path $repoRoot "web\benchmarks.html") -Raw
         $toolchain = Get-Content -LiteralPath (Join-Path $repoRoot "web\tools-infrastructure.html") -Raw
+        $resourcePack = Get-Content -LiteralPath (Join-Path $repoRoot "web\resource-pack.html") -Raw
         if ($hub -notmatch "GenLayer SignalGuard Evidence Hub" -or $hub -notmatch "Submission Candidates") {
             throw "index.html does not contain the expected evidence hub markers."
         }
@@ -123,6 +126,9 @@ try {
         }
         if ($toolchain -notmatch "SignalGuard Builder Evidence and Status Toolchain" -or $toolchain -notmatch "Tools &amp; Infrastructure") {
             throw "web/tools-infrastructure.html does not contain the expected toolchain markers."
+        }
+        if ($resourcePack -notmatch "SignalGuard Source-Grounded Review Resource Pack" -or $resourcePack -notmatch "Resource Creation") {
+            throw "web/resource-pack.html does not contain the expected resource pack markers."
         }
     }
 }

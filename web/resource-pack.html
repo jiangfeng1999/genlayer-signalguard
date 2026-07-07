@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SignalGuard Resource Pack</title>
+  <style>
+    :root { color-scheme: light; font-family: Inter, Arial, sans-serif; color: #172033; background: #f6f8fb; --line: #dfe5ef; --muted: #5f6b7a; --accent: #f58220; --blue: #2563eb; --green: #0f8a5f; }
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 24px; background: #f6f8fb; }
+    main { max-width: 1060px; margin: 0 auto; display: grid; gap: 18px; }
+    header, section { border: 1px solid var(--line); border-radius: 8px; background: white; padding: 20px; }
+    h1, h2, p { margin-top: 0; }
+    h1 { margin-bottom: 10px; font-size: 32px; line-height: 1.15; letter-spacing: 0; }
+    h2 { margin-bottom: 12px; font-size: 21px; letter-spacing: 0; }
+    p, li { color: #303b4d; line-height: 1.6; }
+    a { color: var(--blue); font-weight: 700; }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { border-bottom: 1px solid #edf1f6; padding: 11px 12px; text-align: left; vertical-align: top; }
+    th { color: #475569; background: #f8fafc; font-size: 12px; letter-spacing: 0; text-transform: uppercase; }
+    tr:last-child td { border-bottom: 0; }
+    code { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; }
+    .subtitle { margin-bottom: 0; color: var(--muted); }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .tag { display: inline-flex; align-items: center; border: 1px solid #cbd5e1; border-radius: 999px; padding: 5px 9px; color: #334155; background: #f8fafc; font-size: 12px; font-weight: 800; white-space: nowrap; }
+    .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .tile { border: 1px solid var(--line); border-left: 4px solid var(--green); border-radius: 8px; padding: 14px; background: #fff; }
+    .tile strong { display: block; margin-bottom: 6px; font-size: 16px; }
+    @media (max-width: 760px) { body { padding: 16px; } .grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>SignalGuard Source-Grounded Review Resource Pack</h1>
+      <p class="subtitle">Reusable examples, fixtures, and checklists for builders testing source-grounded GenLayer Intelligent Contracts.</p>
+      <div class="tag-row">
+        <span class="tag">Resource Creation</span>
+        <span class="tag">Public Files</span>
+        <span class="tag">Updated 2026-07-07</span>
+      </div>
+    </header>
+
+    <section>
+      <h2>What This Pack Contains</h2>
+      <div class="grid">
+        <div class="tile">
+          <strong>Claim examples</strong>
+          <p>Starter claims and source URLs for testing the `review_claim` flow.</p>
+          <a href="../examples/sample_claims.json">examples/sample_claims.json</a>
+        </div>
+        <div class="tile">
+          <strong>Adversarial cases</strong>
+          <p>Supported, contradicted, unrelated, time-sensitive, and vague claim cases for source-grounding tests.</p>
+          <a href="../examples/adversarial_claims.json">examples/adversarial_claims.json</a>
+        </div>
+        <div class="tile">
+          <strong>Portal dashboard checks</strong>
+          <p>Public endpoint checks and expected fields for leaderboard and contribution-type monitoring.</p>
+          <a href="../examples/portal_dashboard_checks.json">examples/portal_dashboard_checks.json</a>
+        </div>
+        <div class="tile">
+          <strong>Calculation fixture</strong>
+          <p>Deterministic data for verifying leaderboard gap and contribution-type ranking logic offline.</p>
+          <a href="../examples/dashboard_calculation_fixture.json">examples/dashboard_calculation_fixture.json</a>
+        </div>
+        <div class="tile">
+          <strong>Milestone artifact index</strong>
+          <p>A structured index of the milestone-ready contract, dashboard, tests, and evidence pages.</p>
+          <a href="../examples/milestone_evidence.json">examples/milestone_evidence.json</a>
+        </div>
+        <div class="tile">
+          <strong>Review checklist</strong>
+          <p>Human-readable checklist for judging whether evidence is public, reproducible, and distinct.</p>
+          <a href="../docs/milestone-1-evidence.md">docs/milestone-1-evidence.md</a>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>How Builders Can Use It</h2>
+      <table>
+        <thead><tr><th>Workflow</th><th>Resource</th><th>Result</th></tr></thead>
+        <tbody>
+          <tr><td>Test a contract call</td><td>Sample claims plus the CLI helper</td><td>A reproducible `review_claim` payload for Studio.</td></tr>
+          <tr><td>Probe source-grounding limits</td><td>Adversarial claim cases</td><td>A compact set of edge cases before writing more contract logic.</td></tr>
+          <tr><td>Audit public status logic</td><td>Portal dashboard checks and offline fixture</td><td>Confidence that rank-gap and category scoring calculations are deterministic.</td></tr>
+          <tr><td>Prepare a milestone review</td><td>Milestone evidence index and checklist</td><td>A clear boundary between the base project and later milestone work.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Boundaries</h2>
+      <ul>
+        <li>This pack is for reusable public review resources, not a duplicate Project submission.</li>
+        <li>It does not contain private Portal account data, wallet signatures, or hidden submission state.</li>
+        <li>Portal acceptance and awarded points still depend on GenLayer review.</li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>
