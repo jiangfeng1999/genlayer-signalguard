@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SignalGuard Validator Failover Drill</title>
+  <style>
+    :root { color-scheme: light; font-family: Inter, Arial, sans-serif; color: #172033; background: #f6f8fb; --line: #dfe5ef; --muted: #5f6b7a; --blue: #2563eb; }
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 24px; background: #f6f8fb; }
+    main { max-width: 1120px; margin: 0 auto; display: grid; gap: 18px; }
+    header, section { border: 1px solid var(--line); border-radius: 8px; background: white; padding: 20px; }
+    h1, h2, p { margin-top: 0; }
+    h1 { margin-bottom: 10px; font-size: 34px; line-height: 1.12; letter-spacing: 0; }
+    h2 { margin-bottom: 12px; font-size: 21px; letter-spacing: 0; }
+    p, li { color: #303b4d; line-height: 1.6; }
+    a { color: var(--blue); font-weight: 800; text-underline-offset: 3px; }
+    code { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; }
+    .subtitle { margin-bottom: 0; color: var(--muted); }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .tag { display: inline-flex; border: 1px solid #cbd5e1; border-radius: 999px; padding: 5px 9px; color: #334155; background: #f8fafc; font-size: 12px; font-weight: 800; white-space: nowrap; }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { border-bottom: 1px solid #edf1f6; padding: 11px 12px; text-align: left; vertical-align: top; }
+    th { color: #475569; background: #f8fafc; font-size: 12px; text-transform: uppercase; }
+    tr:last-child td { border-bottom: 0; }
+    @media (max-width: 900px) { body { padding: 16px; } }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>SignalGuard Validator Failover Drill</h1>
+      <p class="subtitle">A deterministic drill for health, metrics, balance, and snapshot-based validator failover decisions.</p>
+      <div class="tag-row">
+        <span class="tag">Validator failover</span>
+        <span class="tag">Observed cap 400 BP</span>
+        <span class="tag">No live uptime claim</span>
+      </div>
+    </header>
+
+    <section>
+      <h2>Drill Steps</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Trigger</th>
+            <th>Check</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Health endpoint reports down.</td>
+            <td><code>GET /health</code> on active and standby nodes.</td>
+            <td>Confirm standby health before switching.</td>
+          </tr>
+          <tr>
+            <td>Metrics scrape is missing or stale.</td>
+            <td><code>GET /metrics</code> and compare scrape age.</td>
+            <td>Switch monitoring target and verify collectors.</td>
+          </tr>
+          <tr>
+            <td>Operator balance is below threshold.</td>
+            <td><code>GET /balance</code> and confirm account threshold.</td>
+            <td>Route writes away from the low-balance operator.</td>
+          </tr>
+          <tr>
+            <td>Snapshot needed before maintenance.</td>
+            <td><code>POST /snapshot</code> with protected operator token.</td>
+            <td>Create a snapshot before failover or upgrade.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Artifacts</h2>
+      <ul>
+        <li><a href="../app/validator_failover_drill.py">Failover drill generator</a></li>
+        <li><a href="../examples/validator_failover_drill.json">Failover drill fixture</a></li>
+        <li><a href="../docs/validator-failover-submission.md">Portal submission notes</a></li>
+        <li><a href="validator-tooling.html">Related validator ops probe</a></li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>

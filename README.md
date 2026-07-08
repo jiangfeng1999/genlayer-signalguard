@@ -30,6 +30,8 @@ app/graybox_harness.py         Grayboxing prompt-control harness for source-grou
 app/explorer_lens.py           Explorer index for the deployed SignalGuard contract
 app/gas_fee_simulator_tests.py Fee-aware read/write simulator test fixtures
 app/validator_ops_probe.py     Validator ops probe fixture generator
+app/contract_catalog.py        Intelligent Contract catalog generator
+app/validator_failover_drill.py Validator failover drill fixture generator
 index.html                     GitHub Pages evidence hub
 web/index.html                 Static demo UI for preparing calls
 web/project-overview.html      Project submission overview
@@ -39,6 +41,9 @@ web/grayboxing.html            Published grayboxing harness report
 web/explorer-lens.html         Published Explorer Lens report
 web/gas-fees-simulator-tests.html Published gas-fee simulator tests
 web/validator-tooling.html     Published validator tooling report
+web/create-intelligent-contracts.html Published Intelligent Contract catalog
+web/validator-failover.html    Published validator failover drill
+web/blog-signalguard.html      Published SignalGuard blog post
 web/tutorial.html              Public builder tutorial
 web/portal-dashboard.html      Static Portal points and leaderboard dashboard
 web/research-analysis.html     Published research analysis report
@@ -60,6 +65,9 @@ docs/grayboxing-submission.md  Grayboxing contribution notes
 docs/explorer-submission.md    Explorer contribution notes
 docs/gas-fees-simulator-tests-submission.md Gas-fee simulator contribution notes
 docs/validator-tooling-submission.md Validator tooling contribution notes
+docs/create-intelligent-contracts-submission.md Create Intelligent Contracts notes
+docs/validator-failover-submission.md Validator failover contribution notes
+docs/blog-post-submission.md Blog Post contribution notes
 docs/educational-content-submission.md Tutorial contribution notes
 docs/research-analysis.md      Research notes on the source-grounded verdict pattern
 docs/tooling-notes.md          Tooling and local verification notes
@@ -81,6 +89,8 @@ examples/graybox_cases.json    Grayboxing prompt-control cases
 examples/explorer_lens_manifest.json Explorer Lens manifest fixture
 examples/gas_fee_cases.json    Gas-fee simulator cases
 examples/validator_ops_probe_sample.json Validator ops probe sample
+examples/contract_catalog.json Intelligent Contract catalog fixture
+examples/validator_failover_drill.json Validator failover drill fixture
 examples/portal_dashboard_checks.json Public Portal dashboard check cases
 examples/adversarial_claims.json Source-grounding adversarial claim cases
 examples/dashboard_calculation_fixture.json Offline dashboard calculation fixture
@@ -163,6 +173,13 @@ Generate Explorer, gas-fee, and validator-ops fixtures:
 python app\explorer_lens.py
 python app\gas_fee_simulator_tests.py
 python app\validator_ops_probe.py
+```
+
+Generate contract catalog and failover drill fixtures:
+
+```powershell
+python app\contract_catalog.py
+python app\validator_failover_drill.py
 ```
 
 Run the full evidence package verifier:

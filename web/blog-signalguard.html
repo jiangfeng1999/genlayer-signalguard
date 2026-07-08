@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SignalGuard: A Source-Grounded GenLayer Contract Pattern</title>
+  <style>
+    :root { color-scheme: light; font-family: Inter, Arial, sans-serif; color: #172033; background: #f6f8fb; --line: #dfe5ef; --muted: #5f6b7a; --blue: #2563eb; }
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 24px; background: #f6f8fb; }
+    main { max-width: 860px; margin: 0 auto; display: grid; gap: 18px; }
+    article { border: 1px solid var(--line); border-radius: 8px; background: white; padding: 24px; }
+    h1, h2, p { margin-top: 0; }
+    h1 { margin-bottom: 10px; font-size: 34px; line-height: 1.12; letter-spacing: 0; }
+    h2 { margin-top: 26px; margin-bottom: 12px; font-size: 21px; letter-spacing: 0; }
+    p, li { color: #303b4d; line-height: 1.7; }
+    a { color: var(--blue); font-weight: 800; text-underline-offset: 3px; }
+    code { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; }
+    .meta { color: var(--muted); font-weight: 700; }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 22px; }
+    .tag { display: inline-flex; border: 1px solid #cbd5e1; border-radius: 999px; padding: 5px 9px; color: #334155; background: #f8fafc; font-size: 12px; font-weight: 800; white-space: nowrap; }
+    @media (max-width: 700px) { body { padding: 16px; } }
+  </style>
+</head>
+<body>
+  <main>
+    <article>
+      <p class="meta">Blog Post · SignalGuard · GenLayer Intelligent Contracts</p>
+      <h1>SignalGuard: A Source-Grounded GenLayer Contract Pattern</h1>
+      <div class="tag-row">
+        <span class="tag">Blog Post</span>
+        <span class="tag">Observed cap 200 BP</span>
+        <span class="tag">Builder education</span>
+      </div>
+
+      <p>SignalGuard is a small GenLayer Intelligent Contract pattern for a common problem: a user has a claim, a public source, and a need for a reviewable verdict. Traditional smart contracts are good at deterministic inputs, but claims about documents, APIs, and real-world pages often need interpretation. GenLayer is interesting here because the contract can fetch web data and ask AI validators to classify the claim.</p>
+
+      <h2>The Pattern</h2>
+      <p>The contract accepts a claim and a source URL. It fetches the source, reaches agreement on the fetched text, asks for a constrained verdict, and stores the latest report. The verdict vocabulary is intentionally small: supported, contradicted, or inconclusive. That keeps the output easy to inspect and reduces the space for vague model responses.</p>
+
+      <h2>Why Source Grounding Matters</h2>
+      <p>Without source grounding, a model can answer from memory, preference, or hallucination. SignalGuard forces the review back to a cited public source. This makes the result easier to audit: reviewers can inspect the source URL, the claim, the generated payload, and the contract code.</p>
+
+      <h2>What Builders Should Inspect</h2>
+      <ul>
+        <li>The source URL should be public and relevant to the claim.</li>
+        <li>The claim should be specific enough to classify.</li>
+        <li>The prompt should restrict output to a clear schema.</li>
+        <li>The app should avoid turning simple reads into fee-bearing writes.</li>
+        <li>Ambiguous or incomplete evidence should be allowed to return inconclusive.</li>
+      </ul>
+
+      <h2>Review Links</h2>
+      <p>Start with the <a href="project-overview.html">project overview</a>, inspect the <a href="../contracts/signal_guard.py">contract source</a>, and compare the method with the <a href="research-analysis.html">research analysis</a>. The full public evidence hub is available from the <a href="../index.html">SignalGuard evidence index</a>.</p>
+    </article>
+  </main>
+</body>
+</html>
