@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SignalGuard Community Outreach FAQ</title>
+  <style>
+    :root { color-scheme: light; font-family: Inter, Arial, sans-serif; color: #172033; background: #f6f8fb; --line: #dfe5ef; --muted: #5f6b7a; --blue: #2563eb; }
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 24px; background: #f6f8fb; }
+    main { max-width: 960px; margin: 0 auto; display: grid; gap: 18px; }
+    header, section { border: 1px solid var(--line); border-radius: 8px; background: white; padding: 20px; }
+    h1, h2, h3, p { margin-top: 0; }
+    h1 { margin-bottom: 10px; font-size: 34px; line-height: 1.12; letter-spacing: 0; }
+    h2 { margin-bottom: 12px; font-size: 21px; letter-spacing: 0; }
+    h3 { margin-bottom: 8px; font-size: 17px; }
+    p, li { color: #303b4d; line-height: 1.6; }
+    a { color: var(--blue); font-weight: 800; text-underline-offset: 3px; }
+    .subtitle { margin-bottom: 0; color: var(--muted); }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .tag { display: inline-flex; border: 1px solid #cbd5e1; border-radius: 999px; padding: 5px 9px; color: #334155; background: #f8fafc; font-size: 12px; font-weight: 800; white-space: nowrap; }
+    @media (max-width: 700px) { body { padding: 16px; } }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>SignalGuard Community Outreach FAQ</h1>
+      <p class="subtitle">Reusable answers for builders inspecting or adapting a source-grounded GenLayer contract.</p>
+      <div class="tag-row">
+        <span class="tag">Community outreach</span>
+        <span class="tag">Observed cap 200 BP</span>
+        <span class="tag">No mass-posting claim</span>
+      </div>
+    </header>
+
+    <section>
+      <h2>FAQ</h2>
+      <h3>What is SignalGuard?</h3>
+      <p>A source-grounded claim review contract that fetches a public source and stores a constrained verdict.</p>
+      <h3>How can builders inspect it?</h3>
+      <p>Start with the <a href="project-overview.html">project overview</a>, then use the <a href="tutorial.html">tutorial</a> and <a href="reviewer-quickstart.html">reviewer quickstart</a>.</p>
+      <h3>Does this guarantee points?</h3>
+      <p>No. Portal review decides awards. The public materials are designed to be reviewable, not to bypass review.</p>
+      <h3>What should a builder reuse?</h3>
+      <p>The source URL discipline, small verdict vocabulary, evidence hub pattern, and verifier workflow.</p>
+    </section>
+
+    <section>
+      <h2>Artifacts</h2>
+      <ul>
+        <li><a href="../app/community_materials.py">Community materials generator</a></li>
+        <li><a href="../examples/community_materials.json">Community materials fixture</a></li>
+        <li><a href="../docs/community-outreach-submission.md">Portal submission notes</a></li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>

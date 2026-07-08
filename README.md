@@ -32,6 +32,7 @@ app/gas_fee_simulator_tests.py Fee-aware read/write simulator test fixtures
 app/validator_ops_probe.py     Validator ops probe fixture generator
 app/contract_catalog.py        Intelligent Contract catalog generator
 app/validator_failover_drill.py Validator failover drill fixture generator
+app/community_materials.py     Community, support, and meta material generator
 index.html                     GitHub Pages evidence hub
 web/index.html                 Static demo UI for preparing calls
 web/project-overview.html      Project submission overview
@@ -44,6 +45,10 @@ web/validator-tooling.html     Published validator tooling report
 web/create-intelligent-contracts.html Published Intelligent Contract catalog
 web/validator-failover.html    Published validator failover drill
 web/blog-signalguard.html      Published SignalGuard blog post
+web/marketing-networking.html  Published networking kit
+web/community-outreach.html    Published community outreach FAQ
+web/community-support.html     Published community support guide
+web/meta-contributions.html    Published meta-contribution retrospective
 web/tutorial.html              Public builder tutorial
 web/portal-dashboard.html      Static Portal points and leaderboard dashboard
 web/research-analysis.html     Published research analysis report
@@ -68,6 +73,10 @@ docs/validator-tooling-submission.md Validator tooling contribution notes
 docs/create-intelligent-contracts-submission.md Create Intelligent Contracts notes
 docs/validator-failover-submission.md Validator failover contribution notes
 docs/blog-post-submission.md Blog Post contribution notes
+docs/marketing-networking-submission.md Marketing and networking contribution notes
+docs/community-outreach-submission.md Community outreach contribution notes
+docs/community-support-submission.md Community support contribution notes
+docs/meta-contributions-submission.md Meta contribution notes
 docs/educational-content-submission.md Tutorial contribution notes
 docs/research-analysis.md      Research notes on the source-grounded verdict pattern
 docs/tooling-notes.md          Tooling and local verification notes
@@ -91,6 +100,7 @@ examples/gas_fee_cases.json    Gas-fee simulator cases
 examples/validator_ops_probe_sample.json Validator ops probe sample
 examples/contract_catalog.json Intelligent Contract catalog fixture
 examples/validator_failover_drill.json Validator failover drill fixture
+examples/community_materials.json Community materials fixture
 examples/portal_dashboard_checks.json Public Portal dashboard check cases
 examples/adversarial_claims.json Source-grounding adversarial claim cases
 examples/dashboard_calculation_fixture.json Offline dashboard calculation fixture
@@ -180,6 +190,13 @@ Generate contract catalog and failover drill fixtures:
 ```powershell
 python app\contract_catalog.py
 python app\validator_failover_drill.py
+```
+
+Generate community and meta contribution fixtures:
+
+```powershell
+python app\community_materials.py
+python app\community_materials.py --keys
 ```
 
 Run the full evidence package verifier:

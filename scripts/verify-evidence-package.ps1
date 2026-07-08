@@ -42,6 +42,7 @@ try {
             "app\validator_ops_probe.py",
             "app\contract_catalog.py",
             "app\validator_failover_drill.py",
+            "app\community_materials.py",
             "index.html",
             "web\index.html",
             "web\project-overview.html",
@@ -54,6 +55,10 @@ try {
             "web\create-intelligent-contracts.html",
             "web\validator-failover.html",
             "web\blog-signalguard.html",
+            "web\marketing-networking.html",
+            "web\community-outreach.html",
+            "web\community-support.html",
+            "web\meta-contributions.html",
             "web\tutorial.html",
             "web\portal-dashboard.html",
             "web\research-analysis.html",
@@ -73,6 +78,10 @@ try {
             "docs\create-intelligent-contracts-submission.md",
             "docs\validator-failover-submission.md",
             "docs\blog-post-submission.md",
+            "docs\marketing-networking-submission.md",
+            "docs\community-outreach-submission.md",
+            "docs\community-support-submission.md",
+            "docs\meta-contributions-submission.md",
             "docs\educational-content-submission.md",
             "docs\milestone-1-evidence.md",
             "docs\research-analysis-submission.md",
@@ -89,7 +98,8 @@ try {
             "examples\gas_fee_cases.json",
             "examples\validator_ops_probe_sample.json",
             "examples\contract_catalog.json",
-            "examples\validator_failover_drill.json"
+            "examples\validator_failover_drill.json",
+            "examples\community_materials.json"
         )
         foreach ($path in $required) {
             if (-not (Test-Path -LiteralPath (Join-Path $repoRoot $path))) {
@@ -99,7 +109,7 @@ try {
     }
 
     $results += Invoke-Check "python files compile" {
-        & python -m py_compile app\signalguard_cli.py app\source_adapter_pack.py app\graybox_harness.py app\explorer_lens.py app\gas_fee_simulator_tests.py app\validator_ops_probe.py app\contract_catalog.py app\validator_failover_drill.py contracts\signal_guard.py contracts\signal_guard_history.py
+        & python -m py_compile app\signalguard_cli.py app\source_adapter_pack.py app\graybox_harness.py app\explorer_lens.py app\gas_fee_simulator_tests.py app\validator_ops_probe.py app\contract_catalog.py app\validator_failover_drill.py app\community_materials.py contracts\signal_guard.py contracts\signal_guard_history.py
         if ($LASTEXITCODE -ne 0) {
             throw "Python compilation failed."
         }
@@ -126,7 +136,8 @@ try {
             "examples\gas_fee_cases.json",
             "examples\validator_ops_probe_sample.json",
             "examples\contract_catalog.json",
-            "examples\validator_failover_drill.json"
+            "examples\validator_failover_drill.json",
+            "examples\community_materials.json"
         )
         foreach ($path in $jsonFiles) {
             Get-Content -LiteralPath (Join-Path $repoRoot $path) -Raw | ConvertFrom-Json | Out-Null
@@ -146,6 +157,10 @@ try {
         $contractCatalog = Get-Content -LiteralPath (Join-Path $repoRoot "web\create-intelligent-contracts.html") -Raw
         $validatorFailover = Get-Content -LiteralPath (Join-Path $repoRoot "web\validator-failover.html") -Raw
         $blogPost = Get-Content -LiteralPath (Join-Path $repoRoot "web\blog-signalguard.html") -Raw
+        $marketing = Get-Content -LiteralPath (Join-Path $repoRoot "web\marketing-networking.html") -Raw
+        $outreach = Get-Content -LiteralPath (Join-Path $repoRoot "web\community-outreach.html") -Raw
+        $support = Get-Content -LiteralPath (Join-Path $repoRoot "web\community-support.html") -Raw
+        $meta = Get-Content -LiteralPath (Join-Path $repoRoot "web\meta-contributions.html") -Raw
         $tutorial = Get-Content -LiteralPath (Join-Path $repoRoot "web\tutorial.html") -Raw
         $dashboard = Get-Content -LiteralPath (Join-Path $repoRoot "web\portal-dashboard.html") -Raw
         $research = Get-Content -LiteralPath (Join-Path $repoRoot "web\research-analysis.html") -Raw
@@ -189,6 +204,18 @@ try {
         }
         if ($blogPost -notmatch "SignalGuard: A Source-Grounded GenLayer Contract Pattern" -or $blogPost -notmatch "Blog Post") {
             throw "web/blog-signalguard.html does not contain the expected blog markers."
+        }
+        if ($marketing -notmatch "SignalGuard Builder Networking Kit" -or $marketing -notmatch "Marketing &amp; Networking") {
+            throw "web/marketing-networking.html does not contain the expected marketing markers."
+        }
+        if ($outreach -notmatch "SignalGuard Community Outreach FAQ" -or $outreach -notmatch "Community outreach") {
+            throw "web/community-outreach.html does not contain the expected outreach markers."
+        }
+        if ($support -notmatch "SignalGuard Community Support Triage Guide" -or $support -notmatch "Community Support") {
+            throw "web/community-support.html does not contain the expected support markers."
+        }
+        if ($meta -notmatch "SignalGuard Portal Evidence Workflow Retrospective" -or $meta -notmatch "Meta Contributions") {
+            throw "web/meta-contributions.html does not contain the expected meta contribution markers."
         }
         if ($tutorial -notmatch "Source-Grounded Claim Review Contract" -or $tutorial -notmatch "Educational Content") {
             throw "web/tutorial.html does not contain the expected tutorial markers."
