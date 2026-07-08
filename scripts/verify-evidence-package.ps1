@@ -37,12 +37,18 @@ try {
             "app\signalguard_cli.py",
             "app\source_adapter_pack.py",
             "app\graybox_harness.py",
+            "app\explorer_lens.py",
+            "app\gas_fee_simulator_tests.py",
+            "app\validator_ops_probe.py",
             "index.html",
             "web\index.html",
             "web\project-overview.html",
             "web\milestone-1.html",
             "web\third-party-integrations.html",
             "web\grayboxing.html",
+            "web\explorer-lens.html",
+            "web\gas-fees-simulator-tests.html",
+            "web\validator-tooling.html",
             "web\tutorial.html",
             "web\portal-dashboard.html",
             "web\research-analysis.html",
@@ -56,6 +62,9 @@ try {
             "docs\milestone-1-submission.md",
             "docs\third-party-integrations-submission.md",
             "docs\grayboxing-submission.md",
+            "docs\explorer-submission.md",
+            "docs\gas-fees-simulator-tests-submission.md",
+            "docs\validator-tooling-submission.md",
             "docs\educational-content-submission.md",
             "docs\milestone-1-evidence.md",
             "docs\research-analysis-submission.md",
@@ -67,7 +76,10 @@ try {
             "docs\history-milestone-design.md",
             "examples\milestone_evidence.json",
             "examples\source_adapter_cases.json",
-            "examples\graybox_cases.json"
+            "examples\graybox_cases.json",
+            "examples\explorer_lens_manifest.json",
+            "examples\gas_fee_cases.json",
+            "examples\validator_ops_probe_sample.json"
         )
         foreach ($path in $required) {
             if (-not (Test-Path -LiteralPath (Join-Path $repoRoot $path))) {
@@ -77,7 +89,7 @@ try {
     }
 
     $results += Invoke-Check "python files compile" {
-        & python -m py_compile app\signalguard_cli.py app\source_adapter_pack.py app\graybox_harness.py contracts\signal_guard.py contracts\signal_guard_history.py
+        & python -m py_compile app\signalguard_cli.py app\source_adapter_pack.py app\graybox_harness.py app\explorer_lens.py app\gas_fee_simulator_tests.py app\validator_ops_probe.py contracts\signal_guard.py contracts\signal_guard_history.py
         if ($LASTEXITCODE -ne 0) {
             throw "Python compilation failed."
         }
@@ -99,7 +111,10 @@ try {
             "examples\dashboard_calculation_fixture.json",
             "examples\milestone_evidence.json",
             "examples\source_adapter_cases.json",
-            "examples\graybox_cases.json"
+            "examples\graybox_cases.json",
+            "examples\explorer_lens_manifest.json",
+            "examples\gas_fee_cases.json",
+            "examples\validator_ops_probe_sample.json"
         )
         foreach ($path in $jsonFiles) {
             Get-Content -LiteralPath (Join-Path $repoRoot $path) -Raw | ConvertFrom-Json | Out-Null
@@ -113,6 +128,9 @@ try {
         $milestone = Get-Content -LiteralPath (Join-Path $repoRoot "web\milestone-1.html") -Raw
         $integrations = Get-Content -LiteralPath (Join-Path $repoRoot "web\third-party-integrations.html") -Raw
         $grayboxing = Get-Content -LiteralPath (Join-Path $repoRoot "web\grayboxing.html") -Raw
+        $explorer = Get-Content -LiteralPath (Join-Path $repoRoot "web\explorer-lens.html") -Raw
+        $gasFees = Get-Content -LiteralPath (Join-Path $repoRoot "web\gas-fees-simulator-tests.html") -Raw
+        $validatorTooling = Get-Content -LiteralPath (Join-Path $repoRoot "web\validator-tooling.html") -Raw
         $tutorial = Get-Content -LiteralPath (Join-Path $repoRoot "web\tutorial.html") -Raw
         $dashboard = Get-Content -LiteralPath (Join-Path $repoRoot "web\portal-dashboard.html") -Raw
         $research = Get-Content -LiteralPath (Join-Path $repoRoot "web\research-analysis.html") -Raw
@@ -138,6 +156,15 @@ try {
         }
         if ($grayboxing -notmatch "SignalGuard Graybox Harness" -or $grayboxing -notmatch "Grayboxing") {
             throw "web/grayboxing.html does not contain the expected grayboxing markers."
+        }
+        if ($explorer -notmatch "SignalGuard Explorer Lens" -or $explorer -notmatch "Explorer") {
+            throw "web/explorer-lens.html does not contain the expected explorer markers."
+        }
+        if ($gasFees -notmatch "SignalGuard Gas Fee Simulator Tests" -or $gasFees -notmatch "Gas Fees Simulator Tests") {
+            throw "web/gas-fees-simulator-tests.html does not contain the expected gas-fee markers."
+        }
+        if ($validatorTooling -notmatch "SignalGuard Validator Ops Probe" -or $validatorTooling -notmatch "Tooling for running a Validator") {
+            throw "web/validator-tooling.html does not contain the expected validator tooling markers."
         }
         if ($tutorial -notmatch "Source-Grounded Claim Review Contract" -or $tutorial -notmatch "Educational Content") {
             throw "web/tutorial.html does not contain the expected tutorial markers."

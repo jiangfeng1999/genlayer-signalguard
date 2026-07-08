@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SignalGuard Gas Fee Simulator Tests</title>
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: Inter, Arial, sans-serif;
+      color: #172033;
+      background: #f6f8fb;
+      --line: #dfe5ef;
+      --muted: #5f6b7a;
+      --blue: #2563eb;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 24px; background: #f6f8fb; }
+    main { max-width: 1120px; margin: 0 auto; display: grid; gap: 18px; }
+    header, section { border: 1px solid var(--line); border-radius: 8px; background: white; padding: 20px; }
+    h1, h2, p { margin-top: 0; }
+    h1 { margin-bottom: 10px; font-size: 34px; line-height: 1.12; letter-spacing: 0; }
+    h2 { margin-bottom: 12px; font-size: 21px; letter-spacing: 0; }
+    p, li { color: #303b4d; line-height: 1.6; }
+    a { color: var(--blue); font-weight: 800; text-underline-offset: 3px; }
+    code { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; }
+    .subtitle { margin-bottom: 0; color: var(--muted); }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .tag { display: inline-flex; border: 1px solid #cbd5e1; border-radius: 999px; padding: 5px 9px; color: #334155; background: #f8fafc; font-size: 12px; font-weight: 800; white-space: nowrap; }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { border-bottom: 1px solid #edf1f6; padding: 11px 12px; text-align: left; vertical-align: top; }
+    th { color: #475569; background: #f8fafc; font-size: 12px; text-transform: uppercase; }
+    tr:last-child td { border-bottom: 0; }
+    @media (max-width: 900px) {
+      body { padding: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>SignalGuard Gas Fee Simulator Tests</h1>
+      <p class="subtitle">A deterministic test matrix for fee-aware SignalGuard read and write flows.</p>
+      <div class="tag-row">
+        <span class="tag">Gas Fees Simulator Tests</span>
+        <span class="tag">Observed cap 1,000 BP</span>
+        <span class="tag">Studio limitation documented</span>
+      </div>
+    </header>
+
+    <section>
+      <h2>Purpose</h2>
+      <p>The tests separate read-only calls, state-changing writes, malformed inputs, and repeated writes. The package is explicit that Studio is useful for functional prototyping but does not consume gas, so live clients still need fee estimation and user confirmation.</p>
+    </section>
+
+    <section>
+      <h2>Cases</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Case</th>
+            <th>Expected fee behavior</th>
+            <th>Risk controlled</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Read latest verdict</td>
+            <td>View calls should avoid write transactions and wallet fee prompts.</td>
+            <td>Accidental write flow for read-only state.</td>
+          </tr>
+          <tr>
+            <td>Write review claim</td>
+            <td>State-changing calls require signing, processing, and sufficient balance.</td>
+            <td>Studio-only testing hides live fee and finalization behavior.</td>
+          </tr>
+          <tr>
+            <td>Oversized source URL</td>
+            <td>Client-side validation should reject malformed inputs before writes.</td>
+            <td>Bad input can waste fees and user time.</td>
+          </tr>
+          <tr>
+            <td>Repeated review claim</td>
+            <td>Repeated writes should be treated as separate fee-bearing transactions.</td>
+            <td>Prototype interactions can make repeated writes look free.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Artifacts</h2>
+      <ul>
+        <li><a href="../app/gas_fee_simulator_tests.py">Gas-fee simulator test generator</a></li>
+        <li><a href="../examples/gas_fee_cases.json">Gas-fee case fixture</a></li>
+        <li><a href="../docs/gas-fees-simulator-tests-submission.md">Portal submission notes</a></li>
+        <li><a href="project-overview.html">SignalGuard project overview</a></li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>

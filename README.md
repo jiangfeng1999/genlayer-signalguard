@@ -27,12 +27,18 @@ contracts/signal_guard_history.py Next-milestone history prototype
 app/signalguard_cli.py         Minimal CLI payload builder for contract calls
 app/source_adapter_pack.py     Third-party API adapter cases for review_claim inputs
 app/graybox_harness.py         Grayboxing prompt-control harness for source-grounded reviews
+app/explorer_lens.py           Explorer index for the deployed SignalGuard contract
+app/gas_fee_simulator_tests.py Fee-aware read/write simulator test fixtures
+app/validator_ops_probe.py     Validator ops probe fixture generator
 index.html                     GitHub Pages evidence hub
 web/index.html                 Static demo UI for preparing calls
 web/project-overview.html      Project submission overview
 web/milestone-1.html           Milestone 1 submission overview
 web/third-party-integrations.html Published third-party integration pack
 web/grayboxing.html            Published grayboxing harness report
+web/explorer-lens.html         Published Explorer Lens report
+web/gas-fees-simulator-tests.html Published gas-fee simulator tests
+web/validator-tooling.html     Published validator tooling report
 web/tutorial.html              Public builder tutorial
 web/portal-dashboard.html      Static Portal points and leaderboard dashboard
 web/research-analysis.html     Published research analysis report
@@ -51,6 +57,9 @@ docs/project-submission.md     Project contribution submission notes
 docs/milestone-1-submission.md Milestone contribution submission notes
 docs/third-party-integrations-submission.md 3rd party integrations contribution notes
 docs/grayboxing-submission.md  Grayboxing contribution notes
+docs/explorer-submission.md    Explorer contribution notes
+docs/gas-fees-simulator-tests-submission.md Gas-fee simulator contribution notes
+docs/validator-tooling-submission.md Validator tooling contribution notes
 docs/educational-content-submission.md Tutorial contribution notes
 docs/research-analysis.md      Research notes on the source-grounded verdict pattern
 docs/tooling-notes.md          Tooling and local verification notes
@@ -69,6 +78,9 @@ docs/history-milestone-design.md History prototype design notes
 examples/sample_claims.json    Example claims and sources
 examples/source_adapter_cases.json Third-party source adapter examples
 examples/graybox_cases.json    Grayboxing prompt-control cases
+examples/explorer_lens_manifest.json Explorer Lens manifest fixture
+examples/gas_fee_cases.json    Gas-fee simulator cases
+examples/validator_ops_probe_sample.json Validator ops probe sample
 examples/portal_dashboard_checks.json Public Portal dashboard check cases
 examples/adversarial_claims.json Source-grounding adversarial claim cases
 examples/dashboard_calculation_fixture.json Offline dashboard calculation fixture
@@ -143,6 +155,14 @@ Generate grayboxing prompt-control cases:
 ```powershell
 python app\graybox_harness.py
 python app\graybox_harness.py --compact
+```
+
+Generate Explorer, gas-fee, and validator-ops fixtures:
+
+```powershell
+python app\explorer_lens.py
+python app\gas_fee_simulator_tests.py
+python app\validator_ops_probe.py
 ```
 
 Run the full evidence package verifier:

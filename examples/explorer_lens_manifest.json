@@ -1,0 +1,28 @@
+{
+  "tool": "SignalGuard Explorer Lens",
+  "purpose": "Give reviewers a compact, reproducible explorer index for a deployed GenLayer Intelligent Contract.",
+  "target": {
+    "label": "SignalGuard Studio deployment",
+    "address": "0x1d496901d68FC02d105A14B81Ea0e67476A9891A",
+    "studio_import_url": "https://studio.genlayer.com/contracts?import-contract=0x1d496901d68FC02d105A14B81Ea0e67476A9891A",
+    "studio_explorer_url": "https://explorer-studio.genlayer.com/address/0x1d496901d68FC02d105A14B81Ea0e67476A9891A",
+    "public_evidence_url": "https://jiangfeng1999.github.io/genlayer-signalguard/web/project-overview.html"
+  },
+  "checks": [
+    {
+      "name": "address_format",
+      "status": "pass",
+      "detail": "Address is a 20-byte 0x-prefixed hexadecimal string."
+    },
+    {
+      "name": "review_links",
+      "status": "manual",
+      "detail": "Open the Studio import URL and Studio explorer URL during review."
+    },
+    {
+      "name": "source_evidence",
+      "status": "pass",
+      "detail": "Public project overview and GitHub source are linked from the evidence hub."
+    }
+  ]
+}

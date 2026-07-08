@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SignalGuard Validator Ops Probe</title>
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: Inter, Arial, sans-serif;
+      color: #172033;
+      background: #f6f8fb;
+      --line: #dfe5ef;
+      --muted: #5f6b7a;
+      --blue: #2563eb;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 24px; background: #f6f8fb; }
+    main { max-width: 1120px; margin: 0 auto; display: grid; gap: 18px; }
+    header, section { border: 1px solid var(--line); border-radius: 8px; background: white; padding: 20px; }
+    h1, h2, p { margin-top: 0; }
+    h1 { margin-bottom: 10px; font-size: 34px; line-height: 1.12; letter-spacing: 0; }
+    h2 { margin-bottom: 12px; font-size: 21px; letter-spacing: 0; }
+    p, li { color: #303b4d; line-height: 1.6; }
+    a { color: var(--blue); font-weight: 800; text-underline-offset: 3px; }
+    code { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; }
+    .subtitle { margin-bottom: 0; color: var(--muted); }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .tag { display: inline-flex; border: 1px solid #cbd5e1; border-radius: 999px; padding: 5px 9px; color: #334155; background: #f8fafc; font-size: 12px; font-weight: 800; white-space: nowrap; }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { border-bottom: 1px solid #edf1f6; padding: 11px 12px; text-align: left; vertical-align: top; }
+    th { color: #475569; background: #f8fafc; font-size: 12px; text-transform: uppercase; }
+    tr:last-child td { border-bottom: 0; }
+    @media (max-width: 900px) {
+      body { padding: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>SignalGuard Validator Ops Probe</h1>
+      <p class="subtitle">A lightweight operations checklist for validator health, metrics, balance, and snapshot readiness.</p>
+      <div class="tag-row">
+        <span class="tag">Tooling for running a Validator</span>
+        <span class="tag">Observed cap 1,000 BP</span>
+        <span class="tag">No credentials required for review</span>
+      </div>
+    </header>
+
+    <section>
+      <h2>Probe Matrix</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Endpoint</th>
+            <th>Purpose</th>
+            <th>Alert rule</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>/health</code></td>
+            <td>Check node, database, and consensus health before treating a validator as ready.</td>
+            <td>Alert when status is not up or a required check reports down.</td>
+          </tr>
+          <tr>
+            <td><code>/metrics</code></td>
+            <td>Expose Prometheus metrics for node, GenVM, and WebDriver resource tracking.</td>
+            <td>Alert on missing scrape data, high CPU, memory pressure, or stalled block progress.</td>
+          </tr>
+          <tr>
+            <td><code>/balance</code></td>
+            <td>Track account balance needed for operational transactions.</td>
+            <td>Alert when balance drops below the operator-defined threshold.</td>
+          </tr>
+          <tr>
+            <td><code>/snapshot</code></td>
+            <td>Create an operator-authorized state snapshot for maintenance and upgrades.</td>
+            <td>Require an operator token and local or tunneled access before invocation.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Boundaries</h2>
+      <ul>
+        <li>This is operator tooling; it does not claim the current wallet is running a validator.</li>
+        <li>Snapshot handling is protected because it requires an operator token.</li>
+        <li>Reviewers can adapt the fixture to local, tunneled, or hosted validator endpoints.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Artifacts</h2>
+      <ul>
+        <li><a href="../app/validator_ops_probe.py">Validator ops probe generator</a></li>
+        <li><a href="../examples/validator_ops_probe_sample.json">Probe fixture</a></li>
+        <li><a href="../docs/validator-tooling-submission.md">Portal submission notes</a></li>
+        <li><a href="tools-infrastructure.html">Related builder toolchain report</a></li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>

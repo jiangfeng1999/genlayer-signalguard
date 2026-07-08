@@ -1,0 +1,36 @@
+{
+  "tool": "SignalGuard Validator Ops Probe",
+  "purpose": "A lightweight checklist for validator operators to verify health, metrics, balance, and snapshot readiness.",
+  "default_ops_port": 9153,
+  "probes": [
+    {
+      "endpoint": "/health",
+      "purpose": "Check node, database, and consensus health before treating a validator as ready.",
+      "public": true,
+      "alert_rule": "Alert when status is not up or when a required check reports down."
+    },
+    {
+      "endpoint": "/metrics",
+      "purpose": "Expose Prometheus metrics for node, GenVM, and WebDriver resource tracking.",
+      "public": true,
+      "alert_rule": "Alert on missing scrape data, high CPU, memory pressure, or stalled block progress."
+    },
+    {
+      "endpoint": "/balance",
+      "purpose": "Track account balance needed for operational transactions.",
+      "public": true,
+      "alert_rule": "Alert when balance drops below the operator-defined threshold."
+    },
+    {
+      "endpoint": "/snapshot",
+      "purpose": "Create an operator-authorized state snapshot for maintenance and upgrades.",
+      "public": false,
+      "alert_rule": "Require operator token and local or tunneled access before invocation."
+    }
+  ],
+  "boundaries": [
+    "This is operator tooling; it does not claim the current wallet is running a validator.",
+    "The snapshot route is intentionally marked protected because it requires an operator token.",
+    "Reviewers can adapt the endpoint list to a local, tunneled, or hosted validator."
+  ]
+}

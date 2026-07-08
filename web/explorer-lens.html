@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SignalGuard Explorer Lens</title>
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: Inter, Arial, sans-serif;
+      color: #172033;
+      background: #f6f8fb;
+      --line: #dfe5ef;
+      --muted: #5f6b7a;
+      --blue: #2563eb;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 24px; background: #f6f8fb; }
+    main { max-width: 1120px; margin: 0 auto; display: grid; gap: 18px; }
+    header, section { border: 1px solid var(--line); border-radius: 8px; background: white; padding: 20px; }
+    h1, h2, p { margin-top: 0; }
+    h1 { margin-bottom: 10px; font-size: 34px; line-height: 1.12; letter-spacing: 0; }
+    h2 { margin-bottom: 12px; font-size: 21px; letter-spacing: 0; }
+    p, li { color: #303b4d; line-height: 1.6; }
+    a { color: var(--blue); font-weight: 800; text-underline-offset: 3px; }
+    code { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; overflow-wrap: anywhere; }
+    .subtitle { margin-bottom: 0; color: var(--muted); }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .tag { display: inline-flex; border: 1px solid #cbd5e1; border-radius: 999px; padding: 5px 9px; color: #334155; background: #f8fafc; font-size: 12px; font-weight: 800; white-space: nowrap; }
+    .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .card { border: 1px solid var(--line); border-radius: 8px; padding: 16px; min-height: 120px; display: grid; gap: 8px; align-content: start; }
+    .card strong { font-size: 17px; line-height: 1.25; }
+    .card p { margin-bottom: 0; font-size: 14px; }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { border-bottom: 1px solid #edf1f6; padding: 11px 12px; text-align: left; vertical-align: top; }
+    th { color: #475569; background: #f8fafc; font-size: 12px; text-transform: uppercase; }
+    tr:last-child td { border-bottom: 0; }
+    @media (max-width: 900px) {
+      body { padding: 16px; }
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>SignalGuard Explorer Lens</h1>
+      <p class="subtitle">A compact explorer index for the deployed SignalGuard GenLayer Intelligent Contract.</p>
+      <div class="tag-row">
+        <span class="tag">Explorer</span>
+        <span class="tag">Observed cap 1,500 BP</span>
+        <span class="tag">Address-level review</span>
+      </div>
+    </header>
+
+    <section>
+      <h2>Target</h2>
+      <div class="grid">
+        <div class="card">
+          <strong>Contract address</strong>
+          <p><code>0x1d496901d68FC02d105A14B81Ea0e67476A9891A</code></p>
+        </div>
+        <div class="card">
+          <strong>Review path</strong>
+          <p><a href="https://explorer-studio.genlayer.com/address/0x1d496901d68FC02d105A14B81Ea0e67476A9891A">Open Studio explorer</a></p>
+          <p><a href="https://studio.genlayer.com/contracts?import-contract=0x1d496901d68FC02d105A14B81Ea0e67476A9891A">Open Studio import</a></p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Checks</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Check</th>
+            <th>Status</th>
+            <th>Reviewer note</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Address format</td>
+            <td>Pass</td>
+            <td>20-byte 0x-prefixed hexadecimal address validated by <code>app/explorer_lens.py</code>.</td>
+          </tr>
+          <tr>
+            <td>Explorer link</td>
+            <td>Manual</td>
+            <td>Reviewer can open the address page directly in the official Studio explorer.</td>
+          </tr>
+          <tr>
+            <td>Project evidence</td>
+            <td>Pass</td>
+            <td>Links back to the public SignalGuard project overview and source package.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Artifacts</h2>
+      <ul>
+        <li><a href="../app/explorer_lens.py">Explorer manifest generator</a></li>
+        <li><a href="../examples/explorer_lens_manifest.json">Generated manifest fixture</a></li>
+        <li><a href="../docs/explorer-submission.md">Portal submission notes</a></li>
+        <li><a href="project-overview.html">SignalGuard project overview</a></li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>
