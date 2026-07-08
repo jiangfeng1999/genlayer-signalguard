@@ -25,10 +25,12 @@ Normal smart contracts cannot inspect natural-language evidence or compare sourc
 contracts/signal_guard.py      GenLayer Intelligent Contract
 contracts/signal_guard_history.py Next-milestone history prototype
 app/signalguard_cli.py         Minimal CLI payload builder for contract calls
+app/source_adapter_pack.py     Third-party API adapter cases for review_claim inputs
 index.html                     GitHub Pages evidence hub
 web/index.html                 Static demo UI for preparing calls
 web/project-overview.html      Project submission overview
 web/milestone-1.html           Milestone 1 submission overview
+web/third-party-integrations.html Published third-party integration pack
 web/tutorial.html              Public builder tutorial
 web/portal-dashboard.html      Static Portal points and leaderboard dashboard
 web/research-analysis.html     Published research analysis report
@@ -45,6 +47,7 @@ scripts/verify-evidence-package.ps1 One-command evidence package verifier
 docs/submission.md             Portal submission notes and review checklist
 docs/project-submission.md     Project contribution submission notes
 docs/milestone-1-submission.md Milestone contribution submission notes
+docs/third-party-integrations-submission.md 3rd party integrations contribution notes
 docs/educational-content-submission.md Tutorial contribution notes
 docs/research-analysis.md      Research notes on the source-grounded verdict pattern
 docs/tooling-notes.md          Tooling and local verification notes
@@ -61,6 +64,7 @@ docs/evaluation-report.md      Project evaluation and risk review
 docs/milestone-1-evidence.md   Prepared milestone evidence package
 docs/history-milestone-design.md History prototype design notes
 examples/sample_claims.json    Example claims and sources
+examples/source_adapter_cases.json Third-party source adapter examples
 examples/portal_dashboard_checks.json Public Portal dashboard check cases
 examples/adversarial_claims.json Source-grounding adversarial claim cases
 examples/dashboard_calculation_fixture.json Offline dashboard calculation fixture
@@ -121,6 +125,13 @@ Run the CLI payload helper test:
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File scripts\test-signalguard-cli.ps1
+```
+
+Generate third-party source adapter examples:
+
+```powershell
+python app\source_adapter_pack.py
+python app\source_adapter_pack.py --payloads
 ```
 
 Run the full evidence package verifier:

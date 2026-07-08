@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SignalGuard SourceBridge Integrations</title>
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: Inter, Arial, sans-serif;
+      color: #172033;
+      background: #f6f8fb;
+      --line: #dfe5ef;
+      --muted: #5f6b7a;
+      --accent: #f58220;
+      --blue: #2563eb;
+      --green: #0f8a5f;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 24px; background: #f6f8fb; }
+    main { max-width: 1120px; margin: 0 auto; display: grid; gap: 18px; }
+    header, section { border: 1px solid var(--line); border-radius: 8px; background: white; padding: 20px; }
+    h1, h2, p { margin-top: 0; }
+    h1 { margin-bottom: 10px; font-size: 34px; line-height: 1.12; letter-spacing: 0; }
+    h2 { margin-bottom: 12px; font-size: 21px; letter-spacing: 0; }
+    p, li { color: #303b4d; line-height: 1.6; }
+    a { color: var(--blue); font-weight: 800; text-underline-offset: 3px; }
+    code { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; }
+    .subtitle { margin-bottom: 0; color: var(--muted); }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .tag { display: inline-flex; border: 1px solid #cbd5e1; border-radius: 999px; padding: 5px 9px; color: #334155; background: #f8fafc; font-size: 12px; font-weight: 800; white-space: nowrap; }
+    .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .card { border: 1px solid var(--line); border-radius: 8px; padding: 16px; min-height: 145px; display: grid; gap: 8px; align-content: start; }
+    .card strong { font-size: 17px; line-height: 1.25; }
+    .card p { margin-bottom: 0; font-size: 14px; }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { border-bottom: 1px solid #edf1f6; padding: 11px 12px; text-align: left; vertical-align: top; }
+    th { color: #475569; background: #f8fafc; font-size: 12px; text-transform: uppercase; }
+    tr:last-child td { border-bottom: 0; }
+    @media (max-width: 900px) {
+      body { padding: 16px; }
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>SignalGuard SourceBridge Integrations</h1>
+      <p class="subtitle">A third-party integration pack for converting public APIs and data sources into source-grounded GenLayer review inputs.</p>
+      <div class="tag-row">
+        <span class="tag">3rd party integrations</span>
+        <span class="tag">Observed cap 1,000 BP</span>
+        <span class="tag">No API keys</span>
+      </div>
+    </header>
+
+    <section>
+      <h2>Integration Purpose</h2>
+      <p>SignalGuard SourceBridge packages reusable adapter patterns for external data sources. Each adapter produces a public source URL, a bounded claim, and a review note that can be converted into a <code>review_claim</code> payload for the SignalGuard Intelligent Contract.</p>
+      <p>The current pack covers price data, weather data, GitHub release metadata, and documentation pages. The design keeps all examples inspectable by reviewers without secrets, OAuth, or wallet access.</p>
+    </section>
+
+    <section>
+      <h2>Adapters</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Adapter</th>
+            <th>External source</th>
+            <th>Review use</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>CoinGecko price</td>
+            <td>Public simple price API</td>
+            <td>Schema and freshness checks for quoted asset data.</td>
+          </tr>
+          <tr>
+            <td>Open-Meteo weather</td>
+            <td>Public forecast API</td>
+            <td>Structured weather field availability checks.</td>
+          </tr>
+          <tr>
+            <td>GitHub latest release</td>
+            <td>GitHub releases API</td>
+            <td>Release metadata checks for public repositories.</td>
+          </tr>
+          <tr>
+            <td>Documentation page</td>
+            <td>Public docs URL</td>
+            <td>Generic documentation reachability and content checks.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Review Links</h2>
+      <div class="grid">
+        <article class="card">
+          <strong>Adapter library</strong>
+          <p>Python helper that emits adapter cases and SignalGuard payloads.</p>
+          <a href="https://github.com/jiangfeng1999/genlayer-signalguard/blob/main/app/source_adapter_pack.py">Open source_adapter_pack.py</a>
+        </article>
+        <article class="card">
+          <strong>Fixture cases</strong>
+          <p>Machine-readable examples for the supported external sources.</p>
+          <a href="https://github.com/jiangfeng1999/genlayer-signalguard/blob/main/examples/source_adapter_cases.json">Open source_adapter_cases.json</a>
+        </article>
+        <article class="card">
+          <strong>Submission notes</strong>
+          <p>Portal-ready explanation, boundaries, and verification commands.</p>
+          <a href="https://github.com/jiangfeng1999/genlayer-signalguard/blob/main/docs/third-party-integrations-submission.md">Open submission notes</a>
+        </article>
+        <article class="card">
+          <strong>SignalGuard contract</strong>
+          <p>The Intelligent Contract that consumes the generated claim/source pairs.</p>
+          <a href="https://github.com/jiangfeng1999/genlayer-signalguard/blob/main/contracts/signal_guard.py">Open contract</a>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Verification</h2>
+      <p><code>python app\source_adapter_pack.py</code></p>
+      <p><code>python app\source_adapter_pack.py --payloads</code></p>
+      <p><code>powershell -ExecutionPolicy Bypass -File scripts\verify-evidence-package.ps1</code></p>
+    </section>
+  </main>
+</body>
+</html>

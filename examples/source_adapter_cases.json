@@ -1,0 +1,30 @@
+[
+  {
+    "adapter": "coingecko_price",
+    "label": "CoinGecko simple price API",
+    "claim": "ethereum has a quoted USD price in the CoinGecko simple price response.",
+    "source_url": "https://api.coingecko.com/api/v3/simple/price?ids=ethereum&vs_currencies=usd",
+    "review_note": "Use for price-source freshness and schema checks, not as investment advice."
+  },
+  {
+    "adapter": "open_meteo_current_weather",
+    "label": "Open-Meteo current weather API",
+    "claim": "The Open-Meteo response contains current temperature and wind speed fields.",
+    "source_url": "https://api.open-meteo.com/v1/forecast?latitude=37.7749&longitude=-122.4194&current=temperature_2m%2Cwind_speed_10m&timezone=UTC",
+    "review_note": "Use for structured weather-data availability checks."
+  },
+  {
+    "adapter": "github_latest_release",
+    "label": "GitHub latest release API",
+    "claim": "The genlayerlabs/genlayer-js repository exposes latest-release metadata through the GitHub API.",
+    "source_url": "https://api.github.com/repos/genlayerlabs/genlayer-js/releases/latest",
+    "review_note": "Use for release metadata checks. Reviewers can replace owner/repo with another public repository."
+  },
+  {
+    "adapter": "documentation_page",
+    "label": "Documentation page",
+    "claim": "The cited documentation page is reachable and contains project documentation text.",
+    "source_url": "https://docs.genlayer.com/",
+    "review_note": "Use for generic public documentation checks."
+  }
+]
