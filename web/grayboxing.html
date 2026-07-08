@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SignalGuard Graybox Harness</title>
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: Inter, Arial, sans-serif;
+      color: #172033;
+      background: #f6f8fb;
+      --line: #dfe5ef;
+      --muted: #5f6b7a;
+      --accent: #f58220;
+      --blue: #2563eb;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 24px; background: #f6f8fb; }
+    main { max-width: 1120px; margin: 0 auto; display: grid; gap: 18px; }
+    header, section { border: 1px solid var(--line); border-radius: 8px; background: white; padding: 20px; }
+    h1, h2, p { margin-top: 0; }
+    h1 { margin-bottom: 10px; font-size: 34px; line-height: 1.12; letter-spacing: 0; }
+    h2 { margin-bottom: 12px; font-size: 21px; letter-spacing: 0; }
+    p, li { color: #303b4d; line-height: 1.6; }
+    a { color: var(--blue); font-weight: 800; text-underline-offset: 3px; }
+    code { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; }
+    .subtitle { margin-bottom: 0; color: var(--muted); }
+    .tag-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .tag { display: inline-flex; border: 1px solid #cbd5e1; border-radius: 999px; padding: 5px 9px; color: #334155; background: #f8fafc; font-size: 12px; font-weight: 800; white-space: nowrap; }
+    .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .card { border: 1px solid var(--line); border-radius: 8px; padding: 16px; min-height: 132px; display: grid; gap: 8px; align-content: start; }
+    .card strong { font-size: 17px; line-height: 1.25; }
+    .card p { margin-bottom: 0; font-size: 14px; }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { border-bottom: 1px solid #edf1f6; padding: 11px 12px; text-align: left; vertical-align: top; }
+    th { color: #475569; background: #f8fafc; font-size: 12px; text-transform: uppercase; }
+    tr:last-child td { border-bottom: 0; }
+    @media (max-width: 900px) {
+      body { padding: 16px; }
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>SignalGuard Graybox Harness</h1>
+      <p class="subtitle">Practical grayboxing controls for source-grounded GenLayer Intelligent Contracts.</p>
+      <div class="tag-row">
+        <span class="tag">Grayboxing</span>
+        <span class="tag">Observed cap 1,000 BP</span>
+        <span class="tag">Prompt-control cases</span>
+      </div>
+    </header>
+
+    <section>
+      <h2>Purpose</h2>
+      <p>The harness turns grayboxing principles into concrete tests for SignalGuard. It separates trusted task instructions from untrusted source text, bounds retrieved source excerpts, restricts the allowed verdicts, and records the risk each case is testing.</p>
+      <p>The design follows the GenLayer grayboxing model: input filtration, output restrictions, model isolation assumptions, and monitoring of suspicious source or verdict behavior.</p>
+    </section>
+
+    <section>
+      <h2>Cases</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Case</th>
+            <th>Risk</th>
+            <th>Control</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Prompt injection in source</td>
+            <td>Retrieved source text asks the model to ignore the application task.</td>
+            <td>Keep trusted task instructions separate and restrict the verdict schema.</td>
+          </tr>
+          <tr>
+            <td>Oversized source excerpt</td>
+            <td>Long input dilutes evidence or increases cost.</td>
+            <td>Normalize and bound the source excerpt.</td>
+          </tr>
+          <tr>
+            <td>Conflicting claim and source</td>
+            <td>Claim overstates what the cited source proves.</td>
+            <td>Require source-grounded rationale.</td>
+          </tr>
+          <tr>
+            <td>Ambiguous reward claim</td>
+            <td>User infers guarantees from incomplete Portal data.</td>
+            <td>Allow inconclusive when evidence does not prove the claim.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Review Links</h2>
+      <div class="grid">
+        <article class="card">
+          <strong>Graybox harness</strong>
+          <p>Executable Python case builder for prompt-control packages.</p>
+          <a href="https://github.com/jiangfeng1999/genlayer-signalguard/blob/main/app/graybox_harness.py">Open graybox_harness.py</a>
+        </article>
+        <article class="card">
+          <strong>Graybox cases</strong>
+          <p>Machine-readable cases, risks, and expected controls.</p>
+          <a href="https://github.com/jiangfeng1999/genlayer-signalguard/blob/main/examples/graybox_cases.json">Open graybox_cases.json</a>
+        </article>
+        <article class="card">
+          <strong>Submission notes</strong>
+          <p>Portal-ready summary, verification commands, and boundaries.</p>
+          <a href="https://github.com/jiangfeng1999/genlayer-signalguard/blob/main/docs/grayboxing-submission.md">Open submission notes</a>
+        </article>
+        <article class="card">
+          <strong>SignalGuard contract</strong>
+          <p>The source-grounded Intelligent Contract these controls support.</p>
+          <a href="https://github.com/jiangfeng1999/genlayer-signalguard/blob/main/contracts/signal_guard.py">Open contract</a>
+        </article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Verification</h2>
+      <p><code>python app\graybox_harness.py</code></p>
+      <p><code>python app\graybox_harness.py --compact</code></p>
+      <p><code>powershell -ExecutionPolicy Bypass -File scripts\verify-evidence-package.ps1</code></p>
+    </section>
+  </main>
+</body>
+</html>
