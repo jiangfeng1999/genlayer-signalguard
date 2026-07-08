@@ -1,0 +1,57 @@
+{
+  "tool": "SignalGuard Portal Deeplink Probe",
+  "purpose": "Check whether important GenLayer Portal routes survive direct open or refresh.",
+  "live_probe": false,
+  "results": [
+    {
+      "key": "portal_root",
+      "url": "https://portal.genlayer.foundation/",
+      "expected_status": 200,
+      "observed_status": 200,
+      "final_url": "https://portal.genlayer.foundation/",
+      "reason": "Portal root should serve the app shell.",
+      "status_matches_expectation": true,
+      "snippet": "Recorded fixture. Run with --live to refresh.",
+      "error": ""
+    },
+    {
+      "key": "builder_journey",
+      "url": "https://portal.genlayer.foundation/builders/journey",
+      "expected_status": 200,
+      "observed_status": 404,
+      "final_url": "https://portal.genlayer.foundation/builders/journey",
+      "reason": "Builder journey is linked as a user workflow and should survive direct refresh/open.",
+      "status_matches_expectation": false,
+      "snippet": "Recorded fixture. Run with --live to refresh.",
+      "error": ""
+    },
+    {
+      "key": "submit_project",
+      "url": "https://portal.genlayer.foundation/submit-contribution/?type=41",
+      "expected_status": 200,
+      "observed_status": 404,
+      "final_url": "https://portal.genlayer.foundation/submit-contribution/?type=41",
+      "reason": "Contribution submission deep links are copied into reviewer and builder workflows.",
+      "status_matches_expectation": false,
+      "snippet": "Recorded fixture. Run with --live to refresh.",
+      "error": ""
+    },
+    {
+      "key": "my_submissions_guess",
+      "url": "https://portal.genlayer.foundation/my-submissions",
+      "expected_status": 200,
+      "observed_status": 404,
+      "final_url": "https://portal.genlayer.foundation/my-submissions",
+      "reason": "A submissions/history route should not fail as a server 404 if exposed in authenticated navigation.",
+      "status_matches_expectation": false,
+      "snippet": "Recorded fixture. Run with --live to refresh.",
+      "error": ""
+    }
+  ],
+  "bug_summary": "Portal deep links for builder journey and contribution submission returned HTTP 404 in direct requests during the points run.",
+  "boundaries": [
+    "Read-only probe; no wallet connection, login, or form submission.",
+    "A reviewer should rerun with --live because Portal routing may be fixed later.",
+    "This is reported as a route availability issue, not a security vulnerability."
+  ]
+}

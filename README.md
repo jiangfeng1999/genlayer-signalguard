@@ -33,6 +33,7 @@ app/validator_ops_probe.py     Validator ops probe fixture generator
 app/contract_catalog.py        Intelligent Contract catalog generator
 app/validator_failover_drill.py Validator failover drill fixture generator
 app/community_materials.py     Community, support, and meta material generator
+app/portal_deeplink_probe.py   Read-only Portal deep-link route probe
 index.html                     GitHub Pages evidence hub
 web/index.html                 Static demo UI for preparing calls
 web/project-overview.html      Project submission overview
@@ -49,6 +50,7 @@ web/marketing-networking.html  Published networking kit
 web/community-outreach.html    Published community outreach FAQ
 web/community-support.html     Published community support guide
 web/meta-contributions.html    Published meta-contribution retrospective
+web/bug-report.html            Published Portal deep-link bug report
 web/tutorial.html              Public builder tutorial
 web/portal-dashboard.html      Static Portal points and leaderboard dashboard
 web/research-analysis.html     Published research analysis report
@@ -77,6 +79,7 @@ docs/marketing-networking-submission.md Marketing and networking contribution no
 docs/community-outreach-submission.md Community outreach contribution notes
 docs/community-support-submission.md Community support contribution notes
 docs/meta-contributions-submission.md Meta contribution notes
+docs/bug-report-submission.md Bug Report contribution notes
 docs/educational-content-submission.md Tutorial contribution notes
 docs/research-analysis.md      Research notes on the source-grounded verdict pattern
 docs/tooling-notes.md          Tooling and local verification notes
@@ -101,6 +104,7 @@ examples/validator_ops_probe_sample.json Validator ops probe sample
 examples/contract_catalog.json Intelligent Contract catalog fixture
 examples/validator_failover_drill.json Validator failover drill fixture
 examples/community_materials.json Community materials fixture
+examples/portal_deeplink_probe.json Portal deep-link probe fixture
 examples/portal_dashboard_checks.json Public Portal dashboard check cases
 examples/adversarial_claims.json Source-grounding adversarial claim cases
 examples/dashboard_calculation_fixture.json Offline dashboard calculation fixture
@@ -197,6 +201,13 @@ Generate community and meta contribution fixtures:
 ```powershell
 python app\community_materials.py
 python app\community_materials.py --keys
+```
+
+Run the Portal deep-link probe:
+
+```powershell
+python app\portal_deeplink_probe.py
+python app\portal_deeplink_probe.py --live
 ```
 
 Run the full evidence package verifier:

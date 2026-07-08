@@ -43,6 +43,7 @@ try {
             "app\contract_catalog.py",
             "app\validator_failover_drill.py",
             "app\community_materials.py",
+            "app\portal_deeplink_probe.py",
             "index.html",
             "web\index.html",
             "web\project-overview.html",
@@ -59,6 +60,7 @@ try {
             "web\community-outreach.html",
             "web\community-support.html",
             "web\meta-contributions.html",
+            "web\bug-report.html",
             "web\tutorial.html",
             "web\portal-dashboard.html",
             "web\research-analysis.html",
@@ -82,6 +84,7 @@ try {
             "docs\community-outreach-submission.md",
             "docs\community-support-submission.md",
             "docs\meta-contributions-submission.md",
+            "docs\bug-report-submission.md",
             "docs\educational-content-submission.md",
             "docs\milestone-1-evidence.md",
             "docs\research-analysis-submission.md",
@@ -99,7 +102,8 @@ try {
             "examples\validator_ops_probe_sample.json",
             "examples\contract_catalog.json",
             "examples\validator_failover_drill.json",
-            "examples\community_materials.json"
+            "examples\community_materials.json",
+            "examples\portal_deeplink_probe.json"
         )
         foreach ($path in $required) {
             if (-not (Test-Path -LiteralPath (Join-Path $repoRoot $path))) {
@@ -109,7 +113,7 @@ try {
     }
 
     $results += Invoke-Check "python files compile" {
-        & python -m py_compile app\signalguard_cli.py app\source_adapter_pack.py app\graybox_harness.py app\explorer_lens.py app\gas_fee_simulator_tests.py app\validator_ops_probe.py app\contract_catalog.py app\validator_failover_drill.py app\community_materials.py contracts\signal_guard.py contracts\signal_guard_history.py
+        & python -m py_compile app\signalguard_cli.py app\source_adapter_pack.py app\graybox_harness.py app\explorer_lens.py app\gas_fee_simulator_tests.py app\validator_ops_probe.py app\contract_catalog.py app\validator_failover_drill.py app\community_materials.py app\portal_deeplink_probe.py contracts\signal_guard.py contracts\signal_guard_history.py
         if ($LASTEXITCODE -ne 0) {
             throw "Python compilation failed."
         }
@@ -137,7 +141,8 @@ try {
             "examples\validator_ops_probe_sample.json",
             "examples\contract_catalog.json",
             "examples\validator_failover_drill.json",
-            "examples\community_materials.json"
+            "examples\community_materials.json",
+            "examples\portal_deeplink_probe.json"
         )
         foreach ($path in $jsonFiles) {
             Get-Content -LiteralPath (Join-Path $repoRoot $path) -Raw | ConvertFrom-Json | Out-Null
@@ -161,6 +166,7 @@ try {
         $outreach = Get-Content -LiteralPath (Join-Path $repoRoot "web\community-outreach.html") -Raw
         $support = Get-Content -LiteralPath (Join-Path $repoRoot "web\community-support.html") -Raw
         $meta = Get-Content -LiteralPath (Join-Path $repoRoot "web\meta-contributions.html") -Raw
+        $bugReport = Get-Content -LiteralPath (Join-Path $repoRoot "web\bug-report.html") -Raw
         $tutorial = Get-Content -LiteralPath (Join-Path $repoRoot "web\tutorial.html") -Raw
         $dashboard = Get-Content -LiteralPath (Join-Path $repoRoot "web\portal-dashboard.html") -Raw
         $research = Get-Content -LiteralPath (Join-Path $repoRoot "web\research-analysis.html") -Raw
@@ -216,6 +222,9 @@ try {
         }
         if ($meta -notmatch "SignalGuard Portal Evidence Workflow Retrospective" -or $meta -notmatch "Meta Contributions") {
             throw "web/meta-contributions.html does not contain the expected meta contribution markers."
+        }
+        if ($bugReport -notmatch "SignalGuard Portal Deeplink Bug Report" -or $bugReport -notmatch "Bug Report") {
+            throw "web/bug-report.html does not contain the expected bug report markers."
         }
         if ($tutorial -notmatch "Source-Grounded Claim Review Contract" -or $tutorial -notmatch "Educational Content") {
             throw "web/tutorial.html does not contain the expected tutorial markers."
