@@ -40,6 +40,18 @@ jobs:
       - name: Verify deployed StudioNet contract
         run: python scripts/verify_studionet_deployment.py
 
+  evidence-windows:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
       - name: Verify public evidence package
         shell: pwsh
         run: ./scripts/verify-evidence-package.ps1
