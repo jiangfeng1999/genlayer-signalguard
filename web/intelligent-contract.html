@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Review evidence for the deployed SignalGuard GenLayer Intelligent Contract.">
+  <title>SignalGuard Intelligent Contract</title>
+  <style>
+    :root { color-scheme: light; font-family: Inter, Arial, sans-serif; color: #18202f; background: #f5f7fa; --line: #dbe1ea; --muted: #5d6878; --accent: #e96f12; --blue: #235bb5; --green: #0d7a50; }
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 24px; background: #f5f7fa; }
+    main { width: min(980px, 100%); margin: 0 auto; display: grid; gap: 17px; }
+    header, section { border: 1px solid var(--line); border-radius: 8px; background: #fff; padding: 21px; }
+    h1, h2, p { margin-top: 0; }
+    h1 { margin-bottom: 8px; font-size: 31px; line-height: 1.15; letter-spacing: 0; }
+    h2 { margin-bottom: 13px; font-size: 19px; letter-spacing: 0; }
+    p, li { color: #354052; line-height: 1.6; }
+    a { color: var(--blue); font-weight: 750; text-underline-offset: 3px; }
+    code { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; overflow-wrap: anywhere; }
+    .subtitle { margin-bottom: 0; color: var(--muted); }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .tag { border: 1px solid #cbd4e0; border-radius: 6px; padding: 5px 8px; background: #f8fafc; color: #334155; font-size: 12px; font-weight: 800; }
+    .flow { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+    .flow div { min-height: 112px; border-top: 4px solid var(--accent); padding: 13px; background: #f8fafc; }
+    .flow div:nth-child(2) { border-top-color: var(--blue); }
+    .flow div:nth-child(3), .flow div:nth-child(4) { border-top-color: var(--green); }
+    .flow strong { display: block; margin-bottom: 6px; }
+    .flow span { color: var(--muted); font-size: 13px; line-height: 1.45; }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { padding: 11px 12px; border-bottom: 1px solid #e9edf3; text-align: left; vertical-align: top; }
+    th { background: #f8fafc; color: #475569; font-size: 12px; text-transform: uppercase; }
+    tr:last-child td { border-bottom: 0; }
+    .links { display: flex; flex-wrap: wrap; gap: 14px; }
+    @media (max-width: 720px) { body { padding: 14px; } .flow { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>SignalGuard Intelligent Contract</h1>
+      <p class="subtitle">A deployed source-grounded verdict primitive for claims that deterministic contracts cannot evaluate.</p>
+      <div class="tags"><span class="tag">Intelligent Contracts</span><span class="tag">StudioNet</span><span class="tag">GenVM v0.2.16</span><span class="tag">Source verified</span></div>
+    </header>
+
+    <section>
+      <h2>Use case</h2>
+      <p>A caller provides a claim and the public source that should support it. SignalGuard asks GenLayer validators to decide whether the cited evidence supports, contradicts, or cannot resolve that claim. The accepted report becomes shared contract state for applications, agents, or community review workflows.</p>
+    </section>
+
+    <section>
+      <h2>Consensus flow</h2>
+      <div class="flow">
+        <div><strong>1. Input</strong><span>Receive a claim and source URL.</span></div>
+        <div><strong>2. Evidence</strong><span>Fetch source content with `gl.nondet.web.get`.</span></div>
+        <div><strong>3. Decision</strong><span>Apply explicit verdict criteria through `prompt_non_comparative`.</span></div>
+        <div><strong>4. State</strong><span>Store the accepted claim, source, and report.</span></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Public interface and state</h2>
+      <table>
+        <thead><tr><th>Member</th><th>Type</th><th>Purpose</th></tr></thead>
+        <tbody>
+          <tr><td><code>review_claim(claim, source_url)</code></td><td>Write</td><td>Run the source-grounded validator review and store accepted state.</td></tr>
+          <tr><td><code>latest_claim()</code></td><td>View</td><td>Read the latest accepted claim.</td></tr>
+          <tr><td><code>latest_verdict()</code></td><td>View</td><td>Read the latest accepted verdict report.</td></tr>
+          <tr><td><code>source_url</code></td><td>Storage</td><td>Preserve the evidence location used by the accepted review.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Deployment proof</h2>
+      <p><strong>Address:</strong> <code>0x1d496901d68FC02d105A14B81Ea0e67476A9891A</code></p>
+      <p><strong>Normalized source SHA-256:</strong> <code>8963b191a60722ccb27b45eb4e6c90a314e089337e0b65871ba29e7758902fac</code></p>
+      <p>The public verifier downloads the deployed source and schema from StudioNet, compares the source with the repository, and reads the two view methods without broadcasting a transaction.</p>
+      <div class="links">
+        <a href="https://studio.genlayer.com/contracts?import-contract=0x1d496901d68FC02d105A14B81Ea0e67476A9891A">Inspect in Studio</a>
+        <a href="../contracts/signal_guard.py">Open source</a>
+        <a href="../scripts/verify_studionet_deployment.py">Open verifier</a>
+        <a href="dapp.html">Open DApp</a>
+      </div>
+    </section>
+
+    <section>
+      <h2>Boundaries</h2>
+      <ul>
+        <li>The current deployment stores the latest review rather than an unbounded history.</li>
+        <li>The report is constrained JSON text; typed verdict fields belong in a future deployment.</li>
+        <li>The DApp enforces HTTPS and bounded inputs, while stronger contract-level URL policy is future work.</li>
+        <li>The old prompt template is not supported by current Direct Mode LLM mocks; the repository states this limitation explicitly.</li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>

@@ -35,6 +35,9 @@ try {
             "contracts\signal_guard.py",
             "contracts\signal_guard_history.py",
             "app\signalguard_cli.py",
+            "requirements-dev.txt",
+            "tests\direct\test_signal_guard.py",
+            "scripts\verify_studionet_deployment.py",
             "app\source_adapter_pack.py",
             "app\graybox_harness.py",
             "app\explorer_lens.py",
@@ -46,6 +49,9 @@ try {
             "app\portal_deeplink_probe.py",
             "index.html",
             "web\index.html",
+            "web\dapp.html",
+            "web\signalguard-dapp.js",
+            "web\intelligent-contract.html",
             "web\project-overview.html",
             "web\milestone-1.html",
             "web\third-party-integrations.html",
@@ -93,6 +99,8 @@ try {
             "docs\tools-infrastructure-submission.md",
             "docs\resource-creation-submission.md",
             "docs\documentation-submission.md",
+            "docs\intelligent-contract-submission.md",
+            "docs\testing.md",
             "docs\history-milestone-design.md",
             "examples\milestone_evidence.json",
             "examples\source_adapter_cases.json",
@@ -113,7 +121,7 @@ try {
     }
 
     $results += Invoke-Check "python files compile" {
-        & python -m py_compile app\signalguard_cli.py app\source_adapter_pack.py app\graybox_harness.py app\explorer_lens.py app\gas_fee_simulator_tests.py app\validator_ops_probe.py app\contract_catalog.py app\validator_failover_drill.py app\community_materials.py app\portal_deeplink_probe.py contracts\signal_guard.py contracts\signal_guard_history.py
+        & python -m py_compile app\signalguard_cli.py app\source_adapter_pack.py app\graybox_harness.py app\explorer_lens.py app\gas_fee_simulator_tests.py app\validator_ops_probe.py app\contract_catalog.py app\validator_failover_drill.py app\community_materials.py app\portal_deeplink_probe.py contracts\signal_guard.py contracts\signal_guard_history.py scripts\verify_studionet_deployment.py tests\direct\test_signal_guard.py
         if ($LASTEXITCODE -ne 0) {
             throw "Python compilation failed."
         }
@@ -152,6 +160,9 @@ try {
     $results += Invoke-Check "static pages contain expected hooks" {
         $hub = Get-Content -LiteralPath (Join-Path $repoRoot "index.html") -Raw
         $demo = Get-Content -LiteralPath (Join-Path $repoRoot "web\index.html") -Raw
+        $dapp = Get-Content -LiteralPath (Join-Path $repoRoot "web\dapp.html") -Raw
+        $dappScript = Get-Content -LiteralPath (Join-Path $repoRoot "web\signalguard-dapp.js") -Raw
+        $intelligentContract = Get-Content -LiteralPath (Join-Path $repoRoot "web\intelligent-contract.html") -Raw
         $project = Get-Content -LiteralPath (Join-Path $repoRoot "web\project-overview.html") -Raw
         $milestone = Get-Content -LiteralPath (Join-Path $repoRoot "web\milestone-1.html") -Raw
         $integrations = Get-Content -LiteralPath (Join-Path $repoRoot "web\third-party-integrations.html") -Raw
@@ -175,11 +186,20 @@ try {
         $toolchain = Get-Content -LiteralPath (Join-Path $repoRoot "web\tools-infrastructure.html") -Raw
         $resourcePack = Get-Content -LiteralPath (Join-Path $repoRoot "web\resource-pack.html") -Raw
         $quickstart = Get-Content -LiteralPath (Join-Path $repoRoot "web\reviewer-quickstart.html") -Raw
-        if ($hub -notmatch "GenLayer SignalGuard Evidence Hub" -or $hub -notmatch "Project Overview" -or $hub -notmatch "Milestone 1") {
+        if ($hub -notmatch "GenLayer SignalGuard Evidence Hub" -or $hub -notmatch "Live SignalGuard DApp" -or $hub -notmatch "StudioNet verifier") {
             throw "index.html does not contain the expected evidence hub markers."
         }
         if ($demo -notmatch "review_claim") {
             throw "web/index.html does not contain review_claim."
+        }
+        if ($dapp -notmatch "SignalGuard DApp" -or $dapp -notmatch "signalguard-dapp\.js") {
+            throw "web/dapp.html does not contain the expected live DApp markers."
+        }
+        if ($dappScript -notmatch "genlayer-js@1\.1\.8" -or $dappScript -notmatch "writeContract" -or $dappScript -notmatch "readContract") {
+            throw "web/signalguard-dapp.js does not contain the expected GenLayerJS integration."
+        }
+        if ($intelligentContract -notmatch "SignalGuard Intelligent Contract" -or $intelligentContract -notmatch "prompt_non_comparative" -or $intelligentContract -notmatch "8963b191") {
+            throw "web/intelligent-contract.html does not contain the expected contract evidence."
         }
         if ($project -notmatch "SignalGuard Project Overview" -or $project -notmatch "Projects") {
             throw "web/project-overview.html does not contain the expected project markers."
@@ -250,7 +270,7 @@ try {
         if ($resourcePack -notmatch "SignalGuard Source-Grounded Review Resource Pack" -or $resourcePack -notmatch "Resource Creation") {
             throw "web/resource-pack.html does not contain the expected resource pack markers."
         }
-        if ($quickstart -notmatch "SignalGuard Reviewer Quickstart Documentation" -or $quickstart -notmatch "review_claim") {
+        if ($quickstart -notmatch "SignalGuard Reviewer Quickstart" -or $quickstart -notmatch "verify_studionet_deployment") {
             throw "web/reviewer-quickstart.html does not contain the expected quickstart markers."
         }
     }

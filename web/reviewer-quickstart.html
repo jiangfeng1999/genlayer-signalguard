@@ -5,87 +5,62 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>SignalGuard Reviewer Quickstart</title>
   <style>
-    :root { color-scheme: light; font-family: Inter, Arial, sans-serif; color: #172033; background: #f6f8fb; --line: #dfe5ef; --muted: #5f6b7a; --accent: #f58220; --blue: #2563eb; --green: #0f8a5f; }
+    :root { color-scheme: light; font-family: Inter, Arial, sans-serif; color: #18202f; background: #f5f7fa; --line: #dbe1ea; --muted: #5d6878; --accent: #e96f12; --blue: #235bb5; }
     * { box-sizing: border-box; }
-    body { margin: 0; padding: 24px; background: #f6f8fb; }
-    main { max-width: 1060px; margin: 0 auto; display: grid; gap: 18px; }
-    header, section { border: 1px solid var(--line); border-radius: 8px; background: white; padding: 20px; }
+    body { margin: 0; padding: 24px; background: #f5f7fa; }
+    main { width: min(940px, 100%); margin: 0 auto; display: grid; gap: 16px; }
+    header, section { border: 1px solid var(--line); border-radius: 8px; background: #fff; padding: 21px; }
     h1, h2, p { margin-top: 0; }
-    h1 { margin-bottom: 10px; font-size: 32px; line-height: 1.15; letter-spacing: 0; }
-    h2 { margin-bottom: 12px; font-size: 21px; letter-spacing: 0; }
-    p, li { color: #303b4d; line-height: 1.6; }
-    a { color: var(--blue); font-weight: 700; }
-    pre { overflow: auto; margin: 12px 0 0; padding: 14px; border-radius: 6px; background: #121826; color: #e6edf7; font-size: 13px; line-height: 1.5; }
-    table { width: 100%; border-collapse: collapse; font-size: 14px; }
-    th, td { border-bottom: 1px solid #edf1f6; padding: 11px 12px; text-align: left; vertical-align: top; }
-    th { color: #475569; background: #f8fafc; font-size: 12px; letter-spacing: 0; text-transform: uppercase; }
-    tr:last-child td { border-bottom: 0; }
+    h1 { margin-bottom: 8px; font-size: 30px; letter-spacing: 0; }
+    h2 { margin-bottom: 13px; font-size: 18px; letter-spacing: 0; }
+    p, li { color: #354052; line-height: 1.6; }
+    a { color: var(--blue); font-weight: 750; }
     code { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; }
+    pre { overflow: auto; margin: 10px 0 0; padding: 13px; border-radius: 6px; background: #151c29; color: #e7edf7; line-height: 1.5; }
     .subtitle { margin-bottom: 0; color: var(--muted); }
-    .tag-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
-    .tag { display: inline-flex; align-items: center; border: 1px solid #cbd5e1; border-radius: 999px; padding: 5px 9px; color: #334155; background: #f8fafc; font-size: 12px; font-weight: 800; white-space: nowrap; }
-    .step { border-left: 4px solid var(--accent); padding-left: 12px; margin: 14px 0; }
-    @media (max-width: 760px) { body { padding: 16px; } }
+    .step { margin: 14px 0; padding-left: 13px; border-left: 4px solid var(--accent); }
+    .step:last-child { margin-bottom: 0; }
+    @media (max-width: 640px) { body { padding: 14px; } }
   </style>
 </head>
 <body>
   <main>
     <header>
-      <h1>SignalGuard Reviewer Quickstart Documentation</h1>
-      <p class="subtitle">A concise operational guide for reproducing the SignalGuard GenLayer evidence package.</p>
-      <div class="tag-row">
-        <span class="tag">Documentation</span>
-        <span class="tag">Reviewer Guide</span>
-        <span class="tag">Updated 2026-07-07</span>
-      </div>
+      <h1>SignalGuard Reviewer Quickstart</h1>
+      <p class="subtitle">A five-minute path through the live application, deployment, source, and automated evidence.</p>
     </header>
 
     <section>
-      <h2>Purpose</h2>
-      <p>This page is for reviewers who want to inspect SignalGuard quickly without reading every repository file first. It points to the contract, the static demo, sample inputs, public dashboard, and one-command verifier.</p>
+      <h2>Live review</h2>
+      <div class="step"><p><strong>1. Open the <a href="dapp.html">SignalGuard DApp</a>.</strong> The page shows the latest verified deployment snapshot without requesting wallet access.</p></div>
+      <div class="step"><p><strong>2. Inspect the write path.</strong> `web/signalguard-dapp.js` connects an injected wallet, switches to StudioNet, calls <code>review_claim</code>, waits for an accepted receipt, and refreshes state.</p></div>
+      <div class="step"><p><strong>3. Inspect the <a href="https://studio.genlayer.com/contracts?import-contract=0x1d496901d68FC02d105A14B81Ea0e67476A9891A">deployed contract</a>.</strong> The public schema has no constructor arguments and exposes three expected methods.</p></div>
     </section>
 
     <section>
-      <h2>Fast Review Path</h2>
-      <div class="step">
-        <p><strong>1. Inspect the contract.</strong> Open <a href="../contracts/signal_guard.py">contracts/signal_guard.py</a> and confirm the public entry points: <code>review_claim</code> and <code>latest_verdict</code>.</p>
-      </div>
-      <div class="step">
-        <p><strong>2. Prepare a sample call.</strong> Open <a href="index.html">the static demo</a> or run the CLI helper to generate a <code>review_claim</code> payload.</p>
-      </div>
-      <div class="step">
-        <p><strong>3. Check source-grounding cases.</strong> Use <a href="../examples/sample_claims.json">sample_claims.json</a> and <a href="../examples/adversarial_claims.json">adversarial_claims.json</a> to review supported, contradicted, and inconclusive cases.</p>
-      </div>
-      <div class="step">
-        <p><strong>4. Verify public status tooling.</strong> Open the <a href="portal-dashboard.html">Portal dashboard</a> and compare it with the status script output.</p>
-      </div>
-      <div class="step">
-        <p><strong>5. Run the package verifier.</strong> Clone the repository and run the command below from the repository root.</p>
-      </div>
-      <pre><code>powershell -ExecutionPolicy Bypass -File scripts\verify-evidence-package.ps1</code></pre>
+      <h2>Reproduce the deployment proof</h2>
+      <p>Clone the repository, use Python 3.12, and run:</p>
+      <pre><code>python -m pip install -r requirements-dev.txt
+python scripts/verify_studionet_deployment.py</code></pre>
+      <p>The verifier downloads the deployed source, compares normalized SHA-256 values, checks the schema, and performs public state reads. It does not broadcast a transaction.</p>
     </section>
 
     <section>
-      <h2>Evidence Map</h2>
-      <table>
-        <thead><tr><th>Review Question</th><th>Primary Evidence</th></tr></thead>
-        <tbody>
-          <tr><td>Does this use GenLayer contract features?</td><td><a href="../contracts/signal_guard.py">contracts/signal_guard.py</a></td></tr>
-          <tr><td>Can a reviewer prepare a call without a build step?</td><td><a href="index.html">web/index.html</a> and <a href="../app/signalguard_cli.py">app/signalguard_cli.py</a></td></tr>
-          <tr><td>Are examples and edge cases public?</td><td><a href="../examples/sample_claims.json">sample claims</a> and <a href="../examples/adversarial_claims.json">adversarial claims</a></td></tr>
-          <tr><td>Is public Portal status reproducible?</td><td><a href="portal-dashboard.html">dashboard</a>, <a href="../scripts/check-genlayer-status.ps1">status script</a>, and <a href="../examples/portal_dashboard_checks.json">checks fixture</a></td></tr>
-          <tr><td>Are the artifact categories separated?</td><td><a href="resource-pack.html">resource pack</a>, <a href="benchmarks.html">benchmarks</a>, <a href="research-analysis.html">research</a>, and <a href="tutorial.html">tutorial</a></td></tr>
-        </tbody>
-      </table>
+      <h2>Run the local checks</h2>
+      <pre><code>python -m pytest tests/direct -q
+pwsh ./scripts/verify-evidence-package.ps1</code></pre>
+      <p>Direct Mode is intended for Linux because the current test loader uses temporary stdin semantics that Windows rejects. GitHub Actions runs the Linux path automatically.</p>
     </section>
 
     <section>
-      <h2>Boundaries</h2>
+      <h2>Evidence boundaries</h2>
       <ul>
-        <li>This guide documents how to reproduce the public evidence package; it is not a second Project submission.</li>
-        <li>It does not include private Portal submission status, wallet signatures, or reCAPTCHA state.</li>
-        <li>Final Portal scoring remains a GenLayer review decision.</li>
+        <li>The Project claim is based on the DApp, deployed contract, and reproducible verification.</li>
+        <li>Research, tutorials, and dashboards are supporting evidence, not duplicate Project submissions.</li>
+        <li>The repository does not claim mocked write-path coverage for the old `v0.2.16` prompt template.</li>
+        <li>Final scoring and acceptance remain a GenLayer review decision.</li>
       </ul>
+      <a href="project-overview.html">Return to Project overview</a>
     </section>
   </main>
 </body>

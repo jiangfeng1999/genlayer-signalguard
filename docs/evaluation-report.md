@@ -1,57 +1,45 @@
 # SignalGuard Evaluation Report
 
-## Scope
+Updated: 2026-07-10
 
-This report evaluates whether SignalGuard is useful as a GenLayer Builder project and whether the current evidence is strong enough for reviewers to inspect.
+## Result
 
-SignalGuard is not a generic chatbot wrapper. The core behavior depends on GenLayer-specific capabilities: fetching a cited public source, asking validators to reason over natural-language evidence, and storing the accepted verdict as contract state.
+SignalGuard now satisfies the main technical shape of the Portal Projects category: a deployed Intelligent Contract, a user-facing application that actually interacts with GenLayer, and reproducible public evidence.
 
-## Evaluation criteria
-
-| Criterion | Current result | Evidence |
+| Criterion | Result | Evidence |
 | --- | --- | --- |
-| GenLayer is central to the workflow | Pass | `contracts/signal_guard.py` uses web access and `prompt_non_comparative`. |
-| Next milestone is technically scoped | Pass | `contracts/signal_guard_history.py` adds review count and log state without changing deployed evidence. |
-| Reviewer can reproduce the call shape | Pass | `app/signalguard_cli.py` and `web/index.html` prepare `review_claim` inputs. |
-| CLI helper is locally testable | Pass | `scripts/test-signalguard-cli.ps1` verifies the generated payload shape. |
-| Reviewer can inspect expected verdict behavior | Pass | `examples/adversarial_claims.json` lists supported, contradicted, and inconclusive cases. |
-| Public status can be checked without login | Pass | `scripts/check-genlayer-status.ps1` reads public Portal and GitHub endpoints. |
-| Dashboard calculations are testable | Pass | `scripts/test-portal-dashboard-calculations.ps1` checks the offline fixture. |
-| Evidence is currently public on GitHub main | Partial | A prepared sync branch exists locally, but GitHub main still needs to be updated. |
+| GenLayer is central | Pass | `review_claim` fetches evidence and uses validator consensus before state changes. |
+| Real application interaction | Pass | `web/signalguard-dapp.js` uses GenLayerJS for reads, wallet connection, writes, and receipt waiting. |
+| Public deployment | Pass | StudioNet contract `0x1d496901d68FC02d105A14B81Ea0e67476A9891A`. |
+| Source matches deployment | Pass | `scripts/verify_studionet_deployment.py` compares normalized source hashes. |
+| Public schema is reproducible | Pass | The verifier checks constructor and `review_claim`, `latest_claim`, and `latest_verdict`. |
+| Direct Mode coverage | Partial | The pinned Linux test verifies deployment and initial storage; the old prompt template is not mockable by the current Direct Mode adapter. |
+| CI evidence | Pass | `.github/workflows/quality.yml` runs tests, deployment verification, and package checks. |
 
-## Contract behavior
+## Verified deployment result
 
-The contract stores three fields:
+The repository and StudioNet deployment normalize to this SHA-256:
 
-- `claim`
-- `source_url`
-- `verdict_report`
+```text
+8963b191a60722ccb27b45eb4e6c90a314e089337e0b65871ba29e7758902fac
+```
 
-The `review_claim` method fetches the cited page, asks validators to classify the claim as `supported`, `contradicted`, or `inconclusive`, and stores the compact report. The view methods expose the latest claim and verdict for a simple app or reviewer workflow.
+The live schema exposes:
 
-## Dashboard behavior
+- `review_claim(claim: string, source_url: string)`
+- `latest_claim() -> string`
+- `latest_verdict() -> string`
 
-The Portal dashboard is a static HTML file that reads public Portal endpoints and displays:
+## Risks and mitigations
 
-- Builder points for a wallet address.
-- Public Builder rank when available.
-- Gap to the current #1 Builder.
-- Accepted public Builder contribution count.
-- Top public contribution categories by current maximum display points.
+| Risk | Current mitigation | Future work |
+| --- | --- | --- |
+| Source content can change | Every review stores the cited URL with the accepted report. | Add source digest and timestamp metadata. |
+| Only the latest review is stored | Scope is explicit in the DApp and docs. | Deploy a bounded-history contract upgrade. |
+| Arbitrary HTTPS sources may be unreliable | DApp requires HTTPS and bounded input lengths. | Add contract-level URL policy controls in a new deployment. |
+| LLM report is stored as text | Prompt criteria constrain the JSON shape. | Parse and store typed verdict fields in a new deployment. |
+| Old SDK prompt templates are not supported by current Direct Mode mocks | Live source/schema/state verification covers the deployed artifact. | Upgrade and redeploy on a current GenVM SDK after base review. |
 
-The dashboard is intentionally static so it can be reviewed directly from GitHub or a simple HTTP server.
+## Conclusion
 
-## Risk review
-
-| Risk | Mitigation |
-| --- | --- |
-| Source pages change over time | Adversarial cases include expected verdicts and should be rechecked before submission. |
-| Large source pages exceed prompt budget | The contract uses a compact source excerpt. Future work can add chunking. |
-| Single latest verdict limits history | A future milestone can store verdicts by claim hash. |
-| History prototype is not deployed yet | `docs/history-milestone-design.md` marks it as a separate next-milestone prototype requiring Studio testing. |
-| Dashboard depends on public API availability | Status scripts record API errors instead of fabricating values. |
-| GitHub evidence may lag local work | The sync branch and patch bundle preserve the exact public update package. |
-
-## Current conclusion
-
-SignalGuard is a valid Builder-style project because it uses GenLayer as the decision layer, not as a decorative dependency. The strongest next step is to publish the prepared GitHub evidence so the already-submitted Project has matching code, dashboard files, benchmarks, and adversarial tests available for review.
+The strongest review evidence is now the live DApp plus the source-to-deployment verifier. Supporting dashboards, tutorials, and research remain useful context, but they should not replace these primary artifacts or be submitted as duplicate Projects.

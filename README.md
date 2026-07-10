@@ -1,249 +1,116 @@
 # GenLayer SignalGuard
 
-SignalGuard is a compact GenLayer project for checking whether a public claim is supported by a cited source. It uses an Intelligent Contract as the decision layer: the contract fetches source content, asks validators to reason over the claim, and stores the accepted verdict report.
+SignalGuard is a working GenLayer DApp for checking whether a public claim is supported by a cited source. Its deployed Intelligent Contract fetches the source, asks GenLayer validators to classify the claim, and stores the accepted verdict on StudioNet.
 
-## Why this uses GenLayer
+## Live project
 
-Normal smart contracts cannot inspect natural-language evidence or compare source text with a claim. SignalGuard is designed for GenLayer's AI-native contract model:
+- DApp: https://jiangfeng1999.github.io/genlayer-signalguard/web/dapp.html
+- Project overview: https://jiangfeng1999.github.io/genlayer-signalguard/web/project-overview.html
+- Intelligent Contract review: https://jiangfeng1999.github.io/genlayer-signalguard/web/intelligent-contract.html
+- Studio import: https://studio.genlayer.com/contracts?import-contract=0x1d496901d68FC02d105A14B81Ea0e67476A9891A
+- Deployed address: `0x1d496901d68FC02d105A14B81Ea0e67476A9891A`
+- Reviewer quickstart: https://jiangfeng1999.github.io/genlayer-signalguard/web/reviewer-quickstart.html
 
-- An Intelligent Contract evaluates a natural-language claim.
-- The contract reads the cited source with `gl.nondet.web.get`.
-- Validators independently interpret the same evidence.
-- The accepted result is stored as a reusable on-chain attestation.
-- A simple app can submit claims and read the latest verdict.
+## Why GenLayer is required
 
-## What it can be used for
+The consensus-critical question is not calculated by the frontend or a private server. The Intelligent Contract:
 
-- Community fact checks for ecosystem announcements.
-- Lightweight risk labels for project claims.
-- Research notes where every conclusion links back to public evidence.
-- AI-agent workflows that need a human-readable, consensus-backed answer.
+1. receives a claim and an HTTPS source URL;
+2. fetches the cited source inside GenVM;
+3. asks validators to classify the claim as `supported`, `contradicted`, or `inconclusive`;
+4. stores the accepted report as shared contract state.
 
-## Repository layout
+A normal deterministic contract cannot interpret changing natural-language evidence. The frontend only collects user intent, connects a wallet, sends the contract call, and displays accepted state.
 
-```text
-contracts/signal_guard.py      GenLayer Intelligent Contract
-contracts/signal_guard_history.py Next-milestone history prototype
-app/signalguard_cli.py         Minimal CLI payload builder for contract calls
-app/source_adapter_pack.py     Third-party API adapter cases for review_claim inputs
-app/graybox_harness.py         Grayboxing prompt-control harness for source-grounded reviews
-app/explorer_lens.py           Explorer index for the deployed SignalGuard contract
-app/gas_fee_simulator_tests.py Fee-aware read/write simulator test fixtures
-app/validator_ops_probe.py     Validator ops probe fixture generator
-app/contract_catalog.py        Intelligent Contract catalog generator
-app/validator_failover_drill.py Validator failover drill fixture generator
-app/community_materials.py     Community, support, and meta material generator
-app/portal_deeplink_probe.py   Read-only Portal deep-link route probe
-index.html                     GitHub Pages evidence hub
-web/index.html                 Static demo UI for preparing calls
-web/project-overview.html      Project submission overview
-web/milestone-1.html           Milestone 1 submission overview
-web/third-party-integrations.html Published third-party integration pack
-web/grayboxing.html            Published grayboxing harness report
-web/explorer-lens.html         Published Explorer Lens report
-web/gas-fees-simulator-tests.html Published gas-fee simulator tests
-web/validator-tooling.html     Published validator tooling report
-web/create-intelligent-contracts.html Published Intelligent Contract catalog
-web/validator-failover.html    Published validator failover drill
-web/blog-signalguard.html      Published SignalGuard blog post
-web/marketing-networking.html  Published networking kit
-web/community-outreach.html    Published community outreach FAQ
-web/community-support.html     Published community support guide
-web/meta-contributions.html    Published meta-contribution retrospective
-web/bug-report.html            Published Portal deep-link bug report
-web/tutorial.html              Public builder tutorial
-web/portal-dashboard.html      Static Portal points and leaderboard dashboard
-web/research-analysis.html     Published research analysis report
-web/adversarial-testing.html   Published adversarial testing report
-web/benchmarks.html            Published benchmark report
-web/tools-infrastructure.html  Published builder toolchain report
-web/resource-pack.html         Published reusable resource pack
-web/reviewer-quickstart.html   Published reviewer quickstart documentation
-scripts/check-genlayer-status.ps1  Read-only Portal and GitHub status checker
-scripts/save-genlayer-status.ps1   Local ignored status snapshot helper
-scripts/test-portal-dashboard-calculations.ps1 Offline dashboard calculation test
-scripts/test-signalguard-cli.ps1   CLI payload helper test
-scripts/verify-evidence-package.ps1 One-command evidence package verifier
-docs/submission.md             Portal submission notes and review checklist
-docs/project-submission.md     Project contribution submission notes
-docs/milestone-1-submission.md Milestone contribution submission notes
-docs/third-party-integrations-submission.md 3rd party integrations contribution notes
-docs/grayboxing-submission.md  Grayboxing contribution notes
-docs/explorer-submission.md    Explorer contribution notes
-docs/gas-fees-simulator-tests-submission.md Gas-fee simulator contribution notes
-docs/validator-tooling-submission.md Validator tooling contribution notes
-docs/create-intelligent-contracts-submission.md Create Intelligent Contracts notes
-docs/validator-failover-submission.md Validator failover contribution notes
-docs/blog-post-submission.md Blog Post contribution notes
-docs/marketing-networking-submission.md Marketing and networking contribution notes
-docs/community-outreach-submission.md Community outreach contribution notes
-docs/community-support-submission.md Community support contribution notes
-docs/meta-contributions-submission.md Meta contribution notes
-docs/bug-report-submission.md Bug Report contribution notes
-docs/educational-content-submission.md Tutorial contribution notes
-docs/research-analysis.md      Research notes on the source-grounded verdict pattern
-docs/tooling-notes.md          Tooling and local verification notes
-docs/network-dashboard-submission.md  Dashboard contribution notes
-docs/research-analysis-submission.md  Research contribution notes
-docs/adversarial-testing-submission.md Adversarial testing contribution notes
-docs/benchmarks-submission.md Benchmark contribution notes
-docs/tools-infrastructure-submission.md Tools and infrastructure contribution notes
-docs/resource-creation-submission.md Resource creation contribution notes
-docs/documentation-submission.md Documentation contribution notes
-docs/benchmarks.md             Dashboard and status-script benchmark notes
-docs/adversarial-testing.md    Source-grounding adversarial test notes
-docs/evaluation-report.md      Project evaluation and risk review
-docs/milestone-1-evidence.md   Prepared milestone evidence package
-docs/history-milestone-design.md History prototype design notes
-examples/sample_claims.json    Example claims and sources
-examples/source_adapter_cases.json Third-party source adapter examples
-examples/graybox_cases.json    Grayboxing prompt-control cases
-examples/explorer_lens_manifest.json Explorer Lens manifest fixture
-examples/gas_fee_cases.json    Gas-fee simulator cases
-examples/validator_ops_probe_sample.json Validator ops probe sample
-examples/contract_catalog.json Intelligent Contract catalog fixture
-examples/validator_failover_drill.json Validator failover drill fixture
-examples/community_materials.json Community materials fixture
-examples/portal_deeplink_probe.json Portal deep-link probe fixture
-examples/portal_dashboard_checks.json Public Portal dashboard check cases
-examples/adversarial_claims.json Source-grounding adversarial claim cases
-examples/dashboard_calculation_fixture.json Offline dashboard calculation fixture
-examples/milestone_evidence.json Prepared milestone artifact index
-```
-
-## Contract workflow
-
-1. Deploy `contracts/signal_guard.py` in GenLayer Studio.
-2. Deploy with no constructor arguments.
-3. Call `review_claim(claim, source_url)`.
-4. The contract fetches the URL and uses `prompt_non_comparative` to validate a compact JSON verdict report.
-5. Accepted verdicts can be read with `latest_verdict()`.
-
-The MVP intentionally keeps state small so reviewers can deploy and test it quickly in Studio.
-
-`contracts/signal_guard_history.py` is a separate next-milestone prototype that preserves the same source-grounded verdict flow and adds a simple review count plus append-only log. It is not the currently deployed Studio contract.
-
-## Demo UI
-
-Open `web/index.html` locally and generate a `review_claim` payload for Studio. The UI is deliberately static so the contribution can be reviewed without installing a frontend toolchain.
-
-Open the published dashboard to inspect public Portal points, the builder leaderboard gap, and high-value contribution categories from the public Portal API:
+## Core repository layout
 
 ```text
-https://jiangfeng1999.github.io/genlayer-signalguard/web/portal-dashboard.html
+contracts/signal_guard.py              Deployed Intelligent Contract source
+web/dapp.html                          Wallet-connected SignalGuard application
+web/signalguard-dapp.js                GenLayerJS read/write integration
+app/signalguard_cli.py                 CLI payload helper
+scripts/verify_studionet_deployment.py Live source, schema, and state verifier
+tests/direct/test_signal_guard.py       GenLayer Direct Mode storage test
+docs/project-submission.md              Reviewer-facing Project evidence
+docs/testing.md                         Reproducible verification notes
 ```
 
-For local inspection, serve the repository over HTTP:
+Additional research, examples, and operational material remain available under `docs/`, `examples/`, and `web/`, but they are supporting evidence rather than separate Project claims.
+
+## Use the DApp
+
+The public page shows the latest deployment snapshot produced by the verification script. After wallet connection it performs live StudioNet reads and writes through the injected provider. To submit a review:
+
+1. open the DApp in a browser with MetaMask;
+2. connect the wallet to GenLayer StudioNet;
+3. enter a claim and an HTTPS source;
+4. approve the `review_claim` transaction in the wallet;
+5. wait for the accepted receipt and refreshed contract state.
+
+The page never requests or stores a private key.
+
+## Verify the deployment
+
+Create a Python 3.12 environment and install the pinned verification dependencies:
 
 ```bash
-python -m http.server 8765
+python -m pip install -r requirements-dev.txt
 ```
 
-Then open `http://127.0.0.1:8765/web/portal-dashboard.html`.
+Verify that the public StudioNet bytecode source matches this repository and that the deployed schema and view methods are readable:
 
-## Status scripts
-
-Run a read-only public status check:
-
-```powershell
-powershell -ExecutionPolicy Bypass -File scripts\check-genlayer-status.ps1
+```bash
+python scripts/verify_studionet_deployment.py
 ```
 
-Save timestamped local snapshots under `.genlayer-status/`:
-
-```powershell
-powershell -ExecutionPolicy Bypass -File scripts\save-genlayer-status.ps1
-```
-
-Run the offline dashboard calculation test:
-
-```powershell
-powershell -ExecutionPolicy Bypass -File scripts\test-portal-dashboard-calculations.ps1
-```
-
-Run the CLI payload helper test:
-
-```powershell
-powershell -ExecutionPolicy Bypass -File scripts\test-signalguard-cli.ps1
-```
-
-Generate third-party source adapter examples:
-
-```powershell
-python app\source_adapter_pack.py
-python app\source_adapter_pack.py --payloads
-```
-
-Generate grayboxing prompt-control cases:
-
-```powershell
-python app\graybox_harness.py
-python app\graybox_harness.py --compact
-```
-
-Generate Explorer, gas-fee, and validator-ops fixtures:
-
-```powershell
-python app\explorer_lens.py
-python app\gas_fee_simulator_tests.py
-python app\validator_ops_probe.py
-```
-
-Generate contract catalog and failover drill fixtures:
-
-```powershell
-python app\contract_catalog.py
-python app\validator_failover_drill.py
-```
-
-Generate community and meta contribution fixtures:
-
-```powershell
-python app\community_materials.py
-python app\community_materials.py --keys
-```
-
-Run the Portal deep-link probe:
-
-```powershell
-python app\portal_deeplink_probe.py
-python app\portal_deeplink_probe.py --live
-```
-
-Run the full evidence package verifier:
-
-```powershell
-powershell -ExecutionPolicy Bypass -File scripts\verify-evidence-package.ps1
-```
-
-## Example claim
+Expected checks:
 
 ```text
-Claim: GenLayer uses Intelligent Contracts that can access the internet and reason over natural language.
-Source: https://docs.genlayer.com/
-Expected verdict: supported
+source_matches_deployment: true
+constructor_has_no_parameters: true
+expected_methods_present: true
+latest_claim_readable: true
+latest_verdict_readable: true
 ```
 
-## Portal contribution category
+Run the GenLayer Direct Mode storage test on Linux:
 
-This is intended for the **Projects** category because GenLayer is central to the workflow and the project contains both contract logic and app-side call preparation.
+```bash
+python -m pytest tests/direct -q
+```
 
-Open the public Project overview here:
+Run the full static evidence verifier on Windows or Linux PowerShell:
+
+```powershell
+./scripts/verify-evidence-package.ps1
+```
+
+GitHub Actions runs these checks for every push to `main` and every pull request.
+
+## Contract interface
 
 ```text
-https://jiangfeng1999.github.io/genlayer-signalguard/web/project-overview.html
+review_claim(claim: str, source_url: str) -> None
+latest_claim() -> str
+latest_verdict() -> str
 ```
 
-`docs/milestone-1-evidence.md` is prepared as a future milestone package, but it should be submitted only after the base Project is accepted.
-
-Open the public Milestone 1 overview here:
+The repository contract and the deployed StudioNet source currently normalize to the same SHA-256:
 
 ```text
-https://jiangfeng1999.github.io/genlayer-signalguard/web/milestone-1.html
+8963b191a60722ccb27b45eb4e6c90a314e089337e0b65871ba29e7758902fac
 ```
 
-## Reference docs
+## Scope and limitations
 
-- GenLayer Equivalence Principle: https://docs.genlayer.com/developers/intelligent-contracts/equivalence-principle
-- Calling LLMs from Intelligent Contracts: https://docs.genlayer.com/developers/intelligent-contracts/features/calling-llms
-- Web access and Intelligent Contracts overview: https://docs.genlayer.com/understand-genlayer-protocol/what-is-genlayer
+- SignalGuard stores the latest accepted review, not a complete review history.
+- Source availability and content changes can affect later reviews.
+- The current deployment uses GenVM `v0.2.16`; the verification dependencies are pinned for reproducibility.
+- A future contract upgrade can add bounded history, URL policy controls, and structured verdict storage after the base Project is reviewed.
+
+## References
+
+- GenLayer DApp workflow: https://docs.genlayer.com/developers/decentralized-applications/dapp-development-workflow
+- When to use GenLayer: https://docs.genlayer.com/developers/intelligent-contracts/when-to-use-genlayer
+- GenLayerJS: https://docs.genlayer.com/api-references/genlayer-js
+- Contract testing: https://docs.genlayer.com/developers/intelligent-contracts/testing

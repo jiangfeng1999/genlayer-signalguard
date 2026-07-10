@@ -1,0 +1,44 @@
+name: Verify SignalGuard
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Cache GenVM SDK
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/gltest-direct
+          key: gltest-direct-v0.2.16
+
+      - name: Install verification dependencies
+        run: python -m pip install -r requirements-dev.txt
+
+      - name: Run Direct Mode storage test
+        run: python -m pytest tests/direct -q
+
+      - name: Verify deployed StudioNet contract
+        run: python scripts/verify_studionet_deployment.py
+
+      - name: Verify public evidence package
+        shell: pwsh
+        run: ./scripts/verify-evidence-package.ps1

@@ -3,543 +3,98 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="SignalGuard GenLayer Project review hub.">
   <title>GenLayer SignalGuard Evidence Hub</title>
   <style>
-    :root {
-      color-scheme: light;
-      font-family: Inter, Arial, sans-serif;
-      color: #172033;
-      background: #f6f8fb;
-      --line: #dfe5ef;
-      --muted: #5f6b7a;
-      --accent: #f58220;
-      --blue: #2563eb;
-      --green: #0f8a5f;
-      --red: #b42318;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      padding: 24px;
-      background: #f6f8fb;
-    }
-
-    main {
-      max-width: 1160px;
-      margin: 0 auto;
-      display: grid;
-      gap: 18px;
-    }
-
-    header,
-    section {
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: white;
-      padding: 20px;
-    }
-
-    h1,
-    h2,
-    p {
-      margin-top: 0;
-    }
-
-    h1 {
-      margin-bottom: 10px;
-      font-size: 34px;
-      line-height: 1.12;
-      letter-spacing: 0;
-    }
-
-    h2 {
-      margin-bottom: 12px;
-      font-size: 21px;
-      letter-spacing: 0;
-    }
-
-    p,
-    li {
-      color: #303b4d;
-      line-height: 1.6;
-    }
-
-    a {
-      color: var(--blue);
-      font-weight: 800;
-      text-decoration-thickness: 1px;
-      text-underline-offset: 3px;
-    }
-
-    .subtitle {
-      margin-bottom: 0;
-      color: var(--muted);
-    }
-
-    .tag-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 16px;
-    }
-
-    .tag {
-      display: inline-flex;
-      align-items: center;
-      border: 1px solid #cbd5e1;
-      border-radius: 999px;
-      padding: 5px 9px;
-      color: #334155;
-      background: #f8fafc;
-      font-size: 12px;
-      font-weight: 800;
-      white-space: nowrap;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 12px;
-    }
-
-    .card {
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: #fff;
-      padding: 16px;
-      min-height: 170px;
-      display: grid;
-      gap: 10px;
-      align-content: start;
-    }
-
-    .card strong {
-      display: block;
-      font-size: 17px;
-      line-height: 1.25;
-    }
-
-    .card p {
-      margin-bottom: 0;
-      font-size: 14px;
-    }
-
-    .metric-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 12px;
-    }
-
-    .metric {
-      border: 1px solid var(--line);
-      border-top: 4px solid var(--accent);
-      border-radius: 8px;
-      background: white;
-      padding: 16px;
-      min-height: 110px;
-    }
-
-    .metric.blue {
-      border-top-color: var(--blue);
-    }
-
-    .metric.green {
-      border-top-color: var(--green);
-    }
-
-    .metric.red {
-      border-top-color: var(--red);
-    }
-
-    .metric span {
-      display: block;
-      color: var(--muted);
-      font-size: 13px;
-      font-weight: 800;
-    }
-
-    .metric strong {
-      display: block;
-      margin-top: 10px;
-      font-size: 27px;
-      line-height: 1;
-      letter-spacing: 0;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 14px;
-    }
-
-    th,
-    td {
-      border-bottom: 1px solid #edf1f6;
-      padding: 11px 12px;
-      text-align: left;
-      vertical-align: top;
-    }
-
-    th {
-      color: #475569;
-      background: #f8fafc;
-      font-size: 12px;
-      letter-spacing: 0;
-      text-transform: uppercase;
-    }
-
-    tr:last-child td {
-      border-bottom: 0;
-    }
-
-    .number {
-      text-align: right;
-      font-variant-numeric: tabular-nums;
-    }
-
-    code {
-      font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
-    }
-
-    @media (max-width: 920px) {
-      body {
-        padding: 16px;
-      }
-
-      .grid,
-      .metric-grid {
-        grid-template-columns: 1fr;
-      }
-    }
+    :root { color-scheme: light; font-family: Inter, Arial, sans-serif; color: #18202f; background: #f5f7fa; --line: #dbe1ea; --muted: #5d6878; --accent: #e96f12; --blue: #235bb5; --green: #0d7a50; }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #f5f7fa; }
+    main { width: min(1080px, calc(100% - 32px)); margin: 0 auto; padding: 28px 0 44px; display: grid; gap: 18px; }
+    header, section { border: 1px solid var(--line); border-radius: 8px; background: #fff; padding: 22px; }
+    h1, h2, p { margin-top: 0; }
+    h1 { margin-bottom: 9px; font-size: 32px; line-height: 1.14; letter-spacing: 0; }
+    h2 { margin-bottom: 14px; font-size: 19px; letter-spacing: 0; }
+    p { color: #354052; line-height: 1.6; }
+    a { color: var(--blue); font-weight: 750; text-underline-offset: 3px; }
+    code { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; overflow-wrap: anywhere; }
+    .subtitle { margin-bottom: 0; color: var(--muted); max-width: 780px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .tag { border: 1px solid #cbd4e0; border-radius: 6px; padding: 5px 8px; background: #f8fafc; color: #334155; font-size: 12px; font-weight: 800; }
+    .metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+    .metric { min-height: 100px; border-top: 4px solid var(--accent); padding: 14px; background: #f8fafc; }
+    .metric:nth-child(2) { border-top-color: var(--blue); }
+    .metric:nth-child(3), .metric:nth-child(4) { border-top-color: var(--green); }
+    .metric span, .metric strong { display: block; }
+    .metric span { color: var(--muted); font-size: 12px; font-weight: 800; }
+    .metric strong { margin-top: 9px; font-size: 18px; line-height: 1.25; overflow-wrap: anywhere; }
+    .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .item { min-height: 130px; border: 1px solid var(--line); border-radius: 7px; padding: 16px; }
+    .item strong { display: block; margin-bottom: 7px; font-size: 16px; }
+    .item p { margin-bottom: 11px; font-size: 14px; }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { padding: 11px 12px; border-bottom: 1px solid #e9edf3; text-align: left; vertical-align: top; }
+    th { color: #475569; background: #f8fafc; font-size: 12px; text-transform: uppercase; }
+    tr:last-child td { border-bottom: 0; }
+    @media (max-width: 760px) { main { width: min(100% - 24px, 1080px); } .metrics, .grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
   <main>
     <header>
       <h1>GenLayer SignalGuard Evidence Hub</h1>
-      <p class="subtitle">Public review package for SignalGuard: project overview, milestone package, contract evidence, explorer lens, dashboard, research, gas-fee tests, validator tooling, failover drills, grayboxing, tutorial, blog content, community materials, adversarial tests, benchmarks, reusable resources, and reviewer documentation.</p>
-      <div class="tag-row">
-        <span class="tag">Updated 2026-07-08</span>
-        <span class="tag">GitHub Pages</span>
-        <span class="tag">Public Data Only</span>
-      </div>
+      <p class="subtitle">Primary review package for a deployed source-grounded claim review DApp. Start with the live application, then inspect the StudioNet deployment and reproducible source verification.</p>
+      <div class="tags"><span class="tag">Projects</span><span class="tag">StudioNet</span><span class="tag">GenLayerJS</span><span class="tag">Automated verification</span></div>
     </header>
 
     <section>
-      <h2>Current Public Snapshot</h2>
-      <div class="metric-grid">
-        <div class="metric">
-          <span>Builder Points</span>
-          <strong>50</strong>
-          <p>Public Portal API snapshot.</p>
-        </div>
-        <div class="metric blue">
-          <span>Public Contributions</span>
-          <strong>1</strong>
-          <p>Accepted public Builder contribution count.</p>
-        </div>
-        <div class="metric red">
-          <span>Gap To #1</span>
-          <strong>9,846</strong>
-          <p>#1 observed as YoneCode at 9,895 BP.</p>
-        </div>
-        <div class="metric green">
-          <span>Evidence Checks</span>
-          <strong>6/6</strong>
-          <p>Latest local evidence verifier passed.</p>
-        </div>
+      <h2>Deployment snapshot</h2>
+      <div class="metrics">
+        <div class="metric"><span>Contract</span><strong>0x1d49...891A</strong></div>
+        <div class="metric"><span>GenVM</span><strong>v0.2.16</strong></div>
+        <div class="metric"><span>Source proof</span><strong>SHA-256 equal</strong></div>
+        <div class="metric"><span>Public interface</span><strong>3 methods</strong></div>
       </div>
     </section>
 
     <section>
-      <h2>Published Evidence</h2>
+      <h2>Primary evidence</h2>
       <div class="grid">
-        <article class="card">
-          <strong>Project Overview</strong>
-          <p>Reviewer entry for the base SignalGuard Project submission.</p>
-          <a href="web/project-overview.html">Open project overview</a>
-        </article>
-        <article class="card">
-          <strong>Milestone 1</strong>
-          <p>Reviewer entry for the first milestone package after Project acceptance.</p>
-          <a href="web/milestone-1.html">Open milestone package</a>
-        </article>
-        <article class="card">
-          <strong>Network Dashboard</strong>
-          <p>Public points dashboard with a bundled snapshot and optional live refresh.</p>
-          <a href="web/portal-dashboard.html">Open dashboard</a>
-        </article>
-        <article class="card">
-          <strong>Explorer Lens</strong>
-          <p>Address-level explorer index for the deployed SignalGuard contract.</p>
-          <a href="web/explorer-lens.html">Open explorer lens</a>
-        </article>
-        <article class="card">
-          <strong>Research &amp; Analysis</strong>
-          <p>Methodology and risk analysis for source-grounded GenLayer verdicts.</p>
-          <a href="web/research-analysis.html">Open research report</a>
-        </article>
-        <article class="card">
-          <strong>Gas Fee Simulator Tests</strong>
-          <p>Fee-aware read/write test matrix for SignalGuard prototype flows.</p>
-          <a href="web/gas-fees-simulator-tests.html">Open gas-fee tests</a>
-        </article>
-        <article class="card">
-          <strong>Educational Content</strong>
-          <p>Builder tutorial for implementing a source-grounded claim review contract.</p>
-          <a href="web/tutorial.html">Open tutorial</a>
-        </article>
-        <article class="card">
-          <strong>Validator Ops Probe</strong>
-          <p>Operator checklist for validator health, metrics, balance, and snapshots.</p>
-          <a href="web/validator-tooling.html">Open validator tooling</a>
-        </article>
-        <article class="card">
-          <strong>Contract Catalog</strong>
-          <p>Index of created Intelligent Contracts and review paths.</p>
-          <a href="web/create-intelligent-contracts.html">Open contract catalog</a>
-        </article>
-        <article class="card">
-          <strong>Validator Failover</strong>
-          <p>Deterministic failover drill for health, metrics, balance, and snapshots.</p>
-          <a href="web/validator-failover.html">Open failover drill</a>
-        </article>
-        <article class="card">
-          <strong>Adversarial Testing</strong>
-          <p>Six test cases for supported, contradicted, and inconclusive verdict behavior.</p>
-          <a href="web/adversarial-testing.html">Open adversarial tests</a>
-        </article>
-        <article class="card">
-          <strong>Benchmarks</strong>
-          <p>Reproducible checks for Portal public data, calculations, and package verification.</p>
-          <a href="web/benchmarks.html">Open benchmarks</a>
-        </article>
-        <article class="card">
-          <strong>Tools &amp; Infrastructure</strong>
-          <p>Builder toolchain for status checks, snapshots, payload generation, and package verification.</p>
-          <a href="web/tools-infrastructure.html">Open toolchain report</a>
-        </article>
-        <article class="card">
-          <strong>Resource Pack</strong>
-          <p>Reusable examples, fixtures, and checklists for source-grounded contract review.</p>
-          <a href="web/resource-pack.html">Open resource pack</a>
-        </article>
-        <article class="card">
-          <strong>Reviewer Quickstart</strong>
-          <p>Operational documentation for reproducing the public evidence package quickly.</p>
-          <a href="web/reviewer-quickstart.html">Open documentation</a>
-        </article>
-        <article class="card">
-          <strong>3rd Party Integrations</strong>
-          <p>SourceBridge adapter pack for public APIs and external data sources.</p>
-          <a href="web/third-party-integrations.html">Open integration pack</a>
-        </article>
-        <article class="card">
-          <strong>Grayboxing</strong>
-          <p>Prompt-control harness for source-grounded Intelligent Contract review cases.</p>
-          <a href="web/grayboxing.html">Open graybox harness</a>
-        </article>
-        <article class="card">
-          <strong>Blog Post</strong>
-          <p>Readable article explaining the SignalGuard source-grounded contract pattern.</p>
-          <a href="web/blog-signalguard.html">Open blog post</a>
-        </article>
-        <article class="card">
-          <strong>Networking Kit</strong>
-          <p>Concise builder-facing pitch, prompts, and review links.</p>
-          <a href="web/marketing-networking.html">Open networking kit</a>
-        </article>
-        <article class="card">
-          <strong>Community Outreach</strong>
-          <p>Reusable FAQ for builders inspecting or adapting SignalGuard.</p>
-          <a href="web/community-outreach.html">Open outreach FAQ</a>
-        </article>
-        <article class="card">
-          <strong>Community Support</strong>
-          <p>Triage guide for common SignalGuard and Portal evidence questions.</p>
-          <a href="web/community-support.html">Open support guide</a>
-        </article>
-        <article class="card">
-          <strong>Meta Contribution</strong>
-          <p>Retrospective on packaging reviewable Portal evidence safely.</p>
-          <a href="web/meta-contributions.html">Open retrospective</a>
-        </article>
-        <article class="card">
-          <strong>Bug Report</strong>
-          <p>Read-only report for Portal deep links returning HTTP 404 on direct open.</p>
-          <a href="web/bug-report.html">Open bug report</a>
-        </article>
+        <article class="item"><strong>Live SignalGuard DApp</strong><p>Reads accepted StudioNet state and supports wallet-signed `review_claim` transactions.</p><a href="web/dapp.html">Open DApp</a></article>
+        <article class="item"><strong>Intelligent Contract Review</strong><p>Focused state, consensus, interface, deployment, and limitation evidence.</p><a href="web/intelligent-contract.html">Open contract review</a></article>
+        <article class="item"><strong>Project Overview</strong><p>Focused product, architecture, deployment, and reviewer evidence.</p><a href="web/project-overview.html">Open overview</a></article>
+        <article class="item"><strong>Studio Deployment</strong><p>Import the live contract and inspect its public methods.</p><a href="https://studio.genlayer.com/contracts?import-contract=0x1d496901d68FC02d105A14B81Ea0e67476A9891A">Open Studio</a></article>
+        <article class="item"><strong>Reviewer Quickstart</strong><p>Five-minute reproducible review path for the application and deployment.</p><a href="web/reviewer-quickstart.html">Open quickstart</a></article>
       </div>
     </section>
 
     <section>
-      <h2>Submission Candidates</h2>
+      <h2>Verification</h2>
       <table>
-        <thead>
-          <tr>
-            <th>Category</th>
-            <th>Evidence</th>
-            <th class="number">Observed Public Cap</th>
-            <th>Status</th>
-          </tr>
-        </thead>
+        <thead><tr><th>Check</th><th>Artifact</th><th>Result</th></tr></thead>
         <tbody>
-          <tr>
-            <td>Projects</td>
-            <td><a href="web/project-overview.html">Project overview</a></td>
-            <td class="number">4,000 BP</td>
-            <td>Ready, requires Portal submission</td>
-          </tr>
-          <tr>
-            <td>Milestones</td>
-            <td><a href="web/milestone-1.html">Milestone 1 package</a></td>
-            <td class="number">4,000 BP</td>
-            <td>Ready after the base Project is accepted</td>
-          </tr>
-          <tr>
-            <td>Tools &amp; Infrastructure</td>
-            <td><a href="web/tools-infrastructure.html">Builder toolchain report</a></td>
-            <td class="number">2,500 BP</td>
-            <td>Prepared as support evidence; public API does not currently mark this Builder category as submittable</td>
-          </tr>
-          <tr>
-            <td>Network Dashboard</td>
-            <td><a href="web/portal-dashboard.html">Public dashboard</a></td>
-            <td class="number">1,500 BP</td>
-            <td>Ready, requires Portal submission</td>
-          </tr>
-          <tr>
-            <td>Explorer</td>
-            <td><a href="web/explorer-lens.html">Explorer Lens</a></td>
-            <td class="number">1,500 BP</td>
-            <td>Ready if account can submit validator-side category</td>
-          </tr>
-          <tr>
-            <td>Research &amp; Analysis</td>
-            <td><a href="web/research-analysis.html">Research report</a></td>
-            <td class="number">2,000 BP</td>
-            <td>Ready if account can submit validator-side category</td>
-          </tr>
-          <tr>
-            <td>3rd party integrations</td>
-            <td><a href="web/third-party-integrations.html">SourceBridge adapter pack</a></td>
-            <td class="number">1,000 BP</td>
-            <td>Ready if account can submit validator-side category</td>
-          </tr>
-          <tr>
-            <td>Grayboxing</td>
-            <td><a href="web/grayboxing.html">Graybox harness</a></td>
-            <td class="number">1,000 BP</td>
-            <td>Ready if account can submit validator-side category</td>
-          </tr>
-          <tr>
-            <td>Gas Fees Simulator Tests</td>
-            <td><a href="web/gas-fees-simulator-tests.html">Gas-fee test matrix</a></td>
-            <td class="number">1,000 BP</td>
-            <td>Ready if account can submit validator-side category</td>
-          </tr>
-          <tr>
-            <td>Create Intelligent Contracts</td>
-            <td><a href="web/create-intelligent-contracts.html">Contract catalog</a></td>
-            <td class="number">500 BP</td>
-            <td>Ready if account can submit validator-side category</td>
-          </tr>
-          <tr>
-            <td>Tooling for running a Validator</td>
-            <td><a href="web/validator-tooling.html">Validator Ops Probe</a></td>
-            <td class="number">1,000 BP</td>
-            <td>Ready if account can submit validator-side category</td>
-          </tr>
-          <tr>
-            <td>Validator failover</td>
-            <td><a href="web/validator-failover.html">Failover drill</a></td>
-            <td class="number">400 BP</td>
-            <td>Ready if account can submit validator-side category</td>
-          </tr>
-          <tr>
-            <td>Educational Content</td>
-            <td><a href="web/tutorial.html">Tutorial</a></td>
-            <td class="number">400 BP</td>
-            <td>Ready if account can submit validator-side category</td>
-          </tr>
-          <tr>
-            <td>Adversarial Testing</td>
-            <td><a href="web/adversarial-testing.html">Adversarial test suite</a></td>
-            <td class="number">600 BP</td>
-            <td>Ready if account can submit validator-side category</td>
-          </tr>
-          <tr>
-            <td>Benchmarks</td>
-            <td><a href="web/benchmarks.html">Benchmark report</a></td>
-            <td class="number">500 BP</td>
-            <td>Ready if account can submit validator-side category</td>
-          </tr>
-          <tr>
-            <td>Resource Creation</td>
-            <td><a href="web/resource-pack.html">Reusable resource pack</a></td>
-            <td class="number">400 BP</td>
-            <td>Ready if account can submit validator-side category</td>
-          </tr>
-          <tr>
-            <td>Documentation</td>
-            <td><a href="web/reviewer-quickstart.html">Reviewer quickstart</a></td>
-            <td class="number">200 BP</td>
-            <td>Ready if account can submit validator-side category</td>
-          </tr>
-          <tr>
-            <td>Blog Post</td>
-            <td><a href="web/blog-signalguard.html">SignalGuard article</a></td>
-            <td class="number">200 BP</td>
-            <td>Ready if account can submit validator-side category</td>
-          </tr>
-          <tr>
-            <td>Marketing &amp; Networking</td>
-            <td><a href="web/marketing-networking.html">Networking kit</a></td>
-            <td class="number">300 BP</td>
-            <td>Ready if account can submit validator-side category</td>
-          </tr>
-          <tr>
-            <td>Community outreach</td>
-            <td><a href="web/community-outreach.html">Outreach FAQ</a></td>
-            <td class="number">200 BP</td>
-            <td>Ready if account can submit validator-side category</td>
-          </tr>
-          <tr>
-            <td>Community Support</td>
-            <td><a href="web/community-support.html">Support triage guide</a></td>
-            <td class="number">150 BP</td>
-            <td>Ready if account can submit validator-side category</td>
-          </tr>
-          <tr>
-            <td>Meta Contributions</td>
-            <td><a href="web/meta-contributions.html">Workflow retrospective</a></td>
-            <td class="number">100 BP</td>
-            <td>Ready if account can submit validator-side category</td>
-          </tr>
-          <tr>
-            <td>Bug Report</td>
-            <td><a href="web/bug-report.html">Portal deep-link 404 report</a></td>
-            <td class="number">200 BP</td>
-            <td>Ready if account can submit validator-side category</td>
-          </tr>
-          <tr>
-            <td>Intelligent Contracts</td>
-            <td>Studio deployment and explorer evidence</td>
-            <td class="number">300 BP</td>
-            <td>Ready, requires Portal reCAPTCHA/final confirmation</td>
-          </tr>
+          <tr><td>Repository source equals deployed source</td><td><a href="scripts/verify_studionet_deployment.py">StudioNet verifier</a></td><td>Pass</td></tr>
+          <tr><td>Constructor and public schema</td><td><a href="scripts/verify_studionet_deployment.py">RPC schema check</a></td><td>Pass</td></tr>
+          <tr><td>Accepted state is publicly readable</td><td><a href="web/dapp.html">Live DApp</a></td><td>Pass</td></tr>
+          <tr><td>Contract initialization and storage</td><td><a href="tests/direct/test_signal_guard.py">Direct Mode test</a></td><td>Pass on Linux</td></tr>
+          <tr><td>Repository evidence integrity</td><td><a href="scripts/verify-evidence-package.ps1">Package verifier</a></td><td>Automated</td></tr>
         </tbody>
       </table>
     </section>
 
     <section>
-      <h2>Verifier</h2>
-      <p>Reviewers can clone the repository and run the evidence verifier:</p>
-      <p><code>powershell -ExecutionPolicy Bypass -File scripts\verify-evidence-package.ps1</code></p>
+      <h2>Supporting material</h2>
+      <div class="grid">
+        <article class="item"><strong>Research</strong><p>Threat model and source-grounded verdict methodology.</p><a href="web/research-analysis.html">Open research</a></article>
+        <article class="item"><strong>Adversarial cases</strong><p>Supported, contradicted, and inconclusive test inputs.</p><a href="web/adversarial-testing.html">Open cases</a></article>
+        <article class="item"><strong>Builder tutorial</strong><p>Implementation guide for the contract pattern.</p><a href="web/tutorial.html">Open tutorial</a></article>
+        <article class="item"><strong>Testing notes</strong><p>Direct Mode, live RPC verification, limitations, and CI scope.</p><a href="docs/testing.md">Open testing notes</a></article>
+      </div>
+    </section>
+
+    <section>
+      <h2>Scope</h2>
+      <p>This hub supports one SignalGuard Project submission. Other repository artifacts are supporting research and operational notes, not duplicate Project claims. The next Milestone should follow only after the base Project is accepted and a separately deployed contract upgrade exists.</p>
+      <a href="https://github.com/jiangfeng1999/genlayer-signalguard">Open the full repository</a>
     </section>
   </main>
 </body>

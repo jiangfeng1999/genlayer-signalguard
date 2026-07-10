@@ -3,177 +3,101 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Reviewer overview for the deployed SignalGuard GenLayer Project.">
   <title>SignalGuard Project Overview</title>
   <style>
-    :root {
-      color-scheme: light;
-      font-family: Inter, Arial, sans-serif;
-      color: #162033;
-      background: #f6f8fb;
-      --line: #dfe5ef;
-      --muted: #5f6b7a;
-      --accent: #f58220;
-      --blue: #2563eb;
-      --green: #0f8a5f;
-    }
+    :root { color-scheme: light; font-family: Inter, Arial, sans-serif; color: #18202f; background: #f5f7fa; --line: #dbe1ea; --muted: #5d6878; --accent: #e96f12; --blue: #235bb5; --green: #0d7a50; }
     * { box-sizing: border-box; }
-    body { margin: 0; padding: 24px; background: #f6f8fb; }
-    main { max-width: 1120px; margin: 0 auto; display: grid; gap: 18px; }
-    header, section { border: 1px solid var(--line); border-radius: 8px; background: white; padding: 20px; }
+    body { margin: 0; padding: 24px; background: #f5f7fa; }
+    main { width: min(1080px, 100%); margin: 0 auto; display: grid; gap: 18px; }
+    header, section { border: 1px solid var(--line); border-radius: 8px; background: #fff; padding: 22px; }
     h1, h2, p { margin-top: 0; }
-    h1 { margin-bottom: 10px; font-size: 34px; line-height: 1.12; letter-spacing: 0; }
-    h2 { margin-bottom: 12px; font-size: 21px; letter-spacing: 0; }
-    p, li { color: #303b4d; line-height: 1.6; }
-    a { color: var(--blue); font-weight: 800; text-underline-offset: 3px; }
-    code { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; }
+    h1 { margin-bottom: 9px; font-size: 32px; line-height: 1.14; letter-spacing: 0; }
+    h2 { margin-bottom: 13px; font-size: 19px; letter-spacing: 0; }
+    p, li { color: #354052; line-height: 1.6; }
+    a { color: var(--blue); font-weight: 750; text-underline-offset: 3px; }
+    code { font-family: ui-monospace, SFMono-Regular, Consolas, monospace; overflow-wrap: anywhere; }
     .subtitle { margin-bottom: 0; color: var(--muted); }
-    .tag-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
-    .tag { display: inline-flex; border: 1px solid #cbd5e1; border-radius: 999px; padding: 5px 9px; color: #334155; background: #f8fafc; font-size: 12px; font-weight: 800; white-space: nowrap; }
-    .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
-    .card { border: 1px solid var(--line); border-radius: 8px; padding: 16px; min-height: 150px; display: grid; gap: 8px; align-content: start; }
-    .card strong { font-size: 17px; line-height: 1.25; }
-    .card p { margin-bottom: 0; font-size: 14px; }
-    .metric-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
-    .metric { border: 1px solid var(--line); border-top: 4px solid var(--accent); border-radius: 8px; padding: 16px; min-height: 110px; }
-    .metric.blue { border-top-color: var(--blue); }
-    .metric.green { border-top-color: var(--green); }
-    .metric span { display: block; color: var(--muted); font-size: 13px; font-weight: 800; }
-    .metric strong { display: block; margin-top: 10px; font-size: 26px; line-height: 1; }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .tag { border: 1px solid #cbd4e0; border-radius: 6px; padding: 5px 8px; background: #f8fafc; color: #334155; font-size: 12px; font-weight: 800; }
+    .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .item { min-height: 132px; border: 1px solid var(--line); border-radius: 7px; padding: 16px; }
+    .item strong { display: block; margin-bottom: 7px; font-size: 16px; }
+    .item p { margin-bottom: 11px; font-size: 14px; }
+    .proof { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+    .proof div { border-top: 4px solid var(--accent); padding: 14px; background: #f8fafc; min-height: 102px; }
+    .proof div:nth-child(2) { border-top-color: var(--blue); }
+    .proof div:nth-child(3) { border-top-color: var(--green); }
+    .proof span, .proof strong { display: block; }
+    .proof span { color: var(--muted); font-size: 12px; font-weight: 800; }
+    .proof strong { margin-top: 9px; font-size: 18px; line-height: 1.2; overflow-wrap: anywhere; }
     table { width: 100%; border-collapse: collapse; font-size: 14px; }
-    th, td { border-bottom: 1px solid #edf1f6; padding: 11px 12px; text-align: left; vertical-align: top; }
-    th { color: #475569; background: #f8fafc; font-size: 12px; text-transform: uppercase; }
+    th, td { padding: 11px 12px; border-bottom: 1px solid #e9edf3; text-align: left; vertical-align: top; }
+    th { background: #f8fafc; color: #475569; font-size: 12px; text-transform: uppercase; }
     tr:last-child td { border-bottom: 0; }
-    @media (max-width: 920px) {
-      body { padding: 16px; }
-      .grid, .metric-grid { grid-template-columns: 1fr; }
-    }
+    @media (max-width: 760px) { body { padding: 14px; } .grid, .proof { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
   <main>
     <header>
       <h1>SignalGuard Project Overview</h1>
-      <p class="subtitle">A GenLayer Intelligent Contract project for source-grounded claim review, packaged for the Portal Projects category.</p>
-      <div class="tag-row">
+      <p class="subtitle">A deployed GenLayer DApp for consensus-backed review of public claims and cited evidence.</p>
+      <div class="tags">
         <span class="tag">Projects</span>
-        <span class="tag">Observed cap 4,000 BP</span>
-        <span class="tag">Public evidence</span>
+        <span class="tag">Live StudioNet contract</span>
+        <span class="tag">Wallet-connected DApp</span>
+        <span class="tag">Source verified</span>
       </div>
     </header>
 
     <section>
-      <h2>Project Summary</h2>
-      <p>SignalGuard turns a public claim plus a source URL into a consensus-backed verdict. The Intelligent Contract fetches the cited source, asks GenLayer validators to assess whether the claim is supported, contradicted, or inconclusive, and stores the accepted report for later review.</p>
-      <p>The project is intentionally small enough for reviewers to inspect quickly, but complete enough to show the core GenLayer value: natural-language reasoning, web context, deterministic state updates, and app-side call preparation.</p>
+      <h2>What the project does</h2>
+      <p>A user supplies a claim and an HTTPS source. The deployed Intelligent Contract fetches the source inside GenVM, asks GenLayer validators whether the evidence supports, contradicts, or cannot resolve the claim, and stores the accepted verdict. The frontend uses GenLayerJS for live reads, wallet connection, contract writes, and accepted-receipt tracking.</p>
     </section>
 
     <section>
-      <h2>Why It Fits Projects</h2>
-      <div class="metric-grid">
-        <div class="metric">
-          <span>Contract</span>
-          <strong>GenLayer</strong>
-          <p>GenLayer is the decision layer, not an accessory.</p>
-        </div>
-        <div class="metric blue">
-          <span>Workflow</span>
-          <strong>AI Review</strong>
-          <p>Validators reason over source text and claims.</p>
-        </div>
-        <div class="metric green">
-          <span>Frontend</span>
-          <strong>Static UI</strong>
-          <p>The demo builds callable Studio payloads.</p>
-        </div>
-        <div class="metric">
-          <span>Verification</span>
-          <strong>6 Checks</strong>
-          <p>The evidence package includes reproducible tests.</p>
-        </div>
-      </div>
-    </section>
-
-    <section>
-      <h2>Review Links</h2>
+      <h2>Primary review path</h2>
       <div class="grid">
-        <article class="card">
-          <strong>Repository</strong>
-          <p>Source code, docs, examples, scripts, and static pages.</p>
-          <a href="https://github.com/jiangfeng1999/genlayer-signalguard">Open GitHub</a>
-        </article>
-        <article class="card">
-          <strong>Contract</strong>
-          <p>Main Intelligent Contract implementation for source-grounded verdicts.</p>
-          <a href="https://github.com/jiangfeng1999/genlayer-signalguard/blob/main/contracts/signal_guard.py">Open contract</a>
-        </article>
-        <article class="card">
-          <strong>Studio Deployment</strong>
-          <p>Existing deployed contract import URL for reviewer inspection.</p>
-          <a href="https://studio.genlayer.com/contracts?import-contract=0x1d496901d68FC02d105A14B81Ea0e67476A9891A">Open Studio import</a>
-        </article>
-        <article class="card">
-          <strong>Demo UI</strong>
-          <p>Static helper for building a <code>review_claim</code> call payload.</p>
-          <a href="index.html">Open demo</a>
-        </article>
-        <article class="card">
-          <strong>Reviewer Quickstart</strong>
-          <p>Concise reproduction instructions for the full evidence package.</p>
-          <a href="reviewer-quickstart.html">Open quickstart</a>
-        </article>
-        <article class="card">
-          <strong>Research Report</strong>
-          <p>Methodology, threat model, and extension path.</p>
-          <a href="research-analysis.html">Open research</a>
-        </article>
+        <article class="item"><strong>1. Use the live DApp</strong><p>Inspect the verified deployment snapshot, then connect MetaMask for live reads or a real review.</p><a href="dapp.html">Open SignalGuard DApp</a></article>
+        <article class="item"><strong>2. Inspect the deployment</strong><p>Import the deployed address and inspect the public contract interface in Studio.</p><a href="https://studio.genlayer.com/contracts?import-contract=0x1d496901d68FC02d105A14B81Ea0e67476A9891A">Open Studio deployment</a></article>
+        <article class="item"><strong>3. Review the source</strong><p>The repository source is normalized and compared against the public StudioNet deployment.</p><a href="https://github.com/jiangfeng1999/genlayer-signalguard/blob/main/contracts/signal_guard.py">Open contract source</a></article>
+        <article class="item"><strong>4. Inspect automation</strong><p>GitHub Actions runs Direct Mode, deployment, and evidence checks.</p><a href="https://github.com/jiangfeng1999/genlayer-signalguard/actions/workflows/quality.yml">Open verification workflow</a></article>
       </div>
     </section>
 
     <section>
-      <h2>Evidence Inventory</h2>
+      <h2>Verified technical evidence</h2>
+      <div class="proof">
+        <div><span>Network</span><strong>StudioNet</strong></div>
+        <div><span>Contract</span><strong>0x1d49...891A</strong></div>
+        <div><span>Source match</span><strong>SHA-256 equal</strong></div>
+        <div><span>Public methods</span><strong>3 verified</strong></div>
+      </div>
+      <p><code>8963b191a60722ccb27b45eb4e6c90a314e089337e0b65871ba29e7758902fac</code></p>
+    </section>
+
+    <section>
+      <h2>Architecture</h2>
       <table>
-        <thead>
-          <tr>
-            <th>Artifact</th>
-            <th>Purpose</th>
-            <th>Reviewer action</th>
-          </tr>
-        </thead>
+        <thead><tr><th>Layer</th><th>Responsibility</th><th>Evidence</th></tr></thead>
         <tbody>
-          <tr>
-            <td><code>contracts/signal_guard.py</code></td>
-            <td>Source-grounded claim review contract.</td>
-            <td>Inspect or deploy in Studio with no constructor arguments.</td>
-          </tr>
-          <tr>
-            <td><code>app/signalguard_cli.py</code></td>
-            <td>CLI payload generator for <code>review_claim</code>.</td>
-            <td>Run the bundled PowerShell test.</td>
-          </tr>
-          <tr>
-            <td><code>web/index.html</code></td>
-            <td>Static browser helper for Studio call payloads.</td>
-            <td>Open locally or from GitHub Pages.</td>
-          </tr>
-          <tr>
-            <td><code>examples/sample_claims.json</code></td>
-            <td>Reusable claims and public sources for manual testing.</td>
-            <td>Use one case in Studio to verify behavior.</td>
-          </tr>
-          <tr>
-            <td><code>scripts/verify-evidence-package.ps1</code></td>
-            <td>One-command evidence verifier.</td>
-            <td>Run from a cloned repository.</td>
-          </tr>
+          <tr><td>Frontend</td><td>Collects claim and source, connects wallet, submits transactions, displays accepted state.</td><td><a href="signalguard-dapp.js">GenLayerJS integration</a></td></tr>
+          <tr><td>Intelligent Contract</td><td>Fetches public evidence, defines the review criteria, and stores accepted state.</td><td><a href="../contracts/signal_guard.py">Contract source</a></td></tr>
+          <tr><td>Validators</td><td>Reason independently over the claim and source under GenLayer consensus.</td><td><a href="https://docs.genlayer.com/developers/intelligent-contracts/when-to-use-genlayer">GenLayer architecture</a></td></tr>
+          <tr><td>Verification</td><td>Checks deployed source, schema, state reads, Direct Mode storage, and static artifacts.</td><td><a href="../scripts/verify_studionet_deployment.py">Deployment verifier</a></td></tr>
         </tbody>
       </table>
     </section>
 
     <section>
-      <h2>Verification</h2>
-      <p>Clone the repository and run:</p>
-      <p><code>powershell -ExecutionPolicy Bypass -File scripts\verify-evidence-package.ps1</code></p>
-      <p>The verifier checks required files, Python syntax, CLI payload generation, dashboard calculations, JSON fixtures, and static page markers.</p>
+      <h2>Current boundaries</h2>
+      <ul>
+        <li>The deployed version stores the latest accepted review rather than full history.</li>
+        <li>The DApp validates HTTPS and input lengths; stronger URL policy belongs in a new contract deployment.</li>
+        <li>A future Milestone should be submitted only after the base Project is accepted and the upgraded contract is deployed.</li>
+      </ul>
+      <a href="reviewer-quickstart.html">Open the five-minute reviewer quickstart</a>
     </section>
   </main>
 </body>
